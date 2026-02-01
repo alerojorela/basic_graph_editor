@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Editor de Grafos Dirigidos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div id="toolbar">
+  <button id="themeToggle" title="Change theme">🌙</button>
+  <button id="newBtn" title="New graph">New</button>
+  <button id="saveBtn">Save JSON</button>
+  <button id="exampleBtn" title="Show example">Example</button>
+  <input type="file" id="loadInput" accept=".json">
+  
+  <!-- Help icon -->
+  <div class="tooltip">❓
+    <span class="tooltiptext">
+      F2: Rename node or edge<br>
+      F3: Change type of node or edge<br>
+      F4: Toggle lock on node or edge<br>
+      Delete / Supr: Delete selected (if not locked)<br>
+      Right-click: Create node/edge<br>
+      Left-click: Select node/edge<br>
+      Middle-button + drag: Pan / move view<br>
+      Mouse wheel: Zoom
+    </span>
+  </div>
+</div>
+
+
+  <canvas id="canvas"></canvas>
+
+  <script src="graphEditor.js"></script>
+
+  <script>
+    const btn = document.getElementById("themeToggle");
+
+    btn.addEventListener("click", () => {
+      document.documentElement.classList.toggle("light");
+      btn.textContent =
+        document.documentElement.classList.contains("light") ? "☀️" : "🌙";
+    });
+  </script>
+
+</body>
+
+</html>

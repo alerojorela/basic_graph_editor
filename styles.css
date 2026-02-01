@@ -1,0 +1,152 @@
+:root.light {
+  /* Fondo general */
+  --bg-color: #f0f0f0;
+
+  /* UI */
+  --ui-bg: #ffffff;
+  --ui-bg-hover: #e6e6e6;
+  --ui-text: #222;
+  --ui-border: #bbb;
+  --ui-focus: #1f77b4;
+
+  /* Tipos de grafo */
+  --type1-color: #1f77b4;
+  --type2-color: #2ca02c;
+  --type3-color: #d62728;
+  --type4-color: #9467bd;
+  --type5-color: #ff7f0e;
+}
+
+
+/* :root.dark { */
+:root {
+  --bg-color: #1e1e1e;
+
+  /* UI */
+  --ui-bg: #2a2a2a;
+  --ui-bg-hover: #3a3a3a;
+  --ui-text: #f0f0f0;
+  --ui-border: #555;
+  --ui-focus: #4fa3ff;
+
+  /* Tipos de grafo */
+  --type1-color: #4fa3ff;
+  --type2-color: #5bdc84;
+  --type3-color: #ff6b6b;
+  --type4-color: #b18cff;
+  --type5-color: #ffb86b;
+}
+
+
+body {
+  margin: 0;
+  overflow: hidden;
+
+  font-family: Arial, sans-serif;
+
+  color: var(--fg-color);
+  background: var(--bg-color);
+}
+
+#toolbar {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 8px;
+  background: transparent;
+  align-items: center; /* centra verticalmente los elementos */
+}
+
+
+
+#themeToggle {
+  font-size: 1.1em;
+}
+
+
+
+canvas {
+  display: block;
+
+  background: var(--bg-color);
+
+}
+
+
+button,
+input[type="file"] {
+  background: var(--ui-bg);
+  color: var(--ui-text);
+  border: 1px solid var(--ui-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+button:hover,
+input[type="file"]:hover {
+  background: var(--ui-bg-hover);
+}
+
+button:focus,
+input[type="file"]:focus {
+  outline: none;
+  border-color: var(--ui-focus);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+
+
+
+
+/* Tooltip básico */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  font-size: 1.2em;
+}
+
+/* Tooltip text debajo del icono */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 240px;
+  background-color: var(--ui-bg);
+  color: var(--ui-text);
+  text-align: left;
+  border: 1px solid var(--ui-border);
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 10;
+  top: 125%; /* aparece debajo del icono */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-size: 0.85em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Flecha pequeña apuntando hacia arriba del tooltip */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: -5px; /* arriba del tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--ui-bg) transparent;
+}

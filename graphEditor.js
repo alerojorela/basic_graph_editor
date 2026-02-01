@@ -353,11 +353,15 @@ canvas.addEventListener("wheel", e => {
   draw();
 });
 
-/* ================== GUARDAR / CARGAR ================== */
-document.getElementById("newBtn").onclick = () => {
-  const ok = confirm("Are you sure you want to clear the current graph?");
-  if (!ok) return;
 
+
+/* ================== DOCUMENT ACTIONS ================== */
+function emptyGraph() {
+  return nodes.length == 0;
+}
+
+
+function newGraph() {
   nodes = [];
   edges = [];
 
@@ -365,10 +369,9 @@ document.getElementById("newBtn").onclick = () => {
   selectedEdge = null;
 
   draw();
-};
+}
 
-
-document.getElementById("saveBtn").onclick = () => {
+function saveGraph() {
   const data = {
     nodes: nodes.map(n => ({ id: n.id, x: n.x, y: n.y, label: n.label, type: n.type, lock: n.lock })),
     edges: edges.map(e => ({ from: e.from.id, to: e.to.id, label: e.label, type: e.type, lock: e.lock }))
@@ -378,9 +381,9 @@ document.getElementById("saveBtn").onclick = () => {
   a.href = URL.createObjectURL(blob);
   a.download = "grafo.json";
   a.click();
-};
+}
 
-document.getElementById("loadInput").onchange = e => {
+function loadGraph() {
   const file = e.target.files[0];
   if (!file) return;
   const reader = new FileReader();
@@ -395,23 +398,17 @@ document.getElementById("loadInput").onchange = e => {
     draw();
   };
   reader.readAsText(file);
-};
+}
 
-document.getElementById("exampleBtn").onclick = () => {
-  const ok = confirm("Are you sure you want to clear the current graph?");
-  if (!ok) return;
-    
-  loadExampleGraph();
-};
 
 function loadExampleGraph() {
   nodes = [];
   edges = [];
 
   const greek = [
-    "α","β","γ","δ","ε","ζ","η","θ",
-    "ι","κ","λ","μ","ν","ξ","ο","π",
-    "ρ","σ","τ","υ","φ","χ","ψ","ω"
+    "α", "β", "γ", "δ", "ε", "ζ", "η", "θ",
+    "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π",
+    "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω"
   ];
 
   const startX = 0;

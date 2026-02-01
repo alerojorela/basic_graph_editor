@@ -9,27 +9,27 @@
 
 <body>
 
-<div id="toolbar">
-  <button id="themeToggle" title="Change theme">🌙</button>
-  <button id="newBtn" title="New graph">New</button>
-  <button id="saveBtn">Save JSON</button>
-  <button id="exampleBtn" title="Show example">Example</button>
-  <input type="file" id="loadInput" accept=".json">
-  
-  <!-- Help icon -->
-  <div class="tooltip">❓
-    <span class="tooltiptext">
-      F2: Rename node or edge<br>
-      F3: Change type of node or edge<br>
-      F4: Toggle lock on node or edge<br>
-      Delete / Supr: Delete selected (if not locked)<br>
-      Right-click: Create node/edge<br>
-      Left-click: Select node/edge<br>
-      Middle-button + drag: Pan / move view<br>
-      Mouse wheel: Zoom
-    </span>
+  <div id="toolbar">
+    <button id="themeToggle" title="Change theme">🌙</button>
+    <button id="newBtn" title="New graph">New</button>
+    <button id="saveBtn">Save JSON</button>
+    <button id="exampleBtn" title="Show example">Example</button>
+    <input type="file" id="loadInput" accept=".json">
+
+    <!-- Help icon -->
+    <div class="tooltip">❓
+      <span class="tooltiptext">
+        F2: Rename node or edge<br>
+        F3: Change type of node or edge<br>
+        F4: Toggle lock on node or edge<br>
+        Delete / Supr: Delete selected (if not locked)<br>
+        Right-click: Create node/edge<br>
+        Left-click: Select node/edge<br>
+        Middle-button + drag: Pan / move view<br>
+        Mouse wheel: Zoom
+      </span>
+    </div>
   </div>
-</div>
 
 
   <canvas id="canvas"></canvas>
@@ -44,6 +44,28 @@
       btn.textContent =
         document.documentElement.classList.contains("light") ? "☀️" : "🌙";
     });
+
+    document.getElementById("newBtn").onclick = () => {
+      if (!emptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
+      newGraph();
+    };
+
+    document.getElementById("saveBtn").onclick = () => {
+      saveGraph();
+    };
+
+
+    document.getElementById("exampleBtn").onclick = () => {
+      if (!emptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
+      loadExampleGraph();
+    };
+
+    document.getElementById("loadInput").onchange = e => {
+      if (!emptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
+      loadGraph();
+    };
+
+
   </script>
 
 </body>

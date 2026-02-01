@@ -386,7 +386,7 @@ function saveGraph() {
   a.click();
 }
 
-function loadGraph() {
+function loadGraph(e) {
   const file = e.target.files[0];
   if (!file) return;
 
@@ -405,23 +405,23 @@ function loadGraph() {
 }
 
 
-function loadExampleGraph() {
+const greekLetters = [
+  "α", "β", "γ", "δ", "ε", "ζ", "η", "θ",
+  "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π",
+  "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω"
+];
+
+function loadExampleGraph(items = greekLetters) {
   nodes = [];
   edges = [];
 
-  const greek = [
-    "α", "β", "γ", "δ", "ε", "ζ", "η", "θ",
-    "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π",
-    "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω"
-  ];
-
   const startX = 0;
   const startY = 0;
-  const dy = 100;
+  const dy = 85;
 
   let prev = null;
 
-  greek.forEach((label, i) => {
+  items.forEach((label, i) => {
     const node = {
       id: Date.now() + i,
       x: startX,

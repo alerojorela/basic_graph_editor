@@ -29,6 +29,11 @@ It allows users to visually create, edit, and explore directed graphs using intu
 
 > Locked edges cannot be deleted directly, but will still be removed if one of their connected nodes is deleted.
 
+## Automatic Layout (Dagre)
+
+The editor supports **automatic node layout** for directed graphs using **[Dagre](https://github.com/dagrejs/dagre)**.
+Node positions can be recomputed programmatically while preserving graph structure, labels, types, and lock state.
+
 ---
 
 ## Navigation (Pan & Zoom)
@@ -68,6 +73,13 @@ A ❓ help icon in the toolbar shows all shortcuts as a tooltip.
 
 ---
 
+## New Graph
+
+- A **New** button clears the current graph
+- Asks for confirmation before deleting all data
+
+---
+
 ## Save & Load
 
 - Graphs can be **saved to JSON**
@@ -90,12 +102,6 @@ All operations are done locally in the browser.
 
 ---
 
-## New Graph
-
-- A **New** button clears the current graph
-- Asks for confirmation before deleting all data
-
----
 
 ## Configuration
 

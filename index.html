@@ -12,10 +12,14 @@
   <div id="toolbar">
     <button id="themeToggle" title="Change theme">🌙</button>
     <button id="newBtn" title="New graph">New</button>
-    <button id="saveBtn">Save JSON</button>
-    <button id="exampleBtn" title="Show example">Example</button>
+    <button id="saveBtn">Save</button>
     <input type="file" id="loadInput" accept=".json">
 
+    <button id="newLayout" title="New layout">New layout</button>
+
+
+
+    <button id="exampleBtn" title="Show example">Example</button>
     <!-- Help icon -->
     <div class="tooltip">❓
       <span class="tooltiptext">
@@ -35,11 +39,18 @@
   <canvas id="canvas"></canvas>
 
   <script src="graphEditor.js"></script>
+  <script src="layout.js"></script>
+  <script src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script>
+
 
   <script>
-    const btn = document.getElementById("themeToggle");
+    window.addEventListener('beforeunload', function (event) {
+      event.preventDefault();
+      event.returnValue = 'Are you sure you want to discard the current graph?'; // Mensaje en algunos navegadores
+      return 'Are you sure you want to discard the current graph?';
+    });
 
-    btn.addEventListener("click", () => {
+    document.getElementById("themeToggle").addEventListener("click", () => {
       document.documentElement.classList.toggle("light");
       btn.textContent =
         document.documentElement.classList.contains("light") ? "☀️" : "🌙";
@@ -55,6 +66,18 @@
     };
 
 
+    document.getElementById("newLayout").onclick = () => {
+      console.log("newLayout");
+      // style = "vertical";
+      // style = "horizontal";
+      // style = "compact";
+      style = "wide";
+      // style = "inverted";
+      applyDagreLayout(nodes, edges, style);
+      draw();
+    };
+
+
     document.getElementById("exampleBtn").onclick = () => {
       if (!emptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
       loadExampleGraph();
@@ -62,7 +85,7 @@
 
     document.getElementById("loadInput").onchange = e => {
       if (!emptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
-      loadGraph();
+      loadGraph(e);
     };
 
 

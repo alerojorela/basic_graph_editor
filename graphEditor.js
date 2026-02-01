@@ -6,7 +6,7 @@ canvas.height = window.innerHeight;
 
 const R = 20;
 
-/* ================== TIPOS (CSS) ================== */
+/* ================== CSS TYPES ================== */
 function cssVar(name) {
   return getComputedStyle(document.documentElement)
     .getPropertyValue(name).trim();
@@ -20,14 +20,14 @@ const TYPES = [
   { color: () => cssVar("--type5-color"), dash: [] }
 ];
 
-/* ================== CONFIGURACIÓN DOBLE CLICK ================== */
+/* ================== DOUBLE CLICK CUSTOMIZING ================== */
 const DOUBLECLICK_MODE = 1; // 1 = renombrar, 2 = customDoubleClick
 
 function customDoubleClick(node) {
   alert("Custom double click on node: " + node.label);
 }
 
-/* ================== ESTADO ================== */
+/* ================== STATE ================== */
 let nodes = [];
 let edges = [];
 
@@ -52,7 +52,7 @@ let panStart = { x: 0, y: 0 };
 
 canvas.addEventListener("contextmenu", e => e.preventDefault());
 
-/* ================== DIBUJO ================== */
+/* ================== DRAWING ================== */
 function drawArrow(from, to, edge) {
   const color = TYPES[edge.type].color();
   const angle = Math.atan2(to.y - from.y, to.x - from.x);
@@ -180,12 +180,15 @@ function closestEnd(edge, x, y) {
   return dFrom < dTo ? "from" : "to";
 }
 
-/* ================== RATÓN ================== */
+/* ================== MOUSE ================== */
 canvas.addEventListener("mousedown", e => {
   const mouseX = e.offsetX;
   const mouseY = e.offsetY;
 
-  if (e.button === 1) { // botón central
+  // if (e.button === 3) { // back botton
+  // if (e.button === 4) { // forward botton
+
+  if (e.button === 1) { // middle botton
     panning = true;
     panStart.x = mouseX;
     panStart.y = mouseY;
@@ -195,13 +198,13 @@ canvas.addEventListener("mousedown", e => {
   mouse.x = (mouseX - offsetX) / scale;
   mouse.y = (mouseY - offsetY) / scale;
 
-  if (e.button === 2) {
+  if (e.button === 2) { // right botton
     const n = nodeAt(mouse.x, mouse.y);
     if (n) draggingFrom = n;
     else nodes.push({ id: Date.now(), x: mouse.x, y: mouse.y, label: "", type: 0, lock: false });
   }
 
-  if (e.button === 0) {
+  if (e.button === 0) { // left botton
     selectedNode = nodeAt(mouse.x, mouse.y);
     selectedEdge = selectedNode ? null : edgeAt(mouse.x, mouse.y);
 
@@ -276,7 +279,7 @@ canvas.addEventListener("mouseup", e => {
   draw();
 });
 
-/* ================== DOBLE CLICK ================== */
+/* ================== DOUBLE CLICK ================== */
 canvas.addEventListener("dblclick", e => {
   const mouseX = (e.offsetX - offsetX) / scale;
   const mouseY = (e.offsetY - offsetY) / scale;
@@ -284,7 +287,7 @@ canvas.addEventListener("dblclick", e => {
   const n = nodeAt(mouseX, mouseY);
   if (n) {
     if (DOUBLECLICK_MODE === 1) {
-      const t = prompt("Nombre del nodo:", n.label);
+      const t = prompt("Node label:", n.label);
       if (t !== null) n.label = t;
     } else if (DOUBLECLICK_MODE === 2) {
       customDoubleClick(n);
@@ -293,15 +296,15 @@ canvas.addEventListener("dblclick", e => {
   }
 });
 
-/* ================== TECLADO ================== */
+/* ================== KEYBOARD ================== */
 window.addEventListener("keydown", e => {
   if (e.key === "F2") {
     e.preventDefault();
     if (selectedNode) {
-      const t = prompt("Nombre del nodo:", selectedNode.label);
+      const t = prompt("Node label:", selectedNode.label);
       if (t !== null) selectedNode.label = t;
     } else if (selectedEdge) {
-      const t = prompt("Nombre del arco:", selectedEdge.label);
+      const t = prompt("Edge label:", selectedEdge.label);
       if (t !== null) selectedEdge.label = t;
     }
     draw();
@@ -314,7 +317,7 @@ window.addEventListener("keydown", e => {
     draw();
   }
 
-  if (e.key === "F4") { // alternar lock
+  if (e.key === "F4") { // toggle lock
     e.preventDefault();
     if (selectedNode) selectedNode.lock = !selectedNode.lock;
     else if (selectedEdge) selectedEdge.lock = !selectedEdge.lock;
@@ -379,13 +382,14 @@ function saveGraph() {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = "grafo.json";
+  a.download = "graph.json";
   a.click();
 }
 
 function loadGraph() {
   const file = e.target.files[0];
   if (!file) return;
+
   const reader = new FileReader();
   reader.onload = () => {
     const data = JSON.parse(reader.result);

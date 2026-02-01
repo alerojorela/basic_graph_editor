@@ -15,7 +15,7 @@ It allows users to visually create, edit, and explore directed graphs using intu
 - Assign one of **5 visual types** (colors/styles) using **F3**
 - Lock/unlock nodes to prevent deletion using **F5**
 
-### ➡️ Directed Edges
+### Directed Edges
 - Always directed (arrowheads)
 - Create edges by **right-clicking a node and dragging**
   - If released on empty space, a new node is created automatically

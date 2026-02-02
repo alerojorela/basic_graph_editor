@@ -11,7 +11,7 @@
 <body>
 
   <div id="toolbar">
-    <button id="themeToggle" title="Change theme">🌙</button>
+    <button id="themeToggle" title="Change theme">☀️</button>
     <button id="newBtn" title="New graph">New</button>
     <button id="saveBtn">Save</button>
     <input type="file" id="loadInput" accept=".json">
@@ -51,14 +51,15 @@
       return 'Are you sure you want to discard the current graph?';
     });
 
-    document.getElementById("themeToggle").addEventListener("click", () => {
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
       document.documentElement.classList.toggle("light");
-      btn.textContent =
-        document.documentElement.classList.contains("light") ? "☀️" : "🌙";
+      // themeToggle.textContent = document.documentElement.classList.contains("light") ? "☀️" : "🌙";
+      themeToggle.textContent = document.documentElement.classList.contains("light") ? "🌙" : "☀️";
     });
 
     document.getElementById("newBtn").onclick = () => {
-      if (!emptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
+      if (!isEmptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
       newGraph();
     };
 
@@ -80,12 +81,12 @@
 
 
     document.getElementById("exampleBtn").onclick = () => {
-      if (!emptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
+      if (!isEmptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
       loadExampleGraph();
     };
 
     document.getElementById("loadInput").onchange = e => {
-      if (!emptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
+      if (!isEmptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
       loadGraph(e);
     };
 

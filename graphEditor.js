@@ -359,7 +359,7 @@ canvas.addEventListener("wheel", e => {
 
 
 /* ================== DOCUMENT ACTIONS ================== */
-function emptyGraph() {
+function isEmptyGraph() {
   return nodes.length == 0;
 }
 

@@ -5,6 +5,10 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const R = 20;
+// enable tooltip if desired
+const enableTooltip = false;
+const TOOLTIP_ALIGN = "left"; 
+// "left" | "center" | "right"
 
 /* ================== CSS TYPES ================== */
 function cssVar(name) {
@@ -20,8 +24,8 @@ const TYPES = [
   { color: () => cssVar("--type5-color"), dash: [] }
 ];
 
-/* ================== DOUBLE CLICK CUSTOMIZING ================== */
-const DOUBLECLICK_MODE = 1; // 1 = renombrar, 2 = customDoubleClick
+/* ================== DOUBLE CLICK ================== */
+const DOUBLECLICK_MODE = 1;
 
 function customDoubleClick(node) {
   alert("Custom double click on node: " + node.label);
@@ -36,11 +40,15 @@ let selectedEdge = null;
 
 let draggingNode = null;
 let draggingFrom = null;
+let creatingNode = null;
+let creatingEdge = false;
+
 let draggingEdge = null;
 let draggingEdgeEnd = null;
 let edgeBackup = null;
 
 let mouse = { x: 0, y: 0 };
+let hoverNode = null;
 
 /* ================== PAN & ZOOM ================== */
 let offsetX = 0;
@@ -51,6 +59,11 @@ let panning = false;
 let panStart = { x: 0, y: 0 };
 
 canvas.addEventListener("contextmenu", e => e.preventDefault());
+
+/* ================== RESET ================== */
+function resetState() {
+  hoverNode = null;
+}
 
 /* ================== DRAWING ================== */
 function drawArrow(from, to, edge) {
@@ -96,7 +109,6 @@ function drawArrow(from, to, edge) {
     );
   }
 
-  // Indicar bloqueo
   if (edge.lock) {
     ctx.fillStyle = "gold";
     ctx.beginPath();
@@ -105,20 +117,92 @@ function drawArrow(from, to, edge) {
   }
 }
 
+
+function drawTooltip(node) {
+  if (!enableTooltip || !node.tooltip) return;
+
+  const lines = node.tooltip.split("\n");
+  ctx.font = "12px Arial";
+
+  const padding = 6;
+  const lineHeight = 14;
+
+  const textWidth = Math.max(...lines.map(l => ctx.measureText(l).width));
+  const boxWidth = textWidth + padding * 2;
+  const boxHeight = lines.length * lineHeight + padding * 2;
+
+  // posición del ratón en coordenadas de pantalla
+  const baseX = mouse.x * scale + offsetX;
+  const baseY = mouse.y * scale + offsetY;
+
+  let x, textX;
+
+  switch (TOOLTIP_ALIGN) {
+    case "right":
+      x = baseX - boxWidth - 10;
+      textX = x + boxWidth - padding;
+      ctx.textAlign = "right";
+      break;
+
+    case "center":
+      x = baseX - boxWidth / 2;
+      textX = x + boxWidth / 2;
+      ctx.textAlign = "center";
+      break;
+
+    default: // "left"
+      x = baseX + 10;
+      textX = x + padding;
+      ctx.textAlign = "left";
+  }
+
+  const y = baseY + 10;
+
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+  // fondo
+  // ctx.fillStyle = "rgba(0,0,0,0.85)";
+  // ctx.fillRect(x, y, boxWidth, boxHeight);
+
+  // texto
+  ctx.fillStyle = "white";
+  ctx.textBaseline = "top";
+
+  lines.forEach((line, i) => {
+    ctx.fillText(
+      line,
+      textX,
+      y + padding + i * lineHeight
+    );
+  });
+}
+
+
+
 function draw() {
-  // aplica pan y zoom
+  resetState();
+
   ctx.setTransform(scale, 0, 0, scale, offsetX, offsetY);
-  ctx.clearRect(-offsetX / scale, -offsetY / scale, canvas.width / scale, canvas.height / scale);
+  ctx.clearRect(
+    -offsetX / scale,
+    -offsetY / scale,
+    canvas.width / scale,
+    canvas.height / scale
+  );
 
   edges.forEach(e => drawArrow(e.from, e.to, e));
 
-  if (draggingFrom) {
+  if (creatingEdge && creatingNode) {
     ctx.setLineDash([5, 5]);
-    drawArrow(draggingFrom, mouse, { type: 0, label: "" });
+    drawArrow(creatingNode, mouse, { type: 0, label: "" });
     ctx.setLineDash([]);
   }
 
   nodes.forEach(n => {
+    if (Math.hypot(n.x - mouse.x, n.y - mouse.y) <= R) {
+      hoverNode = n;
+    }
+
     const color = TYPES[n.type].color();
 
     ctx.fillStyle = color;
@@ -129,7 +213,11 @@ function draw() {
     ctx.lineWidth = n === selectedNode ? 4 : 1.5;
     ctx.strokeStyle = "rgba(0,0,0,0.7)";
 
-    if (n === selectedNode) { ctx.shadowColor = color; ctx.shadowBlur = 12; }
+    if (n === selectedNode) {
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 12;
+    }
+
     ctx.stroke();
     ctx.shadowBlur = 0;
 
@@ -141,7 +229,6 @@ function draw() {
       ctx.fillText(n.label, n.x, n.y);
     }
 
-    // bloqueo visual
     if (n.lock) {
       ctx.fillStyle = "gold";
       ctx.beginPath();
@@ -151,6 +238,8 @@ function draw() {
   });
 
   ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+  if (hoverNode) drawTooltip(hoverNode);
 }
 
 /* ================== HIT TEST ================== */
@@ -195,13 +284,23 @@ canvas.addEventListener("mousedown", e => {
     return;
   }
 
-  mouse.x = (mouseX - offsetX) / scale;
-  mouse.y = (mouseY - offsetY) / scale;
-
   if (e.button === 2) { // right botton
     const n = nodeAt(mouse.x, mouse.y);
-    if (n) draggingFrom = n;
-    else nodes.push({ id: Date.now(), x: mouse.x, y: mouse.y, label: "", type: 0, lock: false });
+    if (n) {
+      creatingNode = n;
+    } else {
+      creatingNode = {
+        id: Date.now(),
+        x: mouse.x,
+        y: mouse.y,
+        label: "",
+        tooltip: "",
+        type: 0,
+        lock: false
+      };
+      nodes.push(creatingNode);
+    }
+    creatingEdge = true;
   }
 
   if (e.button === 0) { // left botton
@@ -240,30 +339,43 @@ canvas.addEventListener("mousemove", e => {
     draggingNode.y = mouse.y;
   }
 
-  if (draggingEdge) {
+    if (draggingEdge) {
     if (draggingEdgeEnd === "from") draggingEdge.from = { x: mouse.x, y: mouse.y };
     else draggingEdge.to = { x: mouse.x, y: mouse.y };
   }
+
 
   draw();
 });
 
 canvas.addEventListener("mouseup", e => {
-  if (e.button === 1) { panning = false; return; }
-
-  if (e.button === 2 && draggingFrom) {
-    let target = nodeAt(mouse.x, mouse.y);
-    if (!target) {
-      target = { id: Date.now(), x: mouse.x, y: mouse.y, label: "", type: 0, lock: false };
-      nodes.push(target);
-    }
-    if (target !== draggingFrom && !edgeExists(draggingFrom, target)) {
-      edges.push({ from: draggingFrom, to: target, label: "", type: 0, lock: false });
-    }
-    draggingFrom = null;
+  if (e.button === 1) {
+    panning = false;
+    return;
   }
 
-  if (draggingEdge) {
+  if (e.button === 2 && creatingEdge && creatingNode) {
+    let target = nodeAt(mouse.x, mouse.y);
+    if (!target) {
+      target = {
+        id: Date.now(),
+        x: mouse.x,
+        y: mouse.y,
+        label: "",
+        tooltip: "",
+        type: 0,
+        lock: false
+      };
+      nodes.push(target);
+    }
+    if (target !== creatingNode && !edgeExists(creatingNode, target)) {
+      edges.push({ from: creatingNode, to: target, label: "", type: 0, lock: false });
+    }
+    creatingNode = null;
+    creatingEdge = false;
+  }
+
+    if (draggingEdge) {
     const target = nodeAt(mouse.x, mouse.y);
     if (target) draggingEdge[draggingEdgeEnd] = target;
     else { // rollback
@@ -281,20 +393,21 @@ canvas.addEventListener("mouseup", e => {
 
 /* ================== DOUBLE CLICK ================== */
 canvas.addEventListener("dblclick", e => {
-  const mouseX = (e.offsetX - offsetX) / scale;
-  const mouseY = (e.offsetY - offsetY) / scale;
+  const x = (e.offsetX - offsetX) / scale;
+  const y = (e.offsetY - offsetY) / scale;
 
-  const n = nodeAt(mouseX, mouseY);
+  const n = nodeAt(x, y);
   if (n) {
     if (DOUBLECLICK_MODE === 1) {
       const t = prompt("Node label:", n.label);
       if (t !== null) n.label = t;
-    } else if (DOUBLECLICK_MODE === 2) {
+    } else {
       customDoubleClick(n);
     }
     draw();
   }
 });
+
 
 /* ================== KEYBOARD ================== */
 window.addEventListener("keydown", e => {
@@ -344,17 +457,19 @@ window.addEventListener("keydown", e => {
 /* ================== WHEEL ZOOM ================== */
 canvas.addEventListener("wheel", e => {
   e.preventDefault();
-  const mouseX = (e.offsetX - offsetX) / scale;
-  const mouseY = (e.offsetY - offsetY) / scale;
+  const x = (e.offsetX - offsetX) / scale;
+  const y = (e.offsetY - offsetY) / scale;
 
   const delta = e.deltaY < 0 ? 1.1 : 0.9;
   scale *= delta;
 
-  offsetX = e.offsetX - mouseX * scale;
-  offsetY = e.offsetY - mouseY * scale;
+  offsetX = e.offsetX - x * scale;
+  offsetY = e.offsetY - y * scale;
 
   draw();
 });
+
+
 
 
 
@@ -405,57 +520,153 @@ function loadGraph(e) {
 }
 
 
+
+function randomId() {
+    return Date.now();
+    // return Date.now() + i;
+}
+
+function normalizeItems(items) {
+    return items.map((item, i) => {
+      // Caso objeto: preservar todo
+      if (item && typeof item === 'object' && !Array.isArray(item)) {
+        return {
+          ...item,                           // 👈 conserva atributos extra
+          id: item.id ?? item.label ?? Date.now() + i,
+          label: item.label ?? String(item.id),
+          tooltip: item.tooltip ?? null,
+        };
+      }
+  
+      // Caso atómico
+      return {
+        id: item,
+        label: String(item),
+        tooltip: null,
+      };
+    });
+  }
+
+  
+
+
 const greekLetters = [
   "α", "β", "γ", "δ", "ε", "ζ", "η", "θ",
   "ι", "κ", "λ", "μ", "ν", "ξ", "ο", "π",
   "ρ", "σ", "τ", "υ", "φ", "χ", "ψ", "ω"
 ];
 
-function loadExampleGraph(items = greekLetters) {
-  nodes = [];
-  edges = [];
+function someLayout(
+	mode = 'serial', // 'serial' | 'parallel'
+	items = greekLetters
+) {
 
-  const startX = 0;
-  const startY = 0;
-  const dy = 85;
+	nodes = [];
+	edges = [];
+	let dy = 85;
 
-  let prev = null;
+	const data = normalizeItems(items);
+  const multiline_text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum`;
 
-  items.forEach((label, i) => {
-    const node = {
-      id: Date.now() + i,
-      x: startX,
-      y: startY + i * dy,
-      label,
-      type: i % TYPES.length,
-      lock: false
-    };
+	/***********************
+  * SERIAL LAYOUT
+	***********************/
+	if (mode === 'serial') {
+		// const startX = 0;
+		// const startY = 0;
+		let prev = null;
 
-    nodes.push(node);
+		data.forEach((item, i) => {
+			const node = {
+                ...item,                
+				id: item.id,
+				label: item.label,
+				tooltip: item.tooltip,
+				type: i % TYPES.length,
+				lock: false,
+				// x: startX,
+				// y: startY + i * dy,
+        tooltip: multiline_text
+			};
 
-    if (prev) {
-      edges.push({
-        from: prev,
-        to: node,
-        label: "",
-        type: i % TYPES.length,
-        lock: false
-      });
-    }
+			nodes.push(node);
 
-    prev = node;
-  });
+			if (prev) {
+				edges.push({
+					from: prev,
+					to: node,
+					type: i % TYPES.length,
+					lock: false,
+				});
+			}
 
-  // centrar vista
-  offsetX = canvas.width / 2;
-  offsetY = 50;
-  scale = 1;
+			prev = node;
+		});
+	}
 
-  selectedNode = null;
-  selectedEdge = null;
+	/***********************
+  * PARALLEL LAYOUT
+	***********************/
+	if (mode === 'parallel') {
+		const startNode = {
+			id: randomId(),
+			label: 'START',
+			type: 0,
+			lock: true,
+		};
+		const endNode = {
+			id: randomId() + 1,
+			label: 'END',
+			type: 0,
+			lock: true,
+		};
+		nodes.push(startNode, endNode);
 
-  draw();
+		data.forEach((item, i) => {
+			const node = {
+                ...item,
+				id: item.id,
+				label: item.label,
+				tooltip: item.tooltip,
+				type: i % TYPES.length,
+				lock: false,
+        tooltip: multiline_text
+			};
+
+			nodes.push(node);
+
+			edges.push({
+				from: startNode,
+				to: node,
+				type: i % TYPES.length,
+			});
+
+			edges.push({
+				from: node,
+				to: endNode,
+				type: i % TYPES.length,
+			});
+		});
+	}
+
+	/* =========================
+       VISTA
+       ========================= */
+	offsetX = canvas.width / 2;
+	offsetY = 50;
+	scale = 1;
+
+	selectedNode = null;
+	selectedEdge = null;
+
+  applyDagreLayout(nodes, edges);
+	draw();
 }
+
+
 
 
 draw();

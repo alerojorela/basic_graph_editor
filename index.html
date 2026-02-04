@@ -82,7 +82,9 @@
 
     document.getElementById("exampleBtn").onclick = () => {
       if (!isEmptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
-      loadExampleGraph();
+      // 'serial' | 'parallel'
+      // someLayout(mode='serial');
+      someLayout(mode='parallel');
     };
 
     document.getElementById("loadInput").onchange = e => {

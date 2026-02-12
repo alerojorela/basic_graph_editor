@@ -16,7 +16,7 @@
     <button id="saveBtn">Save</button>
     <input type="file" id="loadInput" accept=".json">
 
-    <button id="newLayout" title="New layout">New layout</button>
+    <button id="newLayout" title="New layout">Arrange</button>
 
 
 
@@ -83,8 +83,14 @@
     document.getElementById("exampleBtn").onclick = () => {
       if (!isEmptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
       // 'serial' | 'parallel'
-      // someLayout(mode='serial');
-      someLayout(mode='parallel');
+      // g = sampleLayout(mode='ring');
+      // g = sampleLayout(mode='serial');
+      g = sampleLayout(mode='parallel');
+      // g = sampleLayout(mode='central');
+      // g = sampleLayout(mode='diamond');
+      nodes = g.nodes;
+      edges = g.edges;
+      redraw();
     };
 
     document.getElementById("loadInput").onchange = e => {

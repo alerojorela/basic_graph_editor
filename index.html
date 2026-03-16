@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="author" content="Alejandro Rojo">
-  <title>Editor de Grafos Dirigidos</title>
+  <title>Directed Graph Editor</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -16,38 +16,111 @@
     <button id="saveBtn">Save</button>
     <input type="file" id="loadInput" accept=".json">
 
-    <button id="newLayout" title="New layout">Arrange</button>
+    <select id="layoutMode" title="Layout algorithm">
+      <!--
+      <optgroup label="Dagre">
+        <option value="dagre-vertical">Dagre ↓</option>
+        <option value="dagre-horizontal">Dagre →</option>
+        <option value="dagre-compact">Dagre compact</option>
+        <option value="dagre-wide">Dagre wide</option>
+        <option value="dagre-inverted">Dagre ↑</option>
+      </optgroup>
+      -->
+      <optgroup label="ELK">
+        <option value="elk-layered">ELK ↓ layered</option>
+        <option value="elk-horizontal">ELK → layered</option>
+        <option value="elk-stress">ELK stress</option>
+        <option value="elk-mrtree" selected>ELK tree</option>
+      </optgroup>
+      <!--
+      <optgroup label="Graphviz">
+        <option value="gv-dot">Graphviz dot</option>
+        <option value="gv-neato">Graphviz neato</option>
+        <option value="gv-fdp">Graphviz fdp</option>
+        <option value="gv-sfdp">Graphviz sfdp</option>
+        <option value="gv-twopi">Graphviz twopi</option>
+        <option value="gv-circo">Graphviz circo</option>
+      </optgroup>
+      -->
+      <optgroup label="WebCola">
+        <option value="cola">Cola free</option>
+        <option value="cola-down">Cola ↓</option>
+        <option value="cola-right">Cola →</option>
+      </optgroup>
+    </select>
+    <button id="applyLayout" title="Apply selected layout">Layout</button>
 
 
 
     <button id="exampleBtn" title="Show example">Example</button>
-    <!-- Help icon -->
-    <div class="tooltip">❓
-      <span class="tooltiptext">
-        F2: Rename node or edge<br>
-        F3: Change type of node or edge<br>
-        F4: Toggle lock on node or edge<br>
-        Delete / Supr: Delete selected (if not locked)<br>
-        Right-click: Create node/edge<br>
-        Left-click: Select node/edge<br>
-        Middle-button + drag: Pan / move view<br>
-        Mouse wheel: Zoom
-      </span>
-    </div>
+    <!-- Help button -->
+    <button id="helpBtn" title="Keyboard shortcuts">❓</button>
   </div>
 
 
   <canvas id="canvas"></canvas>
 
-  <script src="graphEditor.js"></script>
-  <script src="layout.js"></script>
-  <script src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script>
+  <!-- Help modal -->
+  <div id="helpModal" style="display:none">
+    <div id="helpBox">
+      <div id="helpTitle">Keyboard shortcuts</div>
+      <dl id="helpList">
+        <dt>Right-click → drag</dt><dd>Create node and edge (release on existing node or empty space)</dd>
+        <dt>Right-click (on node, no drag)</dt><dd>Context menu: create connected node of the chosen category</dd>
+        <dt>Ctrl + right-click</dt><dd>Insert subgraph from indented text</dd>
+        <dt>Left click</dt><dd>Select node or edge</dd>
+        <dt>Ctrl + click (node)</dt><dd>Add / remove from multi-selection</dd>
+        <dt>Ctrl + double-click (node)</dt><dd>Select entire connected component</dd>
+        <dt>Ctrl + click (edge)</dt><dd>Reverse edge direction</dd>
+        <dt>Drag on empty space</dt><dd>Area selection (rubber-band)</dd>
+        <dt>Drag selected node</dt><dd>Move all multi-selected nodes</dd>
+        <dt>Middle button + drag</dt><dd>Pan view</dd>
+        <dt>Middle double-click</dt><dd>Center graph</dd>
+        <dt>Mouse wheel</dt><dd>Zoom</dd>
+        <dt>F2</dt><dd>Rename node or edge (or all selected)</dd>
+        <dt>F3</dt><dd>Cycle category — or type/colour if no category schema</dd>
+        <dt>Ctrl+F3</dt><dd>Cycle node shape (node only)</dd>
+        <dt>Shift+F3</dt><dd>Cycle node colour (node only)</dd>
+        <dt>F4</dt><dd>Toggle lock</dd>
+        <dt>F6</dt><dd>Focus properties panel</dd>
+        <dt>Del / Delete</dt><dd>Delete selection (if not locked)</dd>
+        <dt>Alt + ← / →</dt><dd>Node visit history</dd>
+        <dt>Ctrl+F</dt><dd>Open search panel</dd>
+      </dl>
+      <div id="helpCloseRow"><button id="helpClose">Close</button></div>
+    </div>
+  </div>
+
+
+
+  <!-- Load order matters: config → base (creates window.graph) → layout → optional modules -->
+  <!-- config.js: schemas, categoryStyles, keyBindings, R, defaultLayout, etc. -->
+  <script src="js/config.js"></script>
+  <!-- base.js: GraphEditor class + main instance (window.graph) + function aliases for this file -->
+  <script src="js/base.js"></script>
+  <!-- layout.js: dagre / ELK / Graphviz / Cola layout algorithms; uses window.graph.centerGraph() -->
+  <script src="js/layout.js"></script>
+  <!-- Optional modules — all access the editor via window.graph.* -->
+  <!-- extra.js: example graph generator (sampleLayout) + subgraph-insert modal -->
+  <script src="js/extra.js"></script>
+  <!-- visualPatterns.js: node shapes & colours, Ctrl/Shift+F3; sets window.graph.TYPES/drawNodeShape -->
+  <script src="js/visualPatterns.js"></script>
+  <!-- propertiesEditor.js: side properties panel; sets window.graph.onSelectionChange etc. -->
+  <script src="js/propertiesEditor.js"></script>
+  <!-- nodeHistory.js: Alt+← / Alt+→ node history; chains window.graph.onSelectionChange -->
+  <script src="js/nodeHistory.js"></script>
+  <!-- search.js: Ctrl+F search panel; reads window.graph.nodes/edges -->
+  <script src="js/search.js"></script>
+  <!-- <script src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script> -->
+  <script src="https://unpkg.com/elkjs/lib/elk.bundled.js"></script>
+  <script src="https://unpkg.com/webcola/WebCola/cola.js"></script>
+  <script src="https://unpkg.com/@viz-js/viz@3.24.0/dist/viz-global.js"></script>
 
 
   <script>
     window.addEventListener('beforeunload', function (event) {
       event.preventDefault();
-      event.returnValue = 'Are you sure you want to discard the current graph?'; // Mensaje en algunos navegadores
+      event.returnValue = 'Are you sure you want to discard the current graph?'; // shown in some browsers
       return 'Are you sure you want to discard the current graph?';
     });
 
@@ -68,15 +141,9 @@
     };
 
 
-    document.getElementById("newLayout").onclick = () => {
-      console.log("newLayout");
-      // style = "vertical";
-      // style = "horizontal";
-      // style = "compact";
-      style = "wide";
-      // style = "inverted";
-      applyDagreLayout(nodes, edges, style);
-      draw();
+    document.getElementById("applyLayout").onclick = () => {
+      const mode = document.getElementById("layoutMode").value;
+      applyLayout(window.graph.nodes, window.graph.edges, mode);
     };
 
 
@@ -88,8 +155,8 @@
       g = sampleLayout(mode='parallel');
       // g = sampleLayout(mode='central');
       // g = sampleLayout(mode='diamond');
-      nodes = g.nodes;
-      edges = g.edges;
+      window.graph.nodes = g.nodes;
+      window.graph.edges = g.edges;
       redraw();
     };
 
@@ -97,6 +164,23 @@
       if (!isEmptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
       loadGraph(e);
     };
+
+    // ── Help modal ──────────────────────────────────────────────────────────
+    const _helpModal = document.getElementById('helpModal');
+    document.getElementById('helpBtn').addEventListener('click', () => {
+      _helpModal.style.display = 'flex';
+    });
+    document.getElementById('helpClose').addEventListener('click', () => {
+      _helpModal.style.display = 'none';
+    });
+    _helpModal.addEventListener('click', e => {
+      if (e.target === _helpModal) _helpModal.style.display = 'none';
+    });
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && _helpModal.style.display !== 'none') {
+        _helpModal.style.display = 'none';
+      }
+    });
 
 
   </script>

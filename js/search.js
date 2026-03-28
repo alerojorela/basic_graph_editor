@@ -289,7 +289,7 @@
 
 	// Ctrl+F: open (or re-focus if already open)
 	window.addEventListener('keydown', (e) => {
-		if (e.ctrlKey && e.key === (window.keyBindings?.search ?? 'f')) {
+		if (e.ctrlKey && e.key.toLowerCase() === (window.keyBindings?.search ?? 'f').toLowerCase()) {
 			e.preventDefault();
 			_open();
 		}

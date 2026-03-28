@@ -43,6 +43,7 @@ class GraphEditor {
 		// ── Graph data ────────────────────────────────────────────────────────
 		this.nodes = [];
 		this.edges = [];
+		this.dirty = false; // true whenever unsaved changes exist
 
 		// ── Selection ─────────────────────────────────────────────────────────
 		this.selectedNode  = null;
@@ -100,6 +101,7 @@ class GraphEditor {
 		if (interactive) {
 			this._bindEvents();
 			this.resizeCanvas();
+			window.addEventListener('resize', () => { this.resizeCanvas(); this.draw(); });
 		}
 	}
 
@@ -122,6 +124,7 @@ class GraphEditor {
 	centerGraph(margin = 80) {
 		if (this.nodes.length === 0) return;
 
+		this.resizeCanvas();
 		const R = this.R;
 		let minX = Infinity, maxX = -Infinity;
 		let minY = Infinity, maxY = -Infinity;
@@ -151,7 +154,7 @@ class GraphEditor {
 
 	redraw() {
 		this.reset();
-		const mode = document.getElementById('layoutMode')?.value ?? window.defaultLayout ?? 'elk-mrtree';
+		const mode = window.activeLayout ?? 'elk-mrtree';
 		applyLayout(this.nodes, this.edges, mode);
 		this.centerGraph();
 	}
@@ -416,6 +419,7 @@ class GraphEditor {
 		const now = new Date().toISOString();
 		if (isNew || !el.insertionDate) el.insertionDate = now;
 		el.modificationDate = now;
+		this.dirty = true;
 	}
 
 
@@ -455,6 +459,7 @@ class GraphEditor {
 		this.edges = [];
 		this.selectedNode = null;
 		this.selectedEdge = null;
+		this.dirty = false;
 		this.draw();
 	}
 
@@ -485,6 +490,7 @@ class GraphEditor {
 		a.href     = URL.createObjectURL(blob);
 		a.download = this._loadedFilename;
 		a.click();
+		this.dirty = false;
 	}
 
 	loadGraph(e) {
@@ -502,7 +508,8 @@ class GraphEditor {
 				from: this.nodes.find(n => n.id === e.from),
 				to:   this.nodes.find(n => n.id === e.to),
 			})).filter(e => e.from && e.to);
-			this.draw();
+			this.dirty = false;
+			this.centerGraph();
 		};
 		reader.readAsText(file);
 	}
@@ -662,6 +669,7 @@ class GraphEditor {
 					const tmp    = hitEdge.from;
 					hitEdge.from = hitEdge.to;
 					hitEdge.to   = tmp;
+					this.dirty = true;
 				} else {
 					this.draggingEdge    = hitEdge;
 					this.draggingEdgeEnd = this.closestEnd(hitEdge, this.mouse.x, this.mouse.y);
@@ -710,11 +718,13 @@ class GraphEditor {
 				this.draggingNode.x = this.mouse.x;
 				this.draggingNode.y = this.mouse.y;
 			}
+			this.dirty = true;
 		}
 
 		if (this.draggingEdge) {
 			if (this.draggingEdgeEnd === 'from') this.draggingEdge.from = { x: this.mouse.x, y: this.mouse.y };
 			else                                  this.draggingEdge.to   = { x: this.mouse.x, y: this.mouse.y };
+			this.dirty = true;
 		}
 
 		this.draw();
@@ -817,7 +827,7 @@ class GraphEditor {
 				this.doubleclickFunction(n);
 			} else {
 				const t = prompt('Node label:', n.label);
-				if (t !== null) n.label = t;
+				if (t !== null) { n.label = t; this.dirty = true; }
 			}
 			if (typeof this.onSelectionChange === 'function') {
 				this.onSelectionChange(this.selectedNode, this.selectedEdge);
@@ -832,7 +842,7 @@ class GraphEditor {
 				this.doubleclickEdgeFunction(edge);
 			} else {
 				const t = prompt('Edge label:', edge.label);
-				if (t !== null) edge.label = t;
+				if (t !== null) { edge.label = t; this.dirty = true; }
 			}
 			if (typeof this.onSelectionChange === 'function') {
 				this.onSelectionChange(this.selectedNode, this.selectedEdge);
@@ -843,16 +853,28 @@ class GraphEditor {
 
 	_handleWheel(e) {
 		e.preventDefault();
-		const x = (e.offsetX - this.offsetX) / this.scale;
-		const y = (e.offsetY - this.offsetY) / this.scale;
+		const factor = e.deltaY < 0 ? 1.1 : 1 / 1.1;
 
-		const delta = e.deltaY < 0 ? 1.1 : 0.9;
-		this.scale  *= delta;
-
-		this.offsetX = e.offsetX - x * this.scale;
-		this.offsetY = e.offsetY - y * this.scale;
-
-		this.draw();
+		if (e.ctrlKey) {
+			// Scale node positions in world space about the mouse pivot
+			const px = this.mouse.x;
+			const py = this.mouse.y;
+			const targets = this.selectedNodes.length ? this.selectedNodes : this.nodes;
+			targets.forEach(n => {
+				n.x = px + (n.x - px) * factor;
+				n.y = py + (n.y - py) * factor;
+			});
+			this.dirty = true;
+			this.draw();
+		} else {
+			// Viewport zoom — keep the point under the cursor fixed
+			const x = (e.offsetX - this.offsetX) / this.scale;
+			const y = (e.offsetY - this.offsetY) / this.scale;
+			this.scale  *= factor;
+			this.offsetX = e.offsetX - x * this.scale;
+			this.offsetY = e.offsetY - y * this.scale;
+			this.draw();
+		}
 	}
 
 	_handleKeyDown(e) {
@@ -922,6 +944,7 @@ class GraphEditor {
 			} else if (this.selectedEdge) {
 				this.selectedEdge.lock = !this.selectedEdge.lock;
 			}
+			this.dirty = true;
 			if (typeof this.onSelectionChange === 'function') {
 				this.onSelectionChange(this.selectedNode, this.selectedEdge);
 			}
@@ -951,6 +974,7 @@ class GraphEditor {
 					this.selectedEdge = null;
 				}
 			}
+			this.dirty = true;
 			if (typeof this.onSelectionChange === 'function') {
 				this.onSelectionChange(this.selectedNode, this.selectedEdge);
 			}

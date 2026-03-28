@@ -70,21 +70,83 @@ body {
   background: var(--bg-color);
 }
 
-#toolbar {
+/* ─── Menu bar ──────────────────────────────────────────────────────────── */
+
+#menubar {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 0; left: 0; right: 0;
+  height: 30px;
   display: flex;
-  gap: 8px;
+  align-items: stretch;
+  background: var(--ui-bg);
+  border-bottom: 1px solid var(--ui-border);
+  z-index: 100;
+  user-select: none;
+}
+
+/* Reset global button styles for menubar — scoped by button type to avoid specificity fights */
+#menubar button              { border-radius: 0; border-color: transparent; }
+#menubar button:active       { transform: none; }
+#menubar button:focus        { border-color: transparent; }
+
+.menu {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+.menu-trigger {
+  padding: 0 14px;
   background: transparent;
-  align-items: center; /* centra verticalmente los elementos */
 }
+.menu-trigger:hover,
+.menu.open .menu-trigger { background: var(--ui-bg-hover); }
 
-
-
-#themeToggle {
-  font-size: 1.1em;
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%; left: 0;
+  min-width: 200px;
+  background: var(--ui-bg);
+  border: 1px solid var(--ui-border);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  padding: 4px 0;
+  z-index: 200;
 }
+.menu.open .menu-dropdown { display: block; }
+
+.menu-action,
+.menu-option {
+  display: block;
+  width: 100%;
+  padding: 7px 20px;
+  text-align: left;
+  background: transparent;
+  white-space: nowrap;
+}
+.menu-action:hover,
+.menu-option:hover { background: var(--ui-bg-hover); }
+
+.menu-option           { padding-left: 36px; position: relative; }
+.menu-option.active::before { content: '✓'; position: absolute; left: 16px; }
+
+.menu-group-label {
+  padding: 5px 16px 2px;
+  font-size: 0.72em;
+  color: var(--ui-border);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+.menu-separator { height: 1px; background: var(--ui-border); margin: 3px 0; }
+
+#menubarRight {
+  margin-left: auto;
+  display: flex;
+  align-items: stretch;
+}
+#themeToggle { padding: 0 10px; font-size: 1.1em; background: transparent; }
 
 
 
@@ -97,8 +159,7 @@ canvas {
 
 
 button,
-input[type="file"],
-#toolbar select {
+input[type="file"] {
   background: var(--ui-bg);
   color: var(--ui-text);
   border: 1px solid var(--ui-border);
@@ -110,14 +171,12 @@ input[type="file"],
 }
 
 button:hover,
-input[type="file"]:hover,
-#toolbar select:hover {
+input[type="file"]:hover {
   background: var(--ui-bg-hover);
 }
 
 button:focus,
-input[type="file"]:focus,
-#toolbar select:focus {
+input[type="file"]:focus {
   outline: none;
   border-color: var(--ui-focus);
 }
@@ -199,10 +258,10 @@ button:active {
 
 #propertiesPanel {
   position: fixed;
-  top: 0;
+  top: 30px;
   right: 0;
   width: 240px;
-  height: 100vh;
+  height: calc(100vh - 30px);
   background: rgba(30, 30, 30, 0.88);
   backdrop-filter: blur(6px);
   border-left: 1px solid var(--ui-border);
@@ -394,7 +453,7 @@ button:active {
 
 #searchPanel {
   position: fixed;
-  top: 40px;   /* sits just below the toolbar */
+  top: 30px;   /* sits just below the menu bar */
   left: 0;
   z-index: 90;
   background: var(--ui-bg);

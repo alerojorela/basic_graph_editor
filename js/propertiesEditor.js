@@ -499,16 +499,13 @@ var arrayExclusiveWidget = 'select';
 
 	// Convert graph-space coords to screen-space popup anchor (below the element).
 	function _popupAnchor(el, type) {
+		const { scale, offsetX, offsetY, R } = window.graph;
 		if (type === 'node') {
-			// eslint-disable-next-line no-undef
 			return { sx: el.x * scale + offsetX, sy: el.y * scale + offsetY + R * scale + 6 };
 		}
 		// edge: anchor to midpoint
-		// eslint-disable-next-line no-undef
 		const mx = (el.from.x + el.to.x) / 2;
-		// eslint-disable-next-line no-undef
 		const my = (el.from.y + el.to.y) / 2;
-		// eslint-disable-next-line no-undef
 		return { sx: mx * scale + offsetX, sy: my * scale + offsetY + 14 };
 	}
 

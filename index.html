@@ -10,51 +10,68 @@
 
 <body>
 
-  <div id="toolbar">
-    <button id="themeToggle" title="Change theme">☀️</button>
-    <button id="newBtn" title="New graph">New</button>
-    <button id="saveBtn">Save</button>
-    <input type="file" id="loadInput" accept=".json">
+  <div id="menubar">
+    <input type="file" id="loadInput" accept=".json" style="display:none">
 
-    <select id="layoutMode" title="Layout algorithm">
-      <!--
-      <optgroup label="Dagre">
-        <option value="dagre-vertical">Dagre ↓</option>
-        <option value="dagre-horizontal">Dagre →</option>
-        <option value="dagre-compact">Dagre compact</option>
-        <option value="dagre-wide">Dagre wide</option>
-        <option value="dagre-inverted">Dagre ↑</option>
-      </optgroup>
-      -->
-      <optgroup label="ELK">
-        <option value="elk-layered">ELK ↓ layered</option>
-        <option value="elk-horizontal">ELK → layered</option>
-        <option value="elk-stress">ELK stress</option>
-        <option value="elk-mrtree" selected>ELK tree</option>
-      </optgroup>
-      <!--
-      <optgroup label="Graphviz">
-        <option value="gv-dot">Graphviz dot</option>
-        <option value="gv-neato">Graphviz neato</option>
-        <option value="gv-fdp">Graphviz fdp</option>
-        <option value="gv-sfdp">Graphviz sfdp</option>
-        <option value="gv-twopi">Graphviz twopi</option>
-        <option value="gv-circo">Graphviz circo</option>
-      </optgroup>
-      -->
-      <optgroup label="WebCola">
-        <option value="cola">Cola free</option>
-        <option value="cola-down">Cola ↓</option>
-        <option value="cola-right">Cola →</option>
-      </optgroup>
-    </select>
-    <button id="applyLayout" title="Apply selected layout">Layout</button>
+    <!-- File menu -->
+    <div class="menu">
+      <button class="menu-trigger">File</button>
+      <div class="menu-dropdown">
+        <button class="menu-action" id="menuNew">New</button>
+        <button class="menu-action" id="menuSave">Save</button>
+        <button class="menu-action" id="menuLoad">Load…</button>
+        <div class="menu-separator"></div>
+        <button class="menu-action" id="menuExample">Example</button>
+      </div>
+    </div>
 
+    <!-- Layout menu -->
+    <div class="menu">
+      <button class="menu-trigger">Layout</button>
+      <div class="menu-dropdown">
+        <button class="menu-action" id="menuArrange">Arrange</button>
+        <div class="menu-separator"></div>
+        <div class="menu-group-label">ELK</div>
+        <button class="menu-option" data-layout="elk-layered">ELK ↓ layered</button>
+        <button class="menu-option" data-layout="elk-horizontal">ELK → layered</button>
+        <button class="menu-option" data-layout="elk-stress">ELK stress</button>
+        <button class="menu-option active" data-layout="elk-mrtree">ELK tree</button>
+        <div class="menu-separator"></div>
+        <div class="menu-group-label">WebCola</div>
+        <button class="menu-option" data-layout="cola">Cola free</button>
+        <button class="menu-option" data-layout="cola-down">Cola ↓</button>
+        <button class="menu-option" data-layout="cola-right">Cola →</button>
+        <!--
+        <div class="menu-separator"></div>
+        <div class="menu-group-label">Dagre</div>
+        <button class="menu-option" data-layout="dagre-vertical">Dagre ↓</button>
+        <button class="menu-option" data-layout="dagre-horizontal">Dagre →</button>
+        <button class="menu-option" data-layout="dagre-compact">Dagre compact</button>
+        <button class="menu-option" data-layout="dagre-wide">Dagre wide</button>
+        <button class="menu-option" data-layout="dagre-inverted">Dagre ↑</button>
+        <div class="menu-separator"></div>
+        <div class="menu-group-label">Graphviz</div>
+        <button class="menu-option" data-layout="gv-dot">Graphviz dot</button>
+        <button class="menu-option" data-layout="gv-neato">Graphviz neato</button>
+        <button class="menu-option" data-layout="gv-fdp">Graphviz fdp</button>
+        <button class="menu-option" data-layout="gv-sfdp">Graphviz sfdp</button>
+        <button class="menu-option" data-layout="gv-twopi">Graphviz twopi</button>
+        <button class="menu-option" data-layout="gv-circo">Graphviz circo</button>
+        -->
+      </div>
+    </div>
 
+    <!-- Help menu -->
+    <div class="menu">
+      <button class="menu-trigger">Help</button>
+      <div class="menu-dropdown">
+        <button class="menu-action" id="menuShortcuts">Keyboard shortcuts…</button>
+      </div>
+    </div>
 
-    <button id="exampleBtn" title="Show example">Example</button>
-    <!-- Help button -->
-    <button id="helpBtn" title="Keyboard shortcuts">❓</button>
+    <div id="menubarRight">
+      <button id="themeToggle" title="Change theme">☀️</button>
+    </div>
   </div>
 
 
@@ -76,7 +93,8 @@
         <dt>Drag selected node</dt><dd>Move all multi-selected nodes</dd>
         <dt>Middle button + drag</dt><dd>Pan view</dd>
         <dt>Middle double-click</dt><dd>Center graph</dd>
-        <dt>Mouse wheel</dt><dd>Zoom</dd>
+        <dt>Mouse wheel</dt><dd>Zoom viewport</dd>
+        <dt>Ctrl + mouse wheel</dt><dd>Scale node positions about cursor (spread / compress layout)</dd>
         <dt>F2</dt><dd>Rename node or edge (or all selected)</dd>
         <dt>F3</dt><dd>Cycle category — or type/colour if no category schema</dd>
         <dt>Ctrl+F3</dt><dd>Cycle node shape (node only)</dd>
@@ -95,7 +113,7 @@
 
   <!-- Load order matters: config → base (creates window.graph) → layout → optional modules -->
   <!-- config.js: schemas, categoryStyles, keyBindings, R, defaultLayout, etc. -->
-  <script src="js/config.js"></script>
+  <script src="custom/config.js"></script>
   <!-- base.js: GraphEditor class + main instance (window.graph) + function aliases for this file -->
   <script src="js/base.js"></script>
   <!-- layout.js: dagre / ELK / Graphviz / Cola layout algorithms; uses window.graph.centerGraph() -->
@@ -111,6 +129,7 @@
   <script src="js/nodeHistory.js"></script>
   <!-- search.js: Ctrl+F search panel; reads window.graph.nodes/edges -->
   <script src="js/search.js"></script>
+  <!-- custom modules -->
   <!-- <script src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script> -->
   <script src="https://unpkg.com/elkjs/lib/elk.bundled.js"></script>
   <script src="https://unpkg.com/webcola/WebCola/cola.js"></script>
@@ -118,57 +137,68 @@
 
 
   <script>
-    window.addEventListener('beforeunload', function (event) {
-      event.preventDefault();
-      event.returnValue = 'Are you sure you want to discard the current graph?'; // shown in some browsers
-      return 'Are you sure you want to discard the current graph?';
-    });
+    // ── Active layout (shared with base.js redraw()) ──────────────────────
+    window.activeLayout = 'elk-mrtree';
 
-    const themeToggle = document.getElementById("themeToggle");
-    themeToggle.addEventListener("click", () => {
-      document.documentElement.classList.toggle("light");
-      // themeToggle.textContent = document.documentElement.classList.contains("light") ? "☀️" : "🌙";
-      themeToggle.textContent = document.documentElement.classList.contains("light") ? "🌙" : "☀️";
-    });
+    // ── Menu management ───────────────────────────────────────────────────
+    const _menus = document.querySelectorAll('.menu');
+    function _closeAll() { _menus.forEach(m => m.classList.remove('open')); }
 
-    document.getElementById("newBtn").onclick = () => {
-      if (!isEmptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
+    _menus.forEach(menu => {
+      menu.querySelector('.menu-trigger').addEventListener('click', e => {
+        const wasOpen = menu.classList.contains('open');
+        _closeAll();
+        if (!wasOpen) menu.classList.add('open');
+        e.stopPropagation();
+      });
+    });
+    document.addEventListener('click', _closeAll);
+    window.addEventListener('keydown', e => { if (e.key === 'Escape') _closeAll(); });
+
+    // ── File menu ─────────────────────────────────────────────────────────
+    document.getElementById('menuNew').addEventListener('click', () => {
+      _closeAll();
+      if (window.graph.dirty && !confirm('Are you sure you want to discard the current graph?')) return;
       newGraph();
-    };
-
-    document.getElementById("saveBtn").onclick = () => {
-      saveGraph();
-    };
-
-
-    document.getElementById("applyLayout").onclick = () => {
-      const mode = document.getElementById("layoutMode").value;
-      applyLayout(window.graph.nodes, window.graph.edges, mode);
-    };
-
-
-    document.getElementById("exampleBtn").onclick = () => {
-      if (!isEmptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
-      // 'serial' | 'parallel'
-      // g = sampleLayout(mode='ring');
-      // g = sampleLayout(mode='serial');
-      g = sampleLayout(mode='parallel');
-      // g = sampleLayout(mode='central');
-      // g = sampleLayout(mode='diamond');
-      window.graph.nodes = g.nodes;
-      window.graph.edges = g.edges;
-      redraw();
-    };
-
-    document.getElementById("loadInput").onchange = e => {
-      if (!isEmptyGraph() && !confirm("Are you sure you want to discard the current graph?")) return;
+    });
+    document.getElementById('menuSave').addEventListener('click', () => {
+      _closeAll(); saveGraph();
+    });
+    document.getElementById('menuLoad').addEventListener('click', () => {
+      _closeAll(); document.getElementById('loadInput').click();
+    });
+    document.getElementById('loadInput').onchange = e => {
+      if (window.graph.dirty && !confirm('Are you sure you want to discard the current graph?')) return;
       loadGraph(e);
     };
+    document.getElementById('menuExample').addEventListener('click', () => {
+      _closeAll();
+      if (window.graph.dirty && !confirm('Are you sure you want to discard the current graph?')) return;
+      const g = sampleLayout('parallel');
+      window.graph.nodes = g.nodes;
+      window.graph.edges = g.edges;
+      applyLayout(window.graph.nodes, window.graph.edges, window.activeLayout);
+    });
 
-    // ── Help modal ──────────────────────────────────────────────────────────
+    // ── Layout menu ───────────────────────────────────────────────────────
+    document.getElementById('menuArrange').addEventListener('click', () => {
+      _closeAll();
+      applyLayout(window.graph.nodes, window.graph.edges, window.activeLayout);
+    });
+    document.querySelectorAll('.menu-option[data-layout]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.menu-option[data-layout]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        window.activeLayout = btn.dataset.layout;
+        _closeAll();
+        applyLayout(window.graph.nodes, window.graph.edges, window.activeLayout);
+      });
+    });
+
+    // ── Help menu ─────────────────────────────────────────────────────────
     const _helpModal = document.getElementById('helpModal');
-    document.getElementById('helpBtn').addEventListener('click', () => {
-      _helpModal.style.display = 'flex';
+    document.getElementById('menuShortcuts').addEventListener('click', () => {
+      _closeAll(); _helpModal.style.display = 'flex';
     });
     document.getElementById('helpClose').addEventListener('click', () => {
       _helpModal.style.display = 'none';
@@ -177,12 +207,22 @@
       if (e.target === _helpModal) _helpModal.style.display = 'none';
     });
     window.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && _helpModal.style.display !== 'none') {
-        _helpModal.style.display = 'none';
-      }
+      if (e.key === 'Escape' && _helpModal.style.display !== 'none') _helpModal.style.display = 'none';
     });
 
+    // ── Theme toggle ──────────────────────────────────────────────────────
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('light');
+      themeToggle.textContent = document.documentElement.classList.contains('light') ? '🌙' : '☀️';
+    });
 
+    // ── Prevent accidental page unload ────────────────────────────────────
+    window.addEventListener('beforeunload', e => {
+      if (!window.graph?.dirty) return;
+      e.preventDefault();
+      e.returnValue = 'Are you sure you want to discard the current graph?';
+    });
   </script>
 
 </body>

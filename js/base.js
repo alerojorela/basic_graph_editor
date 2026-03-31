@@ -69,6 +69,13 @@ class GraphEditor {
 		this.draggingEdgeEnd = null;
 		this.edgeBackup      = null;
 
+		// ── Undo / Redo ───────────────────────────────────────────────────────
+		this._undoStack = []; // max 6 snapshots
+		this._redoStack = [];
+
+		// ── Clipboard ─────────────────────────────────────────────────────────
+		this._clipboard = null;
+
 		// ── Mouse / pan / zoom ────────────────────────────────────────────────
 		this.mouse    = { x: 0, y: 0 };
 		this.hoverNode = null;
@@ -423,6 +430,117 @@ class GraphEditor {
 	}
 
 
+	// ── Undo / Redo ───────────────────────────────────────────────────────────
+
+	/** Call BEFORE any discrete mutation to enable undo. */
+	recordAction() {
+		this._undoStack.push(this._serializeGraph());
+		if (this._undoStack.length > 6) this._undoStack.shift();
+		this._redoStack = [];
+	}
+
+	_serializeGraph() {
+		return JSON.stringify({
+			nodes: this.nodes.map(n => ({ ...n })),
+			edges: this.edges.map(e => ({
+				...e,
+				from: e.from?.id ?? null,
+				to:   e.to?.id   ?? null,
+			})),
+		});
+	}
+
+	_restoreSnapshot(json) {
+		const data    = JSON.parse(json);
+		const nodeMap = new Map(data.nodes.map(n => [n.id, n]));
+		this.nodes = data.nodes;
+		this.edges = data.edges
+			.map(e => ({ ...e, from: nodeMap.get(e.from), to: nodeMap.get(e.to) }))
+			.filter(e => e.from && e.to);
+
+		const selId     = this.selectedNode?.id ?? null;
+		const selFromId = this.selectedEdge?.from?.id ?? null;
+		const selToId   = this.selectedEdge?.to?.id   ?? null;
+		this.selectedNode  = selId
+			? (this.nodes.find(n => n.id === selId) ?? null) : null;
+		this.selectedEdge  = selFromId
+			? (this.edges.find(e => e.from?.id === selFromId && e.to?.id === selToId) ?? null) : null;
+		this.selectedNodes = this.selectedNodes
+			.map(n => this.nodes.find(nd => nd.id === n.id)).filter(Boolean);
+
+		this.dirty = true;
+		if (typeof this.onSelectionChange === 'function') {
+			this.onSelectionChange(this.selectedNode, this.selectedEdge);
+		}
+		this.draw();
+	}
+
+	undo() {
+		if (!this._undoStack.length) return;
+		this._redoStack.push(this._serializeGraph());
+		this._restoreSnapshot(this._undoStack.pop());
+	}
+
+	redo() {
+		if (!this._redoStack.length) return;
+		this._undoStack.push(this._serializeGraph());
+		this._restoreSnapshot(this._redoStack.pop());
+	}
+
+
+	// ── Clipboard ─────────────────────────────────────────────────────────────
+
+	_copySelection() {
+		const nodes = this.selectedNodes.length > 0 ? this.selectedNodes
+		            : this.selectedNode ? [this.selectedNode] : [];
+		if (!nodes.length) return;
+		const nodeIds = new Set(nodes.map(n => n.id));
+		const edges   = this.edges.filter(e => nodeIds.has(e.from.id) && nodeIds.has(e.to.id));
+		this._clipboard = {
+			nodes: nodes.map(n => ({ ...n })),
+			edges: edges.map(e => ({ ...e, from: e.from.id, to: e.to.id })),
+		};
+		navigator.clipboard?.writeText(JSON.stringify(this._clipboard)).catch(() => {});
+	}
+
+	async _pasteClipboard() {
+		let data = this._clipboard;
+		try {
+			const text   = await navigator.clipboard.readText();
+			const parsed = JSON.parse(text);
+			if (parsed?.nodes && parsed?.edges) data = parsed;
+		} catch (_) {}
+		if (!data) return;
+
+		this.recordAction();
+		const OFFSET   = 30;
+		const idMap    = new Map();
+		const newNodes = data.nodes.map(n => {
+			const newId = this.randomId();
+			idMap.set(n.id, newId);
+			return { ...n, id: newId, x: n.x + OFFSET, y: n.y + OFFSET };
+		});
+		const newEdges = data.edges
+			.map(e => ({
+				...e,
+				from: newNodes.find(n => n.id === idMap.get(e.from)),
+				to:   newNodes.find(n => n.id === idMap.get(e.to)),
+			}))
+			.filter(e => e.from && e.to);
+
+		newNodes.forEach(n => this.nodes.push(n));
+		newEdges.forEach(e => this.edges.push(e));
+		this.selectedNodes = [...newNodes];
+		this.selectedNode  = newNodes[newNodes.length - 1] ?? null;
+		this.selectedEdge  = null;
+		this.dirty = true;
+		if (typeof this.onSelectionChange === 'function') {
+			this.onSelectionChange(this.selectedNode, this.selectedEdge);
+		}
+		this.draw();
+	}
+
+
 	// ── Graph operations ──────────────────────────────────────────────────────
 
 	resetState() {
@@ -557,6 +675,7 @@ class GraphEditor {
 	}
 
 	_createConnectedNode(sourceNode, category) {
+		this.recordAction();
 		const newNode = {
 			id: this.randomId(),
 			x:  sourceNode.x + this.R * 6,
@@ -623,6 +742,7 @@ class GraphEditor {
 				_openSubgraphModal(wx, wy);
 				return;
 			}
+			this.recordAction();
 			this.selectedNodes = [];
 			const n = this.nodeAt(this.mouse.x, this.mouse.y);
 			if (n) {
@@ -666,11 +786,13 @@ class GraphEditor {
 				this.selectedNode  = null;
 				this.selectedEdge  = hitEdge;
 				if (e.ctrlKey) {
+					this.recordAction();
 					const tmp    = hitEdge.from;
 					hitEdge.from = hitEdge.to;
 					hitEdge.to   = tmp;
 					this.dirty = true;
 				} else {
+					this.recordAction();
 					this.draggingEdge    = hitEdge;
 					this.draggingEdgeEnd = this.closestEnd(hitEdge, this.mouse.x, this.mouse.y);
 					this.edgeBackup      = { from: hitEdge.from, to: hitEdge.to };
@@ -827,7 +949,7 @@ class GraphEditor {
 				this.doubleclickFunction(n);
 			} else {
 				const t = prompt('Node label:', n.label);
-				if (t !== null) { n.label = t; this.dirty = true; }
+				if (t !== null) { this.recordAction(); n.label = t; this.dirty = true; }
 			}
 			if (typeof this.onSelectionChange === 'function') {
 				this.onSelectionChange(this.selectedNode, this.selectedEdge);
@@ -842,7 +964,7 @@ class GraphEditor {
 				this.doubleclickEdgeFunction(edge);
 			} else {
 				const t = prompt('Edge label:', edge.label);
-				if (t !== null) { edge.label = t; this.dirty = true; }
+				if (t !== null) { this.recordAction(); edge.label = t; this.dirty = true; }
 			}
 			if (typeof this.onSelectionChange === 'function') {
 				this.onSelectionChange(this.selectedNode, this.selectedEdge);
@@ -881,19 +1003,25 @@ class GraphEditor {
 		const tag = e.target.tagName;
 		if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
 
+		// ── Undo / Redo / Copy / Paste ────────────────────────────────────────
+		if (e.ctrlKey && !e.shiftKey && e.code === 'KeyZ') { e.preventDefault(); this.undo(); return; }
+		if (e.ctrlKey && (e.code === 'KeyY' || (e.shiftKey && e.code === 'KeyZ'))) { e.preventDefault(); this.redo(); return; }
+		if (e.ctrlKey && e.code === 'KeyC') { this._copySelection(); return; }
+		if (e.ctrlKey && e.code === 'KeyV') { e.preventDefault(); this._pasteClipboard(); return; }
+
 		const kb = this._keyBindings;
 
 		if (this.editableText && e.key === kb.rename) {
 			e.preventDefault();
 			if (this.selectedNodes.length > 0) {
 				const t = prompt('Node label (applies to all selected):', this.selectedNode?.label ?? '');
-				if (t !== null) this.selectedNodes.forEach(n => { n.label = t; this.touchElement(n, false); });
+				if (t !== null) { this.recordAction(); this.selectedNodes.forEach(n => { n.label = t; this.touchElement(n, false); }); }
 			} else if (this.selectedNode) {
 				const t = prompt('Node label:', this.selectedNode.label);
-				if (t !== null) { this.selectedNode.label = t; this.touchElement(this.selectedNode, false); }
+				if (t !== null) { this.recordAction(); this.selectedNode.label = t; this.touchElement(this.selectedNode, false); }
 			} else if (this.selectedEdge) {
 				const t = prompt('Edge label:', this.selectedEdge.label);
-				if (t !== null) { this.selectedEdge.label = t; this.touchElement(this.selectedEdge, false); }
+				if (t !== null) { this.recordAction(); this.selectedEdge.label = t; this.touchElement(this.selectedEdge, false); }
 			}
 			if (typeof this.onSelectionChange === 'function') {
 				this.onSelectionChange(this.selectedNode, this.selectedEdge);
@@ -905,28 +1033,40 @@ class GraphEditor {
 		// Ctrl+F3 / Shift+F3 are handled by visualPatterns.js.
 		if (e.key === kb.cycleType && !e.ctrlKey && !e.shiftKey) {
 			e.preventDefault();
-			const _cycleF3 = (el, isNode) => {
-				if (window.f3CyclesCategory) {
-					const schema  = isNode ? window.nodeSchema : window.edgeSchema;
-					const catEnum = schema?.category?.enum;
-					if (catEnum && catEnum.length) {
-						const cur = catEnum.indexOf(el.category);
-						el.category = catEnum[(cur + 1) % catEnum.length];
-						if (isNode) { delete el.shapeType; delete el.colorType; }
-						this.touchElement(el, false);
-						return;
-					}
+			if (!this.selectedNodes.length && !this.selectedNode && !this.selectedEdge) return;
+			this.recordAction();
+			const _applyF3 = (el, isNode, newVal, useCategory) => {
+				if (useCategory) {
+					el.category = newVal;
+				} else {
+					el.type = newVal;
 				}
-				el.type = ((el.type ?? 0) + 1) % this.TYPES.length;
 				if (isNode) { delete el.shapeType; delete el.colorType; }
 				this.touchElement(el, false);
 			};
 			if (this.selectedNodes.length > 0) {
-				this.selectedNodes.forEach(n => _cycleF3(n, true));
+				// Compute next value from the first node, apply to all
+				const first = this.selectedNodes[0];
+				const schema   = window.nodeSchema;
+				const catEnum  = window.f3CyclesCategory && schema?.category?.enum;
+				const useCategory = !!(catEnum && catEnum.length);
+				const nextVal  = useCategory
+					? catEnum[(catEnum.indexOf(first.category) + 1) % catEnum.length]
+					: ((first.type ?? 0) + 1) % this.TYPES.length;
+				this.selectedNodes.forEach(n => _applyF3(n, true, nextVal, useCategory));
 			} else if (this.selectedNode) {
-				_cycleF3(this.selectedNode, true);
+				const n = this.selectedNode;
+				const schema   = window.nodeSchema;
+				const catEnum  = window.f3CyclesCategory && schema?.category?.enum;
+				const useCategory = !!(catEnum && catEnum.length);
+				const nextVal  = useCategory
+					? catEnum[(catEnum.indexOf(n.category) + 1) % catEnum.length]
+					: ((n.type ?? 0) + 1) % this.TYPES.length;
+				_applyF3(n, true, nextVal, useCategory);
 			} else if (this.selectedEdge) {
-				_cycleF3(this.selectedEdge, false);
+				const ed = this.selectedEdge;
+				ed.type = ((ed.type ?? 0) + 1) % this.TYPES.length;
+				this.touchElement(ed, false);
 			}
 			if (typeof this.onSelectionChange === 'function') {
 				this.onSelectionChange(this.selectedNode, this.selectedEdge);
@@ -936,6 +1076,8 @@ class GraphEditor {
 
 		if (e.key === kb.toggleLock) {
 			e.preventDefault();
+			if (!this.selectedNodes.length && !this.selectedNode && !this.selectedEdge) return;
+			this.recordAction();
 			if (this.selectedNodes.length > 0) {
 				const allLocked = this.selectedNodes.every(n => n.lock);
 				this.selectedNodes.forEach(n => { n.lock = !allLocked; });
@@ -952,6 +1094,8 @@ class GraphEditor {
 		}
 
 		if (e.key === kb.delete || e.key === 'Supr') {
+			if (!this.selectedNodes.length && !this.selectedNode && !this.selectedEdge) return;
+			this.recordAction();
 			if (this.selectedNodes.length > 0) {
 				const toDelete = this.selectedNodes.filter(n => !n.lock);
 				toDelete.forEach(n => {

@@ -18,9 +18,9 @@
 		<div id="searchBar">
 			<input  id="searchInput"     type="text" placeholder="Search label…" autocomplete="off" spellcheck="false">
 			<select id="searchScope"     title="Search in">
-				<option value="nodes">Nodes</option>
+				<option value="nodes" selected>Nodes</option>
 				<option value="edges">Edges</option>
-				<option value="both" selected>Both</option>
+				<option value="both">Both</option>
 			</select>
 			<button id="searchPrev"      title="Previous (Shift+Enter)">◀</button>
 			<button id="searchNext"      title="Next (Enter)">▶</button>

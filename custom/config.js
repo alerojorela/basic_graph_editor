@@ -91,6 +91,7 @@
 		historyBack: 'ArrowLeft',  // nodeHistory      — Alt+← navigate back
 		historyFwd:  'ArrowRight', // nodeHistory      — Alt+→ navigate forward
 		search:      'f',          // search.js        — Ctrl+F open search panel
+		ollamaQuery: 'F12',        // ollama.js        — open Ollama prompt modal
 	};
 
 	// When true, F3 cycles through category values (from nodeSchema / edgeSchema)

@@ -161,19 +161,21 @@ window.addEventListener('keydown', (e) => {
 	const tag = e.target.tagName;
 	if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
 
-	const sel = window.graph.selectedNode;
-	if (!sel) return;
+	const targets = window.graph.selectedNodes?.length
+		? window.graph.selectedNodes
+		: window.graph.selectedNode ? [window.graph.selectedNode] : [];
+	if (!targets.length) return;
 	e.preventDefault();
 
-	if (e.ctrlKey) {
-		// Cycle shape
-		const cur = sel.shapeType ?? sel.type ?? 0;
-		sel.shapeType = (cur + 1) % NODE_SHAPES.length;
-	} else {
-		// Cycle colour (Shift+F3)
-		const cur = sel.colorType ?? sel.type ?? 0;
-		sel.colorType = (cur + 1) % NODE_COLORS.length;
-	}
+	targets.forEach(sel => {
+		if (e.ctrlKey) {
+			const cur = sel.shapeType ?? sel.type ?? 0;
+			sel.shapeType = (cur + 1) % NODE_SHAPES.length;
+		} else {
+			const cur = sel.colorType ?? sel.type ?? 0;
+			sel.colorType = (cur + 1) % NODE_COLORS.length;
+		}
+	});
 
 	window.graph.draw();
 });

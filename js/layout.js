@@ -347,7 +347,7 @@ function applyColaLayout(nodes, edges, mode = 'cola') {
  * @param {string} mode  - e.g. 'dagre-vertical', 'elk-layered', 'gv-neato', 'cola-down'
  */
 function applyLayout(nodes, edges, mode) {
-    if (window.graph) window.graph.dirty = true;
+    if (window.graph) { window.graph.recordAction(); window.graph.dirty = true; }
     if (mode.startsWith('dagre-')) {
         applyDagreLayout(nodes, edges, mode.slice(6));
         window.graph.centerGraph();                              // dagre is synchronous

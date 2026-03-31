@@ -33,6 +33,7 @@ function deepMap(value, fn) {
 // drawPatternToGraph([ [ [1,2], [3,4], [5,6] ] ]);
 // drawPatternToGraph( [1, [[2, 4], [3, [[5, 7], [6, 8] ], 9 ] ] ] );
 function drawPatternToGraph(expression) {
+	window.graph.recordAction();
 	const normalizedPattern = deepMap(expression, normalizeItem);
 	g = patternToGraph(normalizedPattern);
 	
@@ -304,9 +305,9 @@ const _SUBGRAPH_HINTS = {
 	list:     'The notation generates directed acyclic graphs constructed inductively through alternating sequential (series) and parallel composition.',
 };
 
-const _SUBGRAPH_PLACEHOLDERS = {
+const _SUBGRAPH_EXAMPLES = {
 	indented: 'root node\n  child 1\n    grandchild\n  child 2\nisolated node',
-	list:     '[[1,2,3], 4, [5,6,7]]',
+	list:     '[["A", "B", "C"], 1, [2, 3, 4]]',
 };
 
 function _openSubgraphModal(wx, wy) {
@@ -316,11 +317,10 @@ function _openSubgraphModal(wx, wy) {
 	_pendingNodes = null;
 	_pendingEdges = null;
 	const ta = document.getElementById('subgraphInput');
-	ta.value = '';
+	const mode = document.getElementById('subgraphMode')?.value ?? 'indented';
+	ta.value = _SUBGRAPH_EXAMPLES[mode] ?? '';
 	ta.focus();
-	// Clear preview
-	if (_previewGraph) { _previewGraph.nodes = []; _previewGraph.edges = []; _previewGraph.draw(); }
-	document.getElementById('subgraphInsert').disabled = true;
+	_updatePreview();
 }
 
 function _closeSubgraphModal() {
@@ -339,8 +339,7 @@ function _buildSubgraphModal() {
 			</select>
 			<div id="subgraphHint">${_SUBGRAPH_HINTS.indented}</div>
 			<div id="subgraphEditor">
-				<textarea id="subgraphInput" spellcheck="false"
-					placeholder="${_SUBGRAPH_PLACEHOLDERS.indented}"></textarea>
+				<textarea id="subgraphInput" spellcheck="false"></textarea>
 				<canvas id="subgraphPreview"></canvas>
 			</div>
 			<div id="subgraphButtons">
@@ -361,13 +360,9 @@ function _buildSubgraphModal() {
 		const mode = ev.target.value;
 		document.getElementById('subgraphHint').textContent = _SUBGRAPH_HINTS[mode] ?? '';
 		const ta = document.getElementById('subgraphInput');
-		ta.placeholder = _SUBGRAPH_PLACEHOLDERS[mode] ?? '';
-		ta.value = '';
-		_pendingNodes = null;
-		_pendingEdges = null;
-		document.getElementById('subgraphInsert').disabled = true;
-		if (_previewGraph) { _previewGraph.nodes = []; _previewGraph.edges = []; _previewGraph.draw(); }
+		ta.value = _SUBGRAPH_EXAMPLES[mode] ?? '';
 		ta.focus();
+		_updatePreview();
 	});
 
 	// Live preview: debounced on textarea input
@@ -545,6 +540,7 @@ function _doInsertSubgraph() {
 
 function _commitSubgraph(newNodes, newEdges) {
 	const g = window.graph;
+	g.recordAction();
 	newNodes.forEach(n => g.nodes.push(n));
 	newEdges.forEach(e => g.edges.push(e));
 

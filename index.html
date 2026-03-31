@@ -106,6 +106,10 @@
         <dt>F6</dt><dd>Focus properties panel</dd>
         <dt>Del / Delete</dt><dd>Delete selection (if not locked)</dd>
         <dt>Alt + ← / →</dt><dd>Node visit history</dd>
+        <dt>Ctrl+Z</dt><dd>Undo (up to 6 steps)</dd>
+        <dt>Ctrl+Y / Ctrl+Shift+Z</dt><dd>Redo</dd>
+        <dt>Ctrl+C</dt><dd>Copy selected nodes (+ internal edges)</dd>
+        <dt>Ctrl+V</dt><dd>Paste (offset +30px)</dd>
         <dt>Ctrl+F</dt><dd>Open search panel</dd>
       </dl>
       <div id="helpCloseRow"><button id="helpClose">Close</button></div>
@@ -133,7 +137,6 @@
   <!-- search.js: Ctrl+F search panel; reads window.graph.nodes/edges -->
   <script src="js/search.js"></script>
   <!-- custom modules -->
-  <script src="custom/ollama.js"></script>
   <!-- <script src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script> -->
   <script src="https://unpkg.com/elkjs/lib/elk.bundled.js"></script>
   <script src="https://unpkg.com/webcola/WebCola/cola.js"></script>
@@ -216,9 +219,24 @@
 
     // ── Theme toggle ──────────────────────────────────────────────────────
     const themeToggle = document.getElementById('themeToggle');
+
+    function _applyTheme(isLight) {
+      document.documentElement.classList.toggle('light', isLight);
+      themeToggle.textContent = isLight ? '🌙' : '☀️';
+    }
+
+    // Initial theme: localStorage > OS preference
+    const _savedTheme = localStorage.getItem('theme');
+    if (_savedTheme) {
+      _applyTheme(_savedTheme === 'light');
+    } else {
+      _applyTheme(window.matchMedia('(prefers-color-scheme: light)').matches);
+    }
+
     themeToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('light');
-      themeToggle.textContent = document.documentElement.classList.contains('light') ? '🌙' : '☀️';
+      const isLight = !document.documentElement.classList.contains('light');
+      _applyTheme(isLight);
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
 
     // ── Prevent accidental page unload ────────────────────────────────────

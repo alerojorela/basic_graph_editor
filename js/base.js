@@ -172,19 +172,21 @@ class GraphEditor {
 	drawArrow(from, to, edge) {
 		const ctx    = this.ctx;
 		const typeIdx = (typeof this.getEdgeType === 'function' ? this.getEdgeType(edge) : null) ?? (edge.type ?? 0);
-		const color  = this.TYPES[typeIdx].color();
+		const typeObj = this.TYPES[typeIdx];
+		const color  = typeObj.color();
 		const R      = this.R;
+		const directed = edge.directed ?? typeObj.directed ?? true;
 
 		const angle = Math.atan2(to.y - from.y, to.x - from.x);
 		const head  = 10;
 
-		const tx = to.x - Math.cos(angle) * R;
-		const ty = to.y - Math.sin(angle) * R;
+		const tx = directed ? to.x - Math.cos(angle) * R : to.x;
+		const ty = directed ? to.y - Math.sin(angle) * R : to.y;
 
 		ctx.strokeStyle = color;
 		ctx.fillStyle   = color;
 		ctx.lineWidth   = edge === this.selectedEdge ? 4 : 2;
-		ctx.setLineDash(this.TYPES[typeIdx].dash);
+		ctx.setLineDash(typeObj.dash);
 
 		ctx.beginPath();
 		ctx.moveTo(from.x, from.y);
@@ -192,12 +194,14 @@ class GraphEditor {
 		ctx.stroke();
 
 		ctx.setLineDash([]);
-		ctx.beginPath();
-		ctx.moveTo(tx, ty);
-		ctx.lineTo(tx - head * Math.cos(angle - Math.PI / 6), ty - head * Math.sin(angle - Math.PI / 6));
-		ctx.lineTo(tx - head * Math.cos(angle + Math.PI / 6), ty - head * Math.sin(angle + Math.PI / 6));
-		ctx.closePath();
-		ctx.fill();
+		if (directed) {
+			ctx.beginPath();
+			ctx.moveTo(tx, ty);
+			ctx.lineTo(tx - head * Math.cos(angle - Math.PI / 6), ty - head * Math.sin(angle - Math.PI / 6));
+			ctx.lineTo(tx - head * Math.cos(angle + Math.PI / 6), ty - head * Math.sin(angle + Math.PI / 6));
+			ctx.closePath();
+			ctx.fill();
+		}
 
 		const _eLabel = (window.edgeLabelFields || ['label'])
 			.map(f => edge[f]).find(v => v != null && v !== '');

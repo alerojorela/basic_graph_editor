@@ -1,0 +1,3694 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "x": -1904.8422816924558,
+      "y": -2703.4948948138244,
+      "label": "AKABANE-IWABUCHI",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 2,
+      "x": -1208.0291644081758,
+      "y": 990.7963120560667,
+      "label": "AKABANEBASHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 3,
+      "x": -1427.3513356477938,
+      "y": 494.5751347659966,
+      "label": "AKASAKA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 4,
+      "x": -1448.4062409844933,
+      "y": 321.54718756287104,
+      "label": "AKASAKA-MITSUKE",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 5,
+      "x": -1820.3864388042489,
+      "y": -87.74532892121718,
+      "label": "AKEBONOBASHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 6,
+      "x": -368.4677740973568,
+      "y": -259.4085047263725,
+      "label": "AKIHABARA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 7,
+      "x": -1750.928642324243,
+      "y": 501.0726710446401,
+      "label": "AOYAMA-ITCHOME",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 8,
+      "x": -32.20034590024011,
+      "y": -232.45585790457127,
+      "label": "ASAKUSA",
+      "type": 0,
+      "colorType": 1
+    },
+    {
+      "id": 9,
+      "x": 35.80142489516184,
+      "y": -259.448067502815,
+      "label": "ASAKUSABASHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 10,
+      "x": -529.6806013311491,
+      "y": -164.92190972136297,
+      "label": "AWAJICHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 11,
+      "x": 1128.6125218786958,
+      "y": -2103.8265868213784,
+      "label": "AYASE",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 12,
+      "x": -1433.8979644231333,
+      "y": 948.6114187411691,
+      "label": "AZABU-JUBAN",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 13,
+      "x": -50.20285308276009,
+      "y": -68.7381582403012,
+      "label": "BAKURO YOKOYAMA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 14,
+      "x": 4500.466523104646,
+      "y": -398.45780254503774,
+      "label": "BARAKI-NAKAYAMA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 15,
+      "x": -4091.6906329494172,
+      "y": -2326.7677413785636,
+      "label": "CHIKATETSU-AKATSUKA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 16,
+      "x": -4463.621160714059,
+      "y": -2522.320481014252,
+      "label": "CHIKATETSU-NARIMASU",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 17,
+      "x": -898.2555125818868,
+      "y": 936.3469580411157,
+      "label": "DAIMON",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 18,
+      "x": -2228.4802320397007,
+      "y": 1223.7488705115697,
+      "label": "EBISU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 19,
+      "x": -1509.627760478078,
+      "y": -581.3175328655072,
+      "label": "EDOGAWABASHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 20,
+      "x": 2255.131681957881,
+      "y": 153.0761791366021,
+      "label": "FUNABORI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 21,
+      "x": -1954.1715771197207,
+      "y": 540.029010777353,
+      "label": "GAIEMMAE",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 22,
+      "x": -601.0957445183417,
+      "y": 523.2798061480064,
+      "label": "GINZA",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 23,
+      "x": -584.21658916334,
+      "y": 404.7589688379234,
+      "label": "GINZA-ITCHOME",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 24,
+      "x": -1681.9328928673285,
+      "y": -855.9787874213221,
+      "label": "GOKOKUJI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 25,
+      "x": -1775.131243013142,
+      "y": 1815.275909936611,
+      "label": "GOTANDO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 26,
+      "x": 3703.074432022007,
+      "y": 164.16819551285155,
+      "label": "GYOTOKU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 27,
+      "x": -971.9520129513404,
+      "y": -928.5528023008841,
+      "label": "HAKUSAN",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 28,
+      "x": 30.467669558721322,
+      "y": 50.88292854622758,
+      "label": "HAMACHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 29,
+      "x": -1277.3246668710253,
+      "y": 119.23989799137003,
+      "label": "HANZOMON",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 30,
+      "x": -3073.437176477054,
+      "y": -2772.036683068573,
+      "label": "HASUNA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 31,
+      "x": -269.8975497357307,
+      "y": 443.11464743926274,
+      "label": "HATCHOBORI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 32,
+      "x": -3828.7598860017993,
+      "y": -1988.8958548897144,
+      "label": "HEIWADAI",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 33,
+      "x": -756.3724226076303,
+      "y": 415.9405068249379,
+      "label": "HIBIYA",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 34,
+      "x": -29.996959152797494,
+      "y": -84.96755996743848,
+      "label": "HIGASHI-NIHOMBASHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 35,
+      "x": -506.81793701184256,
+      "y": 596.41029891249,
+      "label": "HIGASHI-GINZA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 36,
+      "x": -1918.3427181820705,
+      "y": -1047.431726054848,
+      "label": "HIGASHI-IKEBUKURO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 37,
+      "x": -3690.5904989845076,
+      "y": -254.66876859580822,
+      "label": "HIGASHI-KOENJI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 38,
+      "x": -2962.4015009596073,
+      "y": -519.7249318554349,
+      "label": "HIGASHI-NAKANO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 39,
+      "x": 1847.626421119438,
+      "y": 12.492596418279492,
+      "label": "HIGASHI-OJIMA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 40,
+      "x": -2255.946039838214,
+      "y": -276.72573841617714,
+      "label": "HIGASHI-SHINJUKU",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 41,
+      "x": -4517.518946094127,
+      "y": -1998.408248001583,
+      "label": "HIKARIGAOKA",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 42,
+      "x": -3485.9440963532693,
+      "y": -1745.1400594484203,
+      "label": "HIKAWADAI",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 43,
+      "x": -1836.9762372105795,
+      "y": 1076.786151064517,
+      "label": "HIRO-O",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 44,
+      "x": -927.3933530494814,
+      "y": -1022.6457909971615,
+      "label": "HON-KOMAGOME",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 45,
+      "x": -747.3394032836968,
+      "y": -498.2368574335609,
+      "label": "HONGO-SANCHOME",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 46,
+      "x": 535.2136144464621,
+      "y": -554.7596474698892,
+      "label": "HONJO-AZUMABASHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 47,
+      "x": -1451.390487202701,
+      "y": -50.84567600530269,
+      "label": "ICHIGAYA",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 48,
+      "x": 2809.960636481603,
+      "y": 95.49068094457736,
+      "label": "ICHINOE",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 49,
+      "x": -1178.6545248407542,
+      "y": -363.68991908700997,
+      "label": "IIDABASHI",
+      "type": 0,
+      "colorType": 7
+    },
+    {
+      "id": 50,
+      "x": -2149.2741096860364,
+      "y": -1181.8983837308576,
+      "label": "IKEBUKURO",
+      "type": 0,
+      "colorType": 3
+    },
+    {
+      "id": 51,
+      "x": -90.38650522322804,
+      "y": -636.3629275416173,
+      "label": "INARICHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 52,
+      "x": -35.60505491001952,
+      "y": -905.5717384318692,
+      "label": "IRIYA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 53,
+      "x": -2188.227272845605,
+      "y": -1790.3542485658093,
+      "label": "ITABASHI-KUYAKUSHOMAE",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 54,
+      "x": -2325.108703782089,
+      "y": -2080.643954937974,
+      "label": "ITABASHIHONCHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 55,
+      "x": -303.14472092512545,
+      "y": -180.8798588216541,
+      "label": "IWAMOTOCHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 56,
+      "x": -791.8720730403428,
+      "y": -191.21527319566195,
+      "label": "JIMBOCHO",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 57,
+      "x": -232.52949664879444,
+      "y": 867.1756307156401,
+      "label": "KACHIDOKI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 58,
+      "x": -1489.4934838370557,
+      "y": -420.16246150939634,
+      "label": "KAGURAZAKA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 59,
+      "x": -1153.331460117246,
+      "y": 763.8532527098764,
+      "label": "KAMIYACHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 60,
+      "x": -2534.854950443671,
+      "y": -1273.4160378255785,
+      "label": "KANAMECHO",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 61,
+      "x": -442.52986917422584,
+      "y": -171.26639292327908,
+      "label": "KANDA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 62,
+      "x": 2502.878408571882,
+      "y": 743.0986779389664,
+      "label": "KASAI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 63,
+      "x": -955.1132867110235,
+      "y": -552.7006504179834,
+      "label": "KASUGA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 64,
+      "x": -955.7919182778311,
+      "y": 437.02140230685046,
+      "label": "KASUMIGASEKI",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 65,
+      "x": -225.96842890398332,
+      "y": 241.24052695293622,
+      "label": "KAYABACHO",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 66,
+      "x": 597.9451613715911,
+      "y": 576.3863359988137,
+      "label": "KIBA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 67,
+      "x": 589.0363171846211,
+      "y": 48.89901413582056,
+      "label": "KIKUKAWA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 68,
+      "x": 826.4072003097248,
+      "y": -183.89471565487904,
+      "label": "KINSHICHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 69,
+      "x": 1337.9134707211492,
+      "y": -2528.2491218941955,
+      "label": "KITA-AYASE",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 70,
+      "x": -2321.8166187343522,
+      "y": 313.41227214216525,
+      "label": "KITA-SANDO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 71,
+      "x": 539.6579292614811,
+      "y": -1741.7584527895083,
+      "label": "KITA-SENJU",
+      "type": 0,
+      "colorType": 1
+    },
+    {
+      "id": 72,
+      "x": 370.0751201826144,
+      "y": 199.50324169289001,
+      "label": "KIYOSUMI-SHIRAKAWA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 73,
+      "x": -212.612382109085,
+      "y": -40.48975829474364,
+      "label": "KODEMMACHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 74,
+      "x": -1392.203996071502,
+      "y": 142.1834205398407,
+      "label": "KOJIMACHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 75,
+      "x": -1162.6734733891853,
+      "y": 427.44836552295493,
+      "label": "KOKKAI-GIJIDOMAE",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 76,
+      "x": -2075.4820233389432,
+      "y": 267.1238236931332,
+      "label": "KOKURITSU-KYOGIJO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 77,
+      "x": -1121.0430365037216,
+      "y": -1355.4900283034356,
+      "label": "KOMAGOME",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 78,
+      "x": -974.1669508737037,
+      "y": -504.48026784876527,
+      "label": "KORAKUEN",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 79,
+      "x": -3069.3884894268704,
+      "y": -1560.072899469532,
+      "label": "KOTAKE-MUKAIHARA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 80,
+      "x": -993.8357151378448,
+      "y": -174.6999798722069,
+      "label": "KUDANSHITA",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 81,
+      "x": 152.61846380349,
+      "y": -394.17231639502734,
+      "label": "KURAMAE",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 82,
+      "x": -455.5162783495017,
+      "y": 365.4329914857932,
+      "label": "KYOBASHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 83,
+      "x": -121.72195684998422,
+      "y": -1531.9631136312305,
+      "label": "MACHIYA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 84,
+      "x": -2134.5143062749376,
+      "y": 2687.1037766279487,
+      "label": "MAGOME",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 85,
+      "x": -2016.114756308909,
+      "y": 1598.8964006824497,
+      "label": "MEGURO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 86,
+      "x": -2387.3464379498114,
+      "y": 567.4890429877904,
+      "label": "MEIJI-JINGUMAE <HARAJUKU>",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 87,
+      "x": -4334.759133442303,
+      "y": -290.1741946161863,
+      "label": "MINAMI-ASAGAYA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 88,
+      "x": 3331.464449380291,
+      "y": 515.6329278966314,
+      "label": "MINAMI-GYOTOKU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 89,
+      "x": 376.3705108886553,
+      "y": -1243.8681306242922,
+      "label": "MINAMI-SENJU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 90,
+      "x": 1329.8045454458615,
+      "y": 606.6042113853067,
+      "label": "MINAMI-SUNAMACHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 91,
+      "x": 182.98939226691562,
+      "y": -1176.674942121558,
+      "label": "MINOWA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 92,
+      "x": -1068.7162110064335,
+      "y": 1189.0895681044035,
+      "label": "MITA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 93,
+      "x": -323.54987263396055,
+      "y": 138.5967805139802,
+      "label": "MITSUKOSHIMAE",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 94,
+      "x": 3229.2509842321642,
+      "y": -112.55176731566007,
+      "label": "MIZUE",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 95,
+      "x": 298.8852249203281,
+      "y": 445.88692958479,
+      "label": "MONZEN-NAKACHO",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 96,
+      "x": 301.47557604977425,
+      "y": 36.31400831263544,
+      "label": "MORISHITA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 97,
+      "x": -2407.5898731999077,
+      "y": -2286.2953098474322,
+      "label": "MOTOHASUNUMA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 98,
+      "x": 4096.172489085391,
+      "y": -906.573802915744,
+      "label": "MOTOYAWATA",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 99,
+      "x": 4053.837430487086,
+      "y": -83.29841509229246,
+      "label": "MYODEN",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 100,
+      "x": -1411.422264486651,
+      "y": -803.9387198583888,
+      "label": "MYOGADANI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 101,
+      "x": -4199.994455435612,
+      "y": -1791.8068088984705,
+      "label": "NAERIMA-KASUGACHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 102,
+      "x": -1277.4892711234943,
+      "y": 329.3471188911787,
+      "label": "NAGATACHO",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 103,
+      "x": -2511.899876720074,
+      "y": 1305.597613064931,
+      "label": "NAKA-MEGURO",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 104,
+      "x": -277.8014416446854,
+      "y": -494.99675267584,
+      "label": "NAKA-OKACHIMACHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 105,
+      "x": -2862.238369482195,
+      "y": -729.1564089821661,
+      "label": "NAKAI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 106,
+      "x": -2105.636367259474,
+      "y": 2412.7633559744745,
+      "label": "NAKANO",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 107,
+      "x": -3430.1836839064376,
+      "y": -35.04915458413107,
+      "label": "NAKANO-FUJIMICHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 108,
+      "x": -3005.1899431998136,
+      "y": -224.29206454471705,
+      "label": "NAKANO-SAKAUE",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 109,
+      "x": -3234.642495446491,
+      "y": -77.12142393657544,
+      "label": "NAKANO-SHIMBASHI",
+      "type": 0,
+      "colorType": 1
+    },
+    {
+      "id": 110,
+      "x": -2106.1301800160595,
+      "y": 2409.1189600707276,
+      "label": "NAKANOBU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 111,
+      "x": -3792.3448049024523,
+      "y": -1385.947590583691,
+      "label": "NETIMA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 112,
+      "x": -579.6105578895823,
+      "y": -809.3215676911149,
+      "label": "NEZU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 113,
+      "x": -324.50919776824844,
+      "y": 206.48881514086438,
+      "label": "NIHOMBASHI",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 114,
+      "x": -698.8158023547539,
+      "y": 260.7417991704678,
+      "label": "NIJUBASHIMAE <MARUNOUCHI>",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 115,
+      "x": -104.74461650241145,
+      "y": 88.66971174886672,
+      "label": "NINGYOCHO",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 116,
+      "x": 5000.0,
+      "y": -544.430008683752,
+      "label": "NISHI-FUNABASHI",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 117,
+      "x": 2118.6458787862325,
+      "y": 725.9913868657386,
+      "label": "NISHI-KASAI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 118,
+      "x": -2295.8986684671363,
+      "y": 2947.0427690940296,
+      "label": "NISHI-MAGOME",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 119,
+      "x": -537.0589147500236,
+      "y": -1248.500152042442,
+      "label": "NISHI-NIPPORI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 120,
+      "x": 1155.1796482145378,
+      "y": 2.1080895479860606,
+      "label": "NISHI-OJIMA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 121,
+      "x": -2687.044576853197,
+      "y": -146.73169593509638,
+      "label": "NISHI-SHINJUKU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 122,
+      "x": -2925.2413690335547,
+      "y": -15.406380465203112,
+      "label": "NISHI-SHINJUKU-GOCHOME",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 123,
+      "x": -1649.442901239619,
+      "y": -1565.2795918740478,
+      "label": "NISHI-SUGAMO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 124,
+      "x": -4027.2177463024,
+      "y": -2947.042769094235,
+      "label": "NISHI-TAKASHIMADAIRA",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 125,
+      "x": -2217.0936606861483,
+      "y": -536.6762820579997,
+      "label": "NISHI-WASEDA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 126,
+      "x": -3228.349992535001,
+      "y": -2818.9460072065262,
+      "label": "NISHIDAI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 127,
+      "x": -1260.3155607907793,
+      "y": -1637.356039864436,
+      "label": "NISHIGAHARA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 128,
+      "x": -1659.296054031346,
+      "y": 668.8101798199452,
+      "label": "NOGIZAKA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 129,
+      "x": -3700.0220338678273,
+      "y": 168.92727986251597,
+      "label": "NONANCHO",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 130,
+      "x": -627.6056925347149,
+      "y": -324.1577532502751,
+      "label": "OCHANOMIZU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 131,
+      "x": -2884.9566441059646,
+      "y": -615.484177632923,
+      "label": "OCHIAI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 132,
+      "x": -2952.3895195028717,
+      "y": -978.222857408623,
+      "label": "OCHIAI-MINAMI-NAGASAKI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 133,
+      "x": -563.5948529116099,
+      "y": -161.60383452841327,
+      "label": "OGAWAMACHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 134,
+      "x": -4783.813972937661,
+      "y": -436.9203295205491,
+      "label": "OGIKUBO",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 135,
+      "x": -1401.0088796776195,
+      "y": -1872.7747743118061,
+      "label": "OJI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 136,
+      "x": -1446.7053303764685,
+      "y": -2186.198597629713,
+      "label": "OJI-KAMIYA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 137,
+      "x": 1435.1079500674814,
+      "y": -27.179916202195518,
+      "label": "OJIMA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 138,
+      "x": -2115.9400159001925,
+      "y": 698.5429058310427,
+      "label": "OMOTE-SANDO",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 139,
+      "x": -995.0168228432497,
+      "y": 824.4449443535252,
+      "label": "ONAIRIMON",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 140,
+      "x": 779.8963917305425,
+      "y": -614.617839462574,
+      "label": "OSHIAGE <SKYTREE>",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 141,
+      "x": -600.0099340109571,
+      "y": 76.77200087429529,
+      "label": "OTEMACHI",
+      "type": 0,
+      "colorType": 11
+    },
+    {
+      "id": 142,
+      "x": -1531.5053982975028,
+      "y": 751.8486934609277,
+      "label": "ROPPONGI",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 143,
+      "x": -1356.2827277295614,
+      "y": 703.9748461598492,
+      "label": "ROPPONGI-ITCHOME",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 144,
+      "x": 339.3518808635888,
+      "y": -235.20792549275615,
+      "label": "RYOGOKU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 145,
+      "x": -988.7618612527142,
+      "y": 345.0769322732437,
+      "label": "SAKURADAMON",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 146,
+      "x": -651.7534251402785,
+      "y": -1045.8809807296154,
+      "label": "SENDAGI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 147,
+      "x": -1347.0591140071253,
+      "y": 1490.3240133635502,
+      "label": "SENGAKUJI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 148,
+      "x": -1178.8104657112117,
+      "y": -1107.8097209497423,
+      "label": "SENGOKU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 149,
+      "x": -2836.580320666289,
+      "y": -1446.530618845739,
+      "label": "SENKAWA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 150,
+      "x": -2311.5880527347217,
+      "y": -91.67590520090116,
+      "label": "SHGIMURA-SANCHOME",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 151,
+      "x": -1030.1641624195415,
+      "y": 983.363130553241,
+      "label": "SHIBAKOEN",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 152,
+      "x": -2473.3824816604065,
+      "y": 872.8385945568132,
+      "label": "SHIBUYA",
+      "type": 0,
+      "colorType": 1
+    },
+    {
+      "id": 153,
+      "x": -754.7494824352449,
+      "y": 672.2091132420591,
+      "label": "SHIMBASHI",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 154,
+      "x": -1538.8894873038378,
+      "y": -2557.259899429865,
+      "label": "SHIMO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 155,
+      "x": -3332.4665138637556,
+      "y": -1249.0228427387922,
+      "label": "SHIN-EGATO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 156,
+      "x": -1903.3983847411903,
+      "y": -1716.6837383417737,
+      "label": "SHIN-ITABASHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 157,
+      "x": 1173.8319090257428,
+      "y": 1278.2848583435555,
+      "label": "SHIN-KIBA",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 158,
+      "x": -3383.6930898850082,
+      "y": -234.18564645153913,
+      "label": "SHIN-NAKANO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 159,
+      "x": -583.0066035181712,
+      "y": -227.21451197303637,
+      "label": "SHIN-OCHANOMIZU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 160,
+      "x": -114.710393257002,
+      "y": -511.4080854188532,
+      "label": "SHIN-OKACHIMACHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 161,
+      "x": -1614.0356602120173,
+      "y": -1052.0781864424696,
+      "label": "SHIN-OTSUKA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 162,
+      "x": -3808.7763522021924,
+      "y": -2905.955237462053,
+      "label": "SHIN-TAKASHIMADAIRA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 163,
+      "x": -2463.3127443257845,
+      "y": -26.319353619512036,
+      "label": "SHINJUKU",
+      "type": 0,
+      "colorType": 3
+    },
+    {
+      "id": 164,
+      "x": -2168.0242667093726,
+      "y": 22.435270821592333,
+      "label": "SHINJUKU-GYOEMMAE",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 165,
+      "x": -2501.948538934955,
+      "y": -109.33765270315226,
+      "label": "SHINJUKU-NISHIGUCHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 166,
+      "x": -2311.5880527347217,
+      "y": -91.67590520090116,
+      "label": "SHINJUKU-SANCHOME",
+      "type": 0,
+      "colorType": 2
+    },
+    {
+      "id": 167,
+      "x": -3005.1899431998136,
+      "y": -224.29206454471705,
+      "label": "SHINMURA-SAKAUE",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 168,
+      "x": 3408.2624403997997,
+      "y": -483.0817150378616,
+      "label": "SHINOZAKI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 169,
+      "x": -357.95216138354704,
+      "y": 540.4795066261397,
+      "label": "SHINTOMICHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 170,
+      "x": -737.6364157741464,
+      "y": 754.0809581466981,
+      "label": "SHIODOME",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 171,
+      "x": -1479.7157024660362,
+      "y": 1328.3303266585824,
+      "label": "SHIROKANE-TAKANAWA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 172,
+      "x": -1711.0135550154546,
+      "y": 1479.9279553177205,
+      "label": "SHIROKANEDAI",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 173,
+      "x": -3959.9465873642316,
+      "y": -246.129562028666,
+      "label": "SIN-KOENJI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 174,
+      "x": -408.2113264477389,
+      "y": -392.32701609187615,
+      "label": "SUEHIROCHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 175,
+      "x": -1339.5826155965003,
+      "y": -1272.4053099601028,
+      "label": "SUGAMO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 176,
+      "x": -929.2704190848957,
+      "y": -366.504363023501,
+      "label": "SUIDOBASHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 177,
+      "x": -16.175977539435674,
+      "y": 186.71031470882113,
+      "label": "SUITENGUMAE",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 178,
+      "x": 857.2950438812193,
+      "y": -19.154736949597147,
+      "label": "SUMIYOSHI",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 179,
+      "x": -2372.9738877011564,
+      "y": -673.8233900334592,
+      "label": "TAKADANOBABA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 180,
+      "x": -1601.083904563145,
+      "y": 1652.0173695027286,
+      "label": "TAKANAWADAI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 181,
+      "x": -413.89739263977935,
+      "y": 411.4124459872298,
+      "label": "TAKARACHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 182,
+      "x": -3570.726837510281,
+      "y": -2856.1898851554733,
+      "label": "TAKASHIMADAIRA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 183,
+      "x": -836.1563925214203,
+      "y": -43.48728836456161,
+      "label": "TAKEBASHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 184,
+      "x": -1256.6596137117012,
+      "y": 526.8462316165245,
+      "label": "TAMEIKE-SANNO",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 185,
+      "x": 678.0525642020378,
+      "y": 1230.0384856291244,
+      "label": "TATSUMI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 186,
+      "x": 142.65268704889945,
+      "y": -591.5732441275968,
+      "label": "TAWARAMACHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 187,
+      "x": -2685.6786503375706,
+      "y": -36.27357919836113,
+      "label": "TOCHOMAE",
+      "type": 0,
+      "colorType": 1
+    },
+    {
+      "id": 188,
+      "x": -798.1385858066197,
+      "y": -808.1808890999844,
+      "label": "TODAIMAE",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 189,
+      "x": -2005.5974109198457,
+      "y": 2161.4675306559775,
+      "label": "TOGOSHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 190,
+      "x": -605.2714945000395,
+      "y": 199.8671037244366,
+      "label": "TOKYO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 191,
+      "x": -1032.647665175226,
+      "y": 553.3966087479928,
+      "label": "TORANOMON",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 192,
+      "x": -1098.8127990490775,
+      "y": 631.8955103755258,
+      "label": "TORANOMON　HILLS",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 193,
+      "x": -3980.4845775920417,
+      "y": -1532.520457854189,
+      "label": "TOSHIMAEN",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 194,
+      "x": 892.0380923123058,
+      "y": 560.9915067091468,
+      "label": "TOYOCHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 195,
+      "x": 293.06632020849213,
+      "y": 974.9134455972742,
+      "label": "TOYOSU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 196,
+      "x": -381.86020709555345,
+      "y": 614.1066999415551,
+      "label": "TSUKIJI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 197,
+      "x": -546.6810440302047,
+      "y": 706.6864846335546,
+      "label": "TSUKIJISHIJO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 198,
+      "x": -36.130633400099654,
+      "y": 713.4410345693675,
+      "label": "TSUKISHIMA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 199,
+      "x": -878.9044056469421,
+      "y": 574.5208211383202,
+      "label": "UCHISAIWAICHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 200,
+      "x": -278.9854371438204,
+      "y": -645.6442971415295,
+      "label": "UENO",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 201,
+      "x": -370.33502163392427,
+      "y": -533.7336200721329,
+      "label": "UENO-HIROKOJI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 202,
+      "x": -369.540878310523,
+      "y": -548.8541089410182,
+      "label": "UENO-OKACHIMACHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 203,
+      "x": 2681.577982997782,
+      "y": 1542.7143703265954,
+      "label": "URAYASU",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 204,
+      "x": -1739.625816992969,
+      "y": -291.83178831559087,
+      "label": "USHIGOME-YANAGICHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 205,
+      "x": -1439.996985143211,
+      "y": -333.9300478134535,
+      "label": "USHIGOME-KAGURAZAKA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 206,
+      "x": -1946.5651279830304,
+      "y": -286.8878851561152,
+      "label": "WAKAMATSU-KAWADA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 207,
+      "x": -5000.0,
+      "y": -2860.628424382416,
+      "label": "WAKOSHI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 208,
+      "x": -1898.353408795003,
+      "y": -474.11800276714575,
+      "label": "WASEDA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 209,
+      "x": -1594.1503114049813,
+      "y": 95.05751185940287,
+      "label": "YOTSUYA",
+      "type": 0,
+      "colorType": 4
+    },
+    {
+      "id": 210,
+      "x": -1883.9924097220892,
+      "y": 39.343304115537194,
+      "label": "YOTSUYA-SANCHOME",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 211,
+      "x": -2420.6975697192374,
+      "y": 204.8138946780528,
+      "label": "YOYOGI",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 212,
+      "x": -2763.4065109931853,
+      "y": 586.744852723894,
+      "label": "YOYOGI-KOEN",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 213,
+      "x": -3077.3501372137116,
+      "y": 597.7848888097174,
+      "label": "YOYOGI-UEHARA",
+      "type": 0,
+      "colorType": 10
+    },
+    {
+      "id": 214,
+      "x": -703.8723294766828,
+      "y": 374.0848220149782,
+      "label": "YURAKUCHO",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 215,
+      "x": -455.09177264654363,
+      "y": -537.0199295322041,
+      "label": "YUSHIMA",
+      "type": 0,
+      "colorType": 0
+    },
+    {
+      "id": 216,
+      "x": -2051.3978221987263,
+      "y": -892.2156916369709,
+      "label": "ZOSHIGAYA",
+      "type": 0,
+      "colorType": 0
+    }
+  ],
+  "edges": [
+    {
+      "from": 118,
+      "to": 84,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 84,
+      "to": 110,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 110,
+      "to": 189,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 189,
+      "to": 25,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 25,
+      "to": 180,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 180,
+      "to": 147,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 147,
+      "to": 92,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 92,
+      "to": 17,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 17,
+      "to": 153,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 153,
+      "to": 35,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 35,
+      "to": 181,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 181,
+      "to": 113,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 113,
+      "to": 115,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 115,
+      "to": 34,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 34,
+      "to": 9,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 9,
+      "to": 81,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 81,
+      "to": 8,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 8,
+      "to": 46,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 46,
+      "to": 140,
+      "label": "Asakusa Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 213,
+      "to": 212,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 212,
+      "to": 86,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 86,
+      "to": 138,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 138,
+      "to": 128,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 128,
+      "to": 3,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 3,
+      "to": 75,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 75,
+      "to": 64,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 64,
+      "to": 33,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 33,
+      "to": 114,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 114,
+      "to": 141,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 141,
+      "to": 159,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 159,
+      "to": 215,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 215,
+      "to": 112,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 112,
+      "to": 146,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 146,
+      "to": 119,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 119,
+      "to": 83,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 83,
+      "to": 71,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 71,
+      "to": 11,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 11,
+      "to": 69,
+      "label": "Chiyoda Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 165,
+      "to": 40,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 165,
+      "to": 187,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 40,
+      "to": 206,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 206,
+      "to": 204,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 204,
+      "to": 205,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 205,
+      "to": 49,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 49,
+      "to": 63,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 63,
+      "to": 45,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 45,
+      "to": 202,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 202,
+      "to": 160,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 160,
+      "to": 81,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 81,
+      "to": 144,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 144,
+      "to": 96,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 96,
+      "to": 72,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 72,
+      "to": 95,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 95,
+      "to": 198,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 198,
+      "to": 57,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 57,
+      "to": 197,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 197,
+      "to": 170,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 170,
+      "to": 17,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 17,
+      "to": 2,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 2,
+      "to": 12,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 12,
+      "to": 142,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 142,
+      "to": 7,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 7,
+      "to": 76,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 76,
+      "to": 211,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 211,
+      "to": 163,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 163,
+      "to": 187,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 187,
+      "to": 122,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 122,
+      "to": 108,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 108,
+      "to": 38,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 38,
+      "to": 105,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 105,
+      "to": 132,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 132,
+      "to": 155,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 155,
+      "to": 111,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 111,
+      "to": 193,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 193,
+      "to": 101,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 101,
+      "to": 41,
+      "label": "Toei Ōedo Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 207,
+      "to": 16,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 16,
+      "to": 15,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 15,
+      "to": 32,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 32,
+      "to": 42,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 42,
+      "to": 79,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 79,
+      "to": 149,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 149,
+      "to": 60,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 60,
+      "to": 50,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 50,
+      "to": 216,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 216,
+      "to": 125,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 125,
+      "to": 40,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 40,
+      "to": 166,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 166,
+      "to": 70,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 70,
+      "to": 86,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 86,
+      "to": 152,
+      "label": "Fukutoshin Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 152,
+      "to": 138,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 138,
+      "to": 21,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 21,
+      "to": 7,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 7,
+      "to": 4,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 4,
+      "to": 184,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 184,
+      "to": 191,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 191,
+      "to": 153,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 153,
+      "to": 22,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 22,
+      "to": 82,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 82,
+      "to": 113,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 113,
+      "to": 93,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 93,
+      "to": 61,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 61,
+      "to": 174,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 174,
+      "to": 201,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 201,
+      "to": 200,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 200,
+      "to": 51,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 51,
+      "to": 186,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 186,
+      "to": 8,
+      "label": "Ginza Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 103,
+      "to": 18,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 18,
+      "to": 43,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 43,
+      "to": 142,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 142,
+      "to": 59,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 59,
+      "to": 192,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 192,
+      "to": 64,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 64,
+      "to": 33,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 33,
+      "to": 22,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 22,
+      "to": 35,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 35,
+      "to": 196,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 196,
+      "to": 31,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 31,
+      "to": 65,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 65,
+      "to": 115,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 115,
+      "to": 73,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 73,
+      "to": 6,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 6,
+      "to": 104,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 104,
+      "to": 200,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 200,
+      "to": 52,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 52,
+      "to": 91,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 91,
+      "to": 89,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 89,
+      "to": 71,
+      "label": "Hibiya Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 85,
+      "to": 172,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 172,
+      "to": 171,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 171,
+      "to": 92,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 92,
+      "to": 151,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 151,
+      "to": 139,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 139,
+      "to": 199,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 199,
+      "to": 33,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 33,
+      "to": 141,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 141,
+      "to": 56,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 56,
+      "to": 176,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 176,
+      "to": 63,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 63,
+      "to": 27,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 27,
+      "to": 148,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 148,
+      "to": 175,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 175,
+      "to": 123,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 123,
+      "to": 156,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 156,
+      "to": 53,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 53,
+      "to": 54,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 54,
+      "to": 97,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 97,
+      "to": 167,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 167,
+      "to": 150,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 150,
+      "to": 30,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 30,
+      "to": 126,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 126,
+      "to": 182,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 182,
+      "to": 162,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 162,
+      "to": 124,
+      "label": "Mita Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 134,
+      "to": 87,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 87,
+      "to": 173,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 173,
+      "to": 37,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 37,
+      "to": 158,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 158,
+      "to": 108,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 108,
+      "to": 121,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 108,
+      "to": 109,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 121,
+      "to": 163,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 163,
+      "to": 166,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 166,
+      "to": 164,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 164,
+      "to": 210,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 210,
+      "to": 209,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 209,
+      "to": 4,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 4,
+      "to": 75,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 75,
+      "to": 64,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 64,
+      "to": 22,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 22,
+      "to": 190,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 190,
+      "to": 141,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 141,
+      "to": 10,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 10,
+      "to": 130,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 130,
+      "to": 45,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 45,
+      "to": 78,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 78,
+      "to": 100,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 100,
+      "to": 161,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 161,
+      "to": 50,
+      "label": "Marunouchi Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 129,
+      "to": 107,
+      "label": "Marunouchi Line Branch Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 107,
+      "to": 109,
+      "label": "Marunouchi Line Branch Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 109,
+      "to": 108,
+      "label": "Marunouchi Line Branch Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 85,
+      "to": 172,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 172,
+      "to": 171,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 171,
+      "to": 12,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 12,
+      "to": 143,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 143,
+      "to": 184,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 184,
+      "to": 102,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 102,
+      "to": 209,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 209,
+      "to": 47,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 47,
+      "to": 49,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 49,
+      "to": 78,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 78,
+      "to": 188,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 188,
+      "to": 44,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 44,
+      "to": 77,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 77,
+      "to": 127,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 127,
+      "to": 135,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 135,
+      "to": 136,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 136,
+      "to": 154,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 154,
+      "to": 1,
+      "label": "Namboku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 163,
+      "to": 166,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 166,
+      "to": 5,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 5,
+      "to": 47,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 47,
+      "to": 80,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 80,
+      "to": 56,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 56,
+      "to": 133,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 133,
+      "to": 55,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 55,
+      "to": 13,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 13,
+      "to": 28,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 28,
+      "to": 96,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 96,
+      "to": 67,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 67,
+      "to": 178,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 178,
+      "to": 120,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 120,
+      "to": 137,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 137,
+      "to": 39,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 39,
+      "to": 20,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 20,
+      "to": 48,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 48,
+      "to": 94,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 94,
+      "to": 168,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 168,
+      "to": 98,
+      "label": "Shinjuku Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 106,
+      "to": 131,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 131,
+      "to": 179,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 179,
+      "to": 208,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 208,
+      "to": 58,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 58,
+      "to": 49,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 49,
+      "to": 80,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 80,
+      "to": 183,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 183,
+      "to": 141,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 141,
+      "to": 113,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 113,
+      "to": 65,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 65,
+      "to": 95,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 95,
+      "to": 66,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 66,
+      "to": 194,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 194,
+      "to": 90,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 90,
+      "to": 117,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 117,
+      "to": 62,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 62,
+      "to": 203,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 203,
+      "to": 88,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 88,
+      "to": 26,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 26,
+      "to": 99,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 99,
+      "to": 14,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 14,
+      "to": 116,
+      "label": "Tōzai Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 207,
+      "to": 16,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 16,
+      "to": 15,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 15,
+      "to": 32,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 32,
+      "to": 42,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 42,
+      "to": 79,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 79,
+      "to": 149,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 149,
+      "to": 60,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 60,
+      "to": 50,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 50,
+      "to": 36,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 36,
+      "to": 24,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 24,
+      "to": 19,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 19,
+      "to": 49,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 49,
+      "to": 47,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 47,
+      "to": 74,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 74,
+      "to": 102,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 102,
+      "to": 145,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 145,
+      "to": 214,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 214,
+      "to": 23,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 23,
+      "to": 169,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 169,
+      "to": 198,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 198,
+      "to": 195,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 195,
+      "to": 185,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 185,
+      "to": 157,
+      "label": "Yūrakuchō Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 152,
+      "to": 138,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 138,
+      "to": 7,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 7,
+      "to": 102,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 102,
+      "to": 29,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 29,
+      "to": 80,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 80,
+      "to": 56,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 56,
+      "to": 141,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 141,
+      "to": 93,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 93,
+      "to": 177,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 177,
+      "to": 72,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 72,
+      "to": 178,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 178,
+      "to": 68,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    },
+    {
+      "from": 68,
+      "to": 140,
+      "label": "Hanzōmon Line",
+      "type": 0,
+      "directed": false
+    }
+  ]
+}

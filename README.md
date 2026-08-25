@@ -2,6 +2,8 @@
 
 A lightweight, client-side directed graph editor built with vanilla JS and Canvas. No build step, no framework.
 
+![Graph Editor](capture.png)
+
 ## Interactions
 
 | Gesture | Action |
@@ -34,6 +36,7 @@ A lightweight, client-side directed graph editor built with vanilla JS and Canva
 | Shift+F3 | Cycle node colour independently per node |
 | F4 | Toggle lock |
 | F6 | Focus properties panel |
+| F12 | Ollama query for selected node |
 | Del | Delete selection (if unlocked) |
 | Alt + ← / → | Node visit history |
 | Ctrl+F | Search panel (nodes by default) |
@@ -66,3 +69,14 @@ Graphs are saved as JSON (nodes + edges with all properties). All processing is 
 ## Theming
 
 Light / dark mode via CSS variables. Initial theme follows the OS preference; toggle with ☀️ / 🌙 in the menu bar.
+
+## Ollama integration
+
+F12 on a selected node opens a prompt sent to a local Ollama instance (`http://localhost:11434`). The response is parsed as a JSON array and inserted as connected nodes. Configure model and prompt template in `custom/ollama.js`.
+
+Requires Ollama running with `OLLAMA_ORIGINS=*` (needed for browser CORS):
+```bash
+docker run -d --name ollama_API --restart always \
+  -v ~/.IAmodels:/root/.ollama -p 11434:11434 --gpus all \
+  -e OLLAMA_ORIGINS='*' ollama/ollama
+```

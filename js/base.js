@@ -267,6 +267,13 @@ class GraphEditor {
 
 		const y = baseY + 10;
 		ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+		// Fondo del tooltip. Sin él el texto va en blanco sobre nada, y sobre un
+		// grafo claro no se lee. Viene del fork de transformation, 2026-06-03.
+		const boxHeight = lines.length * lineHeight + padding * 2;
+		ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
+		ctx.fillRect(x, y, boxWidth, boxHeight);
+
 		ctx.fillStyle    = 'white';
 		ctx.textBaseline = 'top';
 		lines.forEach((line, i) => {

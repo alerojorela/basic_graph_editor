@@ -102,14 +102,17 @@
   </div>
 
 
-  <!-- Panels. The second canvas is inert until base.js's MAX_PANELS is raised:
-       it is `display: none` unless <body> carries the .panels-2 class, which
-       base.js adds only when it actually built a second editor. With one panel
+  <!-- Panels. The page offers four canvases and base.js takes as many as
+       MAX_PANELS says, turning the rest off; the document then decides how many
+       of those are in use, one per graph in the current group. So raising the
+       ceiling is one number in js/base.js and nothing here, and with one panel
        #panels covers the viewport exactly, so #canvas measures as it always
        did. -->
   <div id="panels">
     <canvas id="canvas"></canvas>
     <canvas id="canvas2"></canvas>
+    <canvas id="canvas3"></canvas>
+    <canvas id="canvas4"></canvas>
   </div>
 
   <!-- Group bar. Not there at all unless the file holds more than a lone
@@ -356,7 +359,7 @@
       _closeAll();
       if (window.editors.length < 2) {
         alert('This page has one panel, so there is nowhere to show the second '
-            + 'graph. Raise MAX_PANELS in js/base.js and add a <canvas id="canvas2">.');
+            + 'graph. Raise MAX_PANELS in js/base.js.');
         return;
       }
       if (!window.doc.splitInTwo()) alert('This group already holds more than one graph.');

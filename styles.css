@@ -186,13 +186,13 @@ canvas {
    only there, the panels stop where the drawer starts — and follow it when it
    collapses. base.js watches #panels with a ResizeObserver, so the canvases
    re-measure on their own when this width changes. */
-body.panels-2 #panels { right: 240px; }
+body:not(.panels-1) #panels { right: 240px; }
 /* And below the menu bar. With one panel the canvas runs under it on purpose:
    the drawing surface is larger than what you see. With two, the active panel's
    outline is a border you are meant to read, and its top edge was disappearing
    behind the bar — an outline missing one side looks like a bug, not a hint. */
-body.panels-2 #panels { top: 30px; }
-body.panels-2:has(#propertiesPanel.prop-collapsed) #panels { right: 30px; }
+body:not(.panels-1) #panels { top: 30px; }
+body:not(.panels-1):has(#propertiesPanel.prop-collapsed) #panels { right: 30px; }
 
 #panels canvas {
   flex: 1 1 0;
@@ -200,10 +200,14 @@ body.panels-2:has(#propertiesPanel.prop-collapsed) #panels { right: 30px; }
   height: 100%;
 }
 
-/* Off unless base.js says it built a second editor. */
-#canvas2 { display: none; }
-body.panels-2 #canvas2 { display: block; }
-body.panels-2 #canvas2 { border-left: 1px solid var(--ui-border); }
+/* **Which canvases are on is not decided here.** It used to be, with a rule per
+   canvas — `#canvas2` off, `.panels-2 #canvas2` on — and that is a rule to write
+   again for every panel anybody ever adds, because CSS cannot count. base.js
+   hides the canvases it did not turn into editors, and document.js hides the
+   ones the current group does not fill, both of which know the number. Adding a
+   third panel is then a `<canvas>` in the HTML and a larger MAX_PANELS, with
+   nothing to change in this file. */
+#panels canvas + canvas { border-left: 1px solid var(--ui-border); }
 
 /* ── Group bar ────────────────────────────────────────────────────────────
    Present only when the document is a collection: base.js's page script puts

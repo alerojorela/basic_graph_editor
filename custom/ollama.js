@@ -8,7 +8,7 @@
 	const OLLAMA_MODEL = 'qwen3:14b';
 
 	const PROMPT_TPL =
-		`For the word "{label}", generate 5 poetic metaphors and 5 metonymies in Spanish.\n` +
+		`For the word "{label}", generate 5 poetic metaphors and 5 metonymies in English.\n` +
 		`Each must be a short expression. From each expression, extract one single word that best captures its essence — this word must NOT be "{label}" itself.\n` +
 		`Respond ONLY with a raw JSON array — no markdown, no explanation, no code blocks.\n` +
 		`Format: [{"word": "single word extracted from the expression", "expression": "the full expression"}]`;

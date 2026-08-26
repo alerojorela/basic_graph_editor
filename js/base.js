@@ -1287,6 +1287,13 @@ for (let i = 0; i < MAX_PANELS; i++) {
 // constructor calls resizeCanvas(), so the layout has to be final by then.
 document.body.classList.add(`panels-${panelCanvases.length}`);
 
+// The canvases the page offers but this build did not take. The stylesheet used
+// to hide them by name, one rule per canvas; here the number is known, so the
+// page can carry four and a build with two turns the other two off.
+document.querySelectorAll('#panels canvas').forEach(element => {
+	if (!panelCanvases.includes(element)) element.style.display = 'none';
+});
+
 /** Every live editor, in panel order. `editors[0]` is the historical one. */
 const editors = panelCanvases.map(element => new GraphEditor(element));
 window.editors = editors;

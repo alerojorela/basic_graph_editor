@@ -190,6 +190,20 @@
 		doc.visible = Math.min(graphs.length, editors.length);
 		document.body.className = document.body.className
 			.replace(/\bpanels-\d+\b/g, '').trim() + ` panels-${doc.visible}`;
+		// **Every panel on or off first, and only then measure.** They share a
+		// flex row, so turning the second one on halves the first one's width:
+		// doing both in one pass had each canvas measuring a row that still had
+		// the *previous* panels in it, and with three the buffers came out
+		// 1260, 630 and 420 for three boxes of 420. Two panels got away with it
+		// only because the class change also moves #panels for the properties
+		// drawer, and the ResizeObserver then put it right — which is a side
+		// effect doing the job, and going from two panels to three does not
+		// move #panels at all.
+		editors.forEach((editor, i) => {
+			// A panel the current group does not fill is off, not empty: an empty
+			// canvas beside a graph reads as a graph you lost.
+			editor.canvas.style.display = i < doc.visible ? 'block' : 'none';
+		});
 		editors.forEach((editor, i) => {
 			editor.fromJSON(graphs[i] ?? { nodes: [], edges: [] });
 			// **An undo stack belongs to a graph, not to a panel.** Without

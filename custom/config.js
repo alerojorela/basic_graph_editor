@@ -41,17 +41,19 @@
 			"similarity",
 
 			/*
-			La metonimia consiste en llamar a una cosa con el nombre de otra con la que mantiene una relación de contigüidad: causa-efecto, contenedor-contenido, autor-obra, lugar-institución, parte-todo, etc.
-			Si quieres evitar tecnicismos, también puedes decir:
-			“Dos objetos o hechos que están próximos en la realidad o que coocurren (se dan juntos)”.
-			“No se parecen, sino que están relacionados por cercanía, causa o pertenencia.”
+			Metonymy is calling one thing by the name of another it is contiguous
+			with: cause-effect, container-content, author-work, place-institution,
+			part-whole, and so on. Without the technical term:
+			"two objects or events that are close in reality, or that co-occur".
+			"they do not resemble each other; they are related by nearness, cause
+			 or belonging."
 			*/
 			// semantic drift: metonymy
 			// coocurrir coexistir *cooccurrence
 			"contiguity",
 			// meronymy holonymy
 			"has part",
-			// un criterio es que la fecha sea una implicación todo->parte, gorrión->ave
+			// one test: the fact is a whole->part entailment, sparrow->bird
 			"characteristic action",
 			"causes",
 

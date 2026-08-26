@@ -164,14 +164,24 @@
         <dt>Drag on empty space</dt><dd>Area selection (rubber-band)</dd>
       </dl>
 
-      <div class="helpGroup">Document</div>
+      <!-- Graph and document are two scopes and the keys belong to one or the
+           other: undo, search and the properties panel act on the graph in the
+           focused panel, and moving between panels acts on the document. Listed
+           together, Ctrl+Z looked like it might undo across panels. -->
+      <div class="helpGroup">Graph (the focused panel)</div>
       <dl class="helpList">
-        <dt>Ctrl+Z</dt><dd>Undo (up to 6 steps)</dd>
+        <dt>Ctrl+Z</dt><dd>Undo, up to 6 steps. Each panel has its own history</dd>
         <dt>Ctrl+Y / Ctrl+Shift+Z</dt><dd>Redo</dd>
-        <dt>Ctrl+F</dt><dd>Open search panel</dd>
+        <dt>Ctrl+F</dt><dd>Open search panel, on the focused graph</dd>
         <dt>Ctrl + right-click</dt><dd>Insert subgraph from indented text</dd>
         <dt>F6</dt><dd>Focus properties panel</dd>
-        <dt>Ctrl+← / Ctrl+→</dt><dd>Focus the previous / next panel, scrolling to it</dd>
+      </dl>
+
+      <div class="helpGroup">Document (panels and groups)</div>
+      <dl class="helpList">
+        <dt>Ctrl+←</dt><dd>Focus the panel to the left, scrolling to it</dd>
+        <dt>Ctrl+→</dt><dd>Focus the panel to the right, scrolling to it</dd>
+        <dt>Click on a panel</dt><dd>Focus it — every key above then acts on that graph</dd>
       </dl>
       <div id="helpCloseRow"><button id="helpClose">Close</button></div>
     </div>
@@ -293,7 +303,7 @@
       return `${i + 1} / ${total}` + (name ? ` · ${name}` : '');
     }
 
-    // A graph may carry its own name — «English», «dependencies» — and if the
+    // A graph may carry its own name — "English", "dependencies" — and if the
     // page did not show it, the field would be metadata nobody can see. It hangs
     // off the top **right** of its panel: the search box already hangs off the
     // top left.
@@ -313,13 +323,18 @@
         element.style.display = name ? 'block' : 'none';
         if (!name) return;
         const box = window.editors[i].canvas.getBoundingClientRect();
-        // A title belongs to its panel: when the panel has scrolled out of the
-        // row, so does it, or it would sit over somebody else's graph.
-        if (box.right <= row.left || box.left >= row.right) {
+        // **A title belongs to its panel, and stays inside the row.** Gone from
+        // the row it goes too, or it would sit over somebody else's graph; and
+        // half-scrolled it has to be clipped on the near side as well, because
+        // the label hangs off the panel's right edge and a panel with 37 px
+        // still showing put its title 23 px past the left edge of the row.
+        const left  = Math.max(box.left,  row.left);
+        const right = Math.min(box.right, row.right);
+        const room  = right - left;
+        if (room < element.offsetWidth + 14) {
           element.style.display = 'none';
           return;
         }
-        const right = Math.min(box.right, row.right);
         element.style.left = `${Math.round(right - element.offsetWidth - 10)}px`;
         element.style.top  = `${Math.round(box.top + 8)}px`;
       });
@@ -398,7 +413,7 @@
       // **Always asked, even for an empty graph.** Which panel has the focus is
       // not something you can be sure of at a glance with three of them open,
       // so the question is also what tells you which one is about to go.
-      const what = graph.name ? `«${graph.name}»` : `the graph in panel ${panel + 1}`;
+      const what = graph.name ? `"${graph.name}"` : `the graph in panel ${panel + 1}`;
       const size = graph.nodes?.length
         ? `, with its ${graph.nodes.length} nodes`
         : ' (it is empty)';

@@ -94,7 +94,7 @@ function patternToGraph(expression) {
 			};
 		}
 
-		// Determinar si este nivel es secuencial o paralelo
+		// Decide whether this level is sequential or parallel
 		const isSequential = depth % 2 === 0;
 
 		if (isSequential) {

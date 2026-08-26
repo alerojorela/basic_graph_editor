@@ -303,7 +303,7 @@
 	//
 	// **These replace `Split into two` and `Merge to one`, and the reason is
 	// that those two only ever described the jump from one panel to two.** With
-	// a ceiling of three, «split into how many?» has no answer, and «merge»
+	// a ceiling of three, "split into how many?" has no answer, and "merge"
 	// silently picked the first graph as the survivor. Insert and remove say
 	// what they do at any count, and where they do it: **at the focused panel**,
 	// which is the same rule the rest of the editor already follows.

@@ -1,10 +1,23 @@
-/* Lo que no depende del tema va antes que los temas y fuera de los dos: metido
-   en `:root.light`, en el oscuro no existía, y `flex: 1 0 var(--panel-min-width)`
-   quedaba inválida entera. Los paneles volvían a medirse por su tamaño
-   intrínseco y salían de 1576 y 789 píxeles en vez de a medias. */
+/* What does not depend on the theme goes before the themes and outside both of
+   them. Put inside `:root.light`, the dark theme had no such variable and
+   `flex: 1 0 var(--panel-min-width)` was invalid as a whole declaration: the
+   panels fell back to their intrinsic size and came out 1576 and 789 pixels
+   wide instead of halves. */
 :root {
-  /* Narrower than this a graph is not readable, so the panel row scrolls. */
-  --panel-min-width: 320px;
+  /* **How many panels you see at once, said as a policy and not as a width.**
+     A transformation pipeline is read around the panel you are on: five at a
+     time shows two steps of context each way, which is what makes a chain
+     legible.
+
+     The width follows from that because the basis is a percentage of the row,
+     so it re-derives itself when the window changes and when the properties
+     drawer collapses — and the floor stops it there. **The floor wins**, which
+     is the whole of the second line: a share of a narrow window is a panel too
+     small to hold a graph, and three unreadable panels are worth less than one
+     and a half you can read and scroll through. Three at a time comes back on
+     its own as soon as the row is 3 × the floor wide. */
+  --panels-at-once: 5;    /* the target, when there is room for it */
+  --panel-floor: 240px;   /* narrower than this a graph is not readable */
 }
 
 :root.light {
@@ -186,8 +199,8 @@ canvas {
   position: fixed;
   inset: 0;
   display: flex;
-  /* The row scrolls rather than squeezing. Below --panel-min-width a panel
-     stops being a graph you can read, and a pipeline of transformations is
+  /* The row scrolls rather than squeezing. Past the width the panel policy
+     allows, a panel stops being a graph you can read, and a pipeline is
      compared between *adjacent* panels, so a long row that scrolls is still a
      comparison — step 12 beside step 13 is all anyone needs at once. */
   overflow-x: auto;
@@ -214,12 +227,13 @@ body:not(.panels-1):has(#propertiesPanel.prop-collapsed) #panels { right: 30px; 
    minimum: one rule does both. Two panels split the window; twenty sit at
    their minimum and the row scrolls. */
 #panels canvas {
-  flex: 1 0 var(--panel-min-width);
-  /* **Y esto no sobra.** El mínimo automático de un elemento flexible es el de
-     su contenido, y el contenido de un lienzo es su búfer: sin esta línea, un
-     panel con un búfer de 1700 píxeles se niega a medir menos de 1700, y dos
-     paneles salían de 1576 y 789 en vez de a medias. Estaba en la regla
-     original con su aviso, lo quité al reescribirla y volvió a mordernos. */
+  flex: 1 0 max(100% / var(--panels-at-once), var(--panel-floor));
+  /* **And this line is not spare.** A flex item's automatic minimum is its
+     content's minimum, and a canvas's content is its drawing buffer: without
+     it, a panel holding a 1700-pixel buffer refuses to measure less than 1700,
+     and two panels came out 1576 and 789 wide instead of halves. It was in the
+     original rule with that warning; the rewrite dropped both and it bit
+     again. */
   min-width: 0;
   height: 100%;
 }
@@ -419,9 +433,19 @@ button:active {
   line-height: 1.4;
 }
 
+/* Stuck to the bottom of the box, not to the end of the list. The modal grew
+   past the viewport when the shortcuts were split into four groups, and Close
+   went with it: a dialog whose only way out is below the fold reads as one that
+   cannot be closed. */
 #helpCloseRow {
   display: flex;
   justify-content: flex-end;
+  position: sticky;
+  bottom: -18px;                       /* cancels #helpBox's padding */
+  margin: 0 -22px -18px;
+  padding: 10px 22px;
+  background: var(--ui-bg);
+  border-top: 1px solid var(--ui-border);
 }
 
 

@@ -48,6 +48,15 @@ node clicked in the right one is being edited in the properties drawer.*
 | Alt + ← / → | Node visit history |
 | Ctrl+F | Search panel (nodes by default) |
 
+Everything above acts on **the focused panel**: each panel has its own undo
+history, its own selection and its own search. These two act on the **document**
+instead:
+
+| Key | Action |
+|---|---|
+| Ctrl + ← / → | Focus the panel to the left / right, scrolling to it |
+| Click on a panel | Focus it |
+
 ## Automatic layout
 
 Via the **Layout** menu. Available engines: **ELK** (default: tree), **WebCola**.
@@ -151,18 +160,39 @@ follows:
 ### A long row
 
 `MAX_PANELS` in `js/base.js` is 50, and the page builds the canvases itself, so
-raising or lowering it is that one number. Panels share the width until they
-would fall below `--panel-min-width` (320 px in `styles.css`); past that the row
-**scrolls** instead of squeezing. **Ctrl+←** and **Ctrl+→** move the focus one
-panel along and bring it into view — Alt+← / Alt+→ remain the node history's.
+raising or lowering it is that one number. **Ctrl+←** and **Ctrl+→** move the
+focus one panel along and bring it into view — Alt+← / Alt+→ remain the node
+history's.
 
 A long row is still a comparison because a pipeline is read **between adjacent
 panels**: step 12 beside step 13 is all anyone needs at once, and that stays
 true however long the chain is.
 
+How wide a panel gets is a policy in `styles.css`, not a number:
+
+```css
+--panels-at-once: 5;    /* the target, when there is room for it */
+--panel-floor: 240px;   /* narrower than this a graph is not readable */
+```
+
+Five at a time shows two steps of context each way. The basis is a percentage of
+the row, so it re-derives itself when the window resizes and when the properties
+drawer collapses; the floor stops it there and **the floor wins**, because a
+share of a narrow window is a panel too small to hold a graph. Past that the row
+scrolls. A group of two or three graphs still shares the whole width — the floor
+is a minimum, not a size.
+
+| window | row | panel | at once |
+|---|---|---|---|
+| 1920 | 1680 | 336 px | 5 |
+| 1440 | 1200 | 240 px | 5 |
+| 1280 | 1040 | 240 px | 4.3 |
+| 1024 | 784 | 240 px | 3.3 |
+| 800 | 560 | 240 px | 2.3 |
+
 The cost is linear and worth knowing: a canvas holds `width × height × 4` bytes,
-so thirty 320 px panels are about 29 MB of buffers, and a hundred would be near
-100 MB. Panels the current group does not use hold nothing at all.
+so thirty 240 px panels are about 22 MB of buffers. Panels the current group does
+not use hold nothing at all.
 
 A group may end up holding more graphs than there are panels. That is allowed
 rather than refused — the editor has to be able to author the files it can read —
@@ -181,7 +211,7 @@ untouched.
 The Spanish and English constituency trees are **not labelled alike**: Spanish
 comes from AnCora, where `sn` is the phrase and `grup.nom` its head with
 adjuncts, and English from the Penn Treebank, which does not draw that
-distinction. Hence «La casa grande…» in 19 nodes and «The big house…» in 12: the
+distinction. Hence "La casa grande…" in 19 nodes and "The big house…" in 12: the
 English tree is flatter because its training corpus annotates less, not because
 the sentence is simpler.
 
@@ -190,6 +220,29 @@ They are generated outside this repository, by a script that runs spaCy and
 Stanza and then asks the editor itself for the positions, through Layout →
 Arrange — a hand-made grid is fine for a dependency tree and unreadable for a
 constituency one.
+
+## Third-party code
+
+Nothing is bundled: the layout engines are loaded from unpkg at runtime, and the
+editor works without them — only the **Layout** menu goes quiet. Licences below
+are the `license` field each package publishes on npm, checked 2026-08-26.
+
+| | | |
+|---|---|---|
+| [elkjs](https://github.com/kieler/elkjs) 0.12.0 | ELK layouts (`elk-*`) | **EPL-2.0 OR GPL-3.0-or-later** |
+| [WebCola](https://github.com/tgdwyer/WebCola) 3.4.0 | Cola layouts (`cola*`) | MIT |
+| [@viz-js/viz](https://github.com/mdaines/viz-js) 3.24.0 | Graphviz layouts (`gv-*`) | MIT — it embeds Graphviz itself, which is **EPL-1.0** |
+| [dagre](https://github.com/dagrejs/dagre) 0.8.5 | Dagre layouts (`dagre-*`) | MIT — the `<script>` is commented out in `index.html`; the code in `js/layout.js` stays |
+
+**elkjs is the one to look at before redistributing**, because EPL is a weak
+copyleft and the alternative on that dual licence is the GPL: linking to it from
+a page is fine, and shipping a modified elkjs is not the same thing. The others
+are permissive.
+
+`img/pinned-octocat.svg` is GitHub's Octocat, used as the link to the repository.
+GitHub's marks are theirs and their [logo
+policy](https://github.com/logos) governs reuse; swap the file if that is a
+problem for your fork.
 
 ## Theming
 

@@ -70,16 +70,16 @@ Graphs are saved as JSON (nodes + edges with all properties). All processing is 
 ## Documents: more than one graph in a file
 
 ```
-document = { …metadata, graphs: content }
-
-content  = graph                          one graph
-         | [ element, element, … ]        a collection
+document = { …metadata, graphs: [ element, … ] }
 
 element  = graph                          one graph, one panel
          | { …metadata, graphs: [ … ] }   several, side by side
 
 graph    = { …metadata, nodes: [ … ], edges: [ … ] }
 ```
+
+`graphs` is always a list, at both levels, so the key means one thing and reading
+it never asks which of two shapes this is. A lone graph is a collection of one.
 
 Every level is an object with its own metadata and the list below it, and each is
 known by its own keys — `nodes` for a graph, `graphs` for anything holding

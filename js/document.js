@@ -9,15 +9,17 @@
 //
 // ── The shape ───────────────────────────────────────────────────────────────
 //
-//     document = { …metadata, graphs: content }
-//
-//     content  = graph                          one graph
-//              | [ element, element, … ]        a collection
+//     document = { …metadata, graphs: [ element, … ] }
 //
 //     element  = graph                          one graph, one panel
 //              | { …metadata, graphs: [ … ] }   several, side by side
 //
 //     graph    = { …metadata, nodes: [ … ], edges: [ … ] }
+//
+// **`graphs` is always a list**, at both levels, so the key means one thing and
+// reading it never asks which of two shapes this is. A lone graph is a
+// collection of one, which costs two brackets and buys a rule with no
+// exception.
 //
 // **Every level is an object with its own metadata and the list below it**, and
 // each is known by its own keys — `nodes` for a graph, `graphs` for anything
@@ -146,10 +148,11 @@
 		}
 		if (isHolder(data)) {
 			doc.meta = meta(data, 'graphs');
-			const content = data.graphs;
-			if (isGraph(content)) return [{ graphs: [content] }];
-			if (Array.isArray(content)) return content.map(group);
-			throw new Error('This file\'s "graphs" is neither a graph nor a list of them.');
+			if (!Array.isArray(data.graphs)) {
+				throw new Error('This file\'s "graphs" is not a list. It always is, at ' +
+				                'every level, even when it holds one graph.');
+			}
+			return data.graphs.map(group);
 		}
 		throw new Error('Unrecognised file: expected {graphs: …}.');
 	}
@@ -256,11 +259,12 @@
 	 */
 	function serialize() {
 		collect();
+		// A group with one graph and nothing else to say is written as that
+		// graph: the wrapper exists to carry a name and a second panel, and
+		// where there is neither it is noise.
 		const elements = doc.groups.map(g =>
 			(g.graphs.length === 1 && !hasMeta(g, 'graphs')) ? g.graphs[0] : g);
-		const content = (elements.length === 1 && isGraph(elements[0]))
-			? elements[0] : elements;
-		return { ...doc.meta, graphs: content };
+		return { ...doc.meta, graphs: elements };
 	}
 
 	/**

@@ -1,0 +1,1345 @@
+[
+  {
+    "id": 1,
+    "name": "The big house has blue windows.",
+    "description": "La casa grande tiene ventanas azules.",
+    "graphs": [
+      {
+        "nodes": [
+          {
+            "id": "p0",
+            "x": 0,
+            "y": 200,
+            "label": "The",
+            "type": 0,
+            "text": "The",
+            "lemma": "the",
+            "pos": "DET",
+            "props": {
+              "dep": "det",
+              "Definite": "Def",
+              "PronType": "Art"
+            }
+          },
+          {
+            "id": "p1",
+            "x": 150,
+            "y": 200,
+            "label": "big",
+            "type": 0,
+            "text": "big",
+            "lemma": "big",
+            "pos": "ADJ",
+            "props": {
+              "dep": "amod",
+              "Degree": "Pos"
+            }
+          },
+          {
+            "id": "p2",
+            "x": 300,
+            "y": 100,
+            "label": "house",
+            "type": 0,
+            "text": "house",
+            "lemma": "house",
+            "pos": "NOUN",
+            "props": {
+              "dep": "nsubj",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "p3",
+            "x": 450,
+            "y": 0,
+            "label": "has",
+            "type": 0,
+            "text": "has",
+            "lemma": "have",
+            "pos": "VERB",
+            "props": {
+              "dep": "ROOT",
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "id": "p4",
+            "x": 600,
+            "y": 200,
+            "label": "blue",
+            "type": 0,
+            "text": "blue",
+            "lemma": "blue",
+            "pos": "ADJ",
+            "props": {
+              "dep": "amod",
+              "Degree": "Pos"
+            }
+          },
+          {
+            "id": "p5",
+            "x": 750,
+            "y": 100,
+            "label": "windows",
+            "type": 0,
+            "text": "windows",
+            "lemma": "window",
+            "pos": "NOUN",
+            "props": {
+              "dep": "dobj",
+              "Number": "Plur"
+            }
+          },
+          {
+            "id": "p6",
+            "x": 900,
+            "y": 100,
+            "label": ".",
+            "type": 0,
+            "text": ".",
+            "lemma": ".",
+            "pos": "PUNCT",
+            "props": {
+              "dep": "punct",
+              "PunctType": "Peri"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "p2",
+            "to": "p0",
+            "label": "det",
+            "type": 0
+          },
+          {
+            "from": "p2",
+            "to": "p1",
+            "label": "amod",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p2",
+            "label": "nsubj",
+            "type": 0
+          },
+          {
+            "from": "p5",
+            "to": "p4",
+            "label": "amod",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p5",
+            "label": "dobj",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p6",
+            "label": "punct",
+            "type": 0
+          }
+        ]
+      },
+      {
+        "nodes": [
+          {
+            "id": "p0",
+            "x": 0,
+            "y": 200,
+            "label": "La",
+            "type": 0,
+            "text": "La",
+            "lemma": "el",
+            "pos": "DET",
+            "props": {
+              "dep": "det",
+              "Definite": "Def",
+              "Gender": "Fem",
+              "Number": "Sing",
+              "PronType": "Art"
+            }
+          },
+          {
+            "id": "p2",
+            "x": 150,
+            "y": 100,
+            "label": "casa",
+            "type": 0,
+            "text": "casa",
+            "lemma": "casa",
+            "pos": "NOUN",
+            "props": {
+              "dep": "nsubj",
+              "Gender": "Fem",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "p1",
+            "x": 300,
+            "y": 200,
+            "label": "grande",
+            "type": 0,
+            "text": "grande",
+            "lemma": "grande",
+            "pos": "ADJ",
+            "props": {
+              "dep": "amod",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "p3",
+            "x": 450,
+            "y": 0,
+            "label": "tiene",
+            "type": 0,
+            "text": "tiene",
+            "lemma": "tener",
+            "pos": "VERB",
+            "props": {
+              "dep": "ROOT",
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "id": "p5",
+            "x": 600,
+            "y": 100,
+            "label": "ventanas",
+            "type": 0,
+            "text": "ventanas",
+            "lemma": "ventana",
+            "pos": "NOUN",
+            "props": {
+              "dep": "obj",
+              "Gender": "Fem",
+              "Number": "Plur"
+            }
+          },
+          {
+            "id": "p4",
+            "x": 750,
+            "y": 200,
+            "label": "azules",
+            "type": 0,
+            "text": "azules",
+            "lemma": "azul",
+            "pos": "ADJ",
+            "props": {
+              "dep": "amod",
+              "Number": "Plur"
+            }
+          },
+          {
+            "id": "p6",
+            "x": 900,
+            "y": 100,
+            "label": ".",
+            "type": 0,
+            "text": ".",
+            "lemma": ".",
+            "pos": "PUNCT",
+            "props": {
+              "dep": "punct",
+              "PunctType": "Peri"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "p2",
+            "to": "p0",
+            "label": "det",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p2",
+            "label": "nsubj",
+            "type": 0
+          },
+          {
+            "from": "p2",
+            "to": "p1",
+            "label": "amod",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p5",
+            "label": "obj",
+            "type": 0
+          },
+          {
+            "from": "p5",
+            "to": "p4",
+            "label": "amod",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p6",
+            "label": "punct",
+            "type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "I saw a man with a telescope.",
+    "description": "Vi a un hombre con un telescopio.",
+    "graphs": [
+      {
+        "nodes": [
+          {
+            "id": "a0",
+            "x": 0,
+            "y": 100,
+            "label": "I",
+            "type": 2,
+            "text": "I",
+            "lemma": "I",
+            "pos": "PRON",
+            "props": {
+              "dep": "nsubj",
+              "Case": "Nom",
+              "Number": "Sing",
+              "Person": "1",
+              "PronType": "Prs"
+            }
+          },
+          {
+            "id": "p0",
+            "x": 150,
+            "y": 0,
+            "label": "saw",
+            "type": 0,
+            "text": "saw",
+            "lemma": "see",
+            "pos": "VERB",
+            "props": {
+              "dep": "ROOT",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "id": "p1",
+            "x": 300,
+            "y": 200,
+            "label": "a",
+            "type": 0,
+            "text": "a",
+            "lemma": "a",
+            "pos": "DET",
+            "props": {
+              "dep": "det",
+              "Definite": "Ind",
+              "PronType": "Art"
+            }
+          },
+          {
+            "id": "p2",
+            "x": 450,
+            "y": 100,
+            "label": "man",
+            "type": 0,
+            "text": "man",
+            "lemma": "man",
+            "pos": "NOUN",
+            "props": {
+              "dep": "dobj",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "p3",
+            "x": 600,
+            "y": 200,
+            "label": "with",
+            "type": 0,
+            "text": "with",
+            "lemma": "with",
+            "pos": "ADP",
+            "props": {
+              "dep": "prep"
+            }
+          },
+          {
+            "id": "p4",
+            "x": 750,
+            "y": 400,
+            "label": "a",
+            "type": 0,
+            "text": "a",
+            "lemma": "a",
+            "pos": "DET",
+            "props": {
+              "dep": "det",
+              "Definite": "Ind",
+              "PronType": "Art"
+            }
+          },
+          {
+            "id": "p5",
+            "x": 900,
+            "y": 300,
+            "label": "telescope",
+            "type": 0,
+            "text": "telescope",
+            "lemma": "telescope",
+            "pos": "NOUN",
+            "props": {
+              "dep": "pobj",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "p6",
+            "x": 1050,
+            "y": 100,
+            "label": ".",
+            "type": 0,
+            "text": ".",
+            "lemma": ".",
+            "pos": "PUNCT",
+            "props": {
+              "dep": "punct",
+              "PunctType": "Peri"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "p0",
+            "to": "a0",
+            "label": "nsubj",
+            "type": 0
+          },
+          {
+            "from": "p2",
+            "to": "p1",
+            "label": "det",
+            "type": 0
+          },
+          {
+            "from": "p0",
+            "to": "p2",
+            "label": "dobj",
+            "type": 0
+          },
+          {
+            "from": "p2",
+            "to": "p3",
+            "label": "prep",
+            "type": 0
+          },
+          {
+            "from": "p5",
+            "to": "p4",
+            "label": "det",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p5",
+            "label": "pobj",
+            "type": 0
+          },
+          {
+            "from": "p0",
+            "to": "p6",
+            "label": "punct",
+            "type": 0
+          }
+        ]
+      },
+      {
+        "nodes": [
+          {
+            "id": "p0",
+            "x": 0,
+            "y": 0,
+            "label": "Vi",
+            "type": 0,
+            "text": "Vi",
+            "lemma": "ver",
+            "pos": "VERB",
+            "props": {
+              "dep": "ROOT",
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "id": "b1",
+            "x": 150,
+            "y": 200,
+            "label": "a",
+            "type": 2,
+            "text": "a",
+            "lemma": "a",
+            "pos": "ADP",
+            "props": {
+              "dep": "case"
+            }
+          },
+          {
+            "id": "p1",
+            "x": 300,
+            "y": 200,
+            "label": "un",
+            "type": 0,
+            "text": "un",
+            "lemma": "uno",
+            "pos": "DET",
+            "props": {
+              "dep": "det",
+              "Definite": "Ind",
+              "Gender": "Masc",
+              "Number": "Sing",
+              "PronType": "Art"
+            }
+          },
+          {
+            "id": "p2",
+            "x": 450,
+            "y": 100,
+            "label": "hombre",
+            "type": 0,
+            "text": "hombre",
+            "lemma": "hombre",
+            "pos": "NOUN",
+            "props": {
+              "dep": "obj",
+              "Gender": "Masc",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "p3",
+            "x": 600,
+            "y": 200,
+            "label": "con",
+            "type": 0,
+            "text": "con",
+            "lemma": "con",
+            "pos": "ADP",
+            "props": {
+              "dep": "case"
+            }
+          },
+          {
+            "id": "p4",
+            "x": 750,
+            "y": 200,
+            "label": "un",
+            "type": 0,
+            "text": "un",
+            "lemma": "uno",
+            "pos": "DET",
+            "props": {
+              "dep": "det",
+              "Definite": "Ind",
+              "Gender": "Masc",
+              "Number": "Sing",
+              "PronType": "Art"
+            }
+          },
+          {
+            "id": "p5",
+            "x": 900,
+            "y": 100,
+            "label": "telescopio",
+            "type": 0,
+            "text": "telescopio",
+            "lemma": "telescopio",
+            "pos": "NOUN",
+            "props": {
+              "dep": "obl",
+              "Gender": "Masc",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "p6",
+            "x": 1050,
+            "y": 100,
+            "label": ".",
+            "type": 0,
+            "text": ".",
+            "lemma": ".",
+            "pos": "PUNCT",
+            "props": {
+              "dep": "punct",
+              "PunctType": "Peri"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "p2",
+            "to": "b1",
+            "label": "case",
+            "type": 0
+          },
+          {
+            "from": "p2",
+            "to": "p1",
+            "label": "det",
+            "type": 0
+          },
+          {
+            "from": "p0",
+            "to": "p2",
+            "label": "obj",
+            "type": 0
+          },
+          {
+            "from": "p5",
+            "to": "p3",
+            "label": "case",
+            "type": 0
+          },
+          {
+            "from": "p5",
+            "to": "p4",
+            "label": "det",
+            "type": 0
+          },
+          {
+            "from": "p0",
+            "to": "p5",
+            "label": "obl",
+            "type": 0
+          },
+          {
+            "from": "p0",
+            "to": "p6",
+            "label": "punct",
+            "type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "The children who play in the park are tired.",
+    "description": "Los niños que juegan en el parque están cansados.",
+    "graphs": [
+      {
+        "nodes": [
+          {
+            "id": "p0",
+            "x": 0,
+            "y": 200,
+            "label": "The",
+            "type": 0,
+            "text": "The",
+            "lemma": "the",
+            "pos": "DET",
+            "props": {
+              "dep": "det",
+              "Definite": "Def",
+              "PronType": "Art"
+            }
+          },
+          {
+            "id": "p1",
+            "x": 150,
+            "y": 100,
+            "label": "children",
+            "type": 0,
+            "text": "children",
+            "lemma": "child",
+            "pos": "NOUN",
+            "props": {
+              "dep": "nsubj",
+              "Number": "Plur"
+            }
+          },
+          {
+            "id": "p2",
+            "x": 300,
+            "y": 300,
+            "label": "who",
+            "type": 0,
+            "text": "who",
+            "lemma": "who",
+            "pos": "PRON",
+            "props": {
+              "dep": "nsubj"
+            }
+          },
+          {
+            "id": "p3",
+            "x": 450,
+            "y": 200,
+            "label": "play",
+            "type": 0,
+            "text": "play",
+            "lemma": "play",
+            "pos": "VERB",
+            "props": {
+              "dep": "relcl",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "id": "p4",
+            "x": 600,
+            "y": 300,
+            "label": "in",
+            "type": 0,
+            "text": "in",
+            "lemma": "in",
+            "pos": "ADP",
+            "props": {
+              "dep": "prep"
+            }
+          },
+          {
+            "id": "p5",
+            "x": 750,
+            "y": 500,
+            "label": "the",
+            "type": 0,
+            "text": "the",
+            "lemma": "the",
+            "pos": "DET",
+            "props": {
+              "dep": "det",
+              "Definite": "Def",
+              "PronType": "Art"
+            }
+          },
+          {
+            "id": "p6",
+            "x": 900,
+            "y": 400,
+            "label": "park",
+            "type": 0,
+            "text": "park",
+            "lemma": "park",
+            "pos": "NOUN",
+            "props": {
+              "dep": "pobj",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "p7",
+            "x": 1050,
+            "y": 0,
+            "label": "are",
+            "type": 0,
+            "text": "are",
+            "lemma": "be",
+            "pos": "AUX",
+            "props": {
+              "dep": "ROOT",
+              "Mood": "Ind",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "id": "p8",
+            "x": 1200,
+            "y": 100,
+            "label": "tired",
+            "type": 0,
+            "text": "tired",
+            "lemma": "tired",
+            "pos": "ADJ",
+            "props": {
+              "dep": "acomp",
+              "Degree": "Pos"
+            }
+          },
+          {
+            "id": "p9",
+            "x": 1350,
+            "y": 100,
+            "label": ".",
+            "type": 0,
+            "text": ".",
+            "lemma": ".",
+            "pos": "PUNCT",
+            "props": {
+              "dep": "punct",
+              "PunctType": "Peri"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "p1",
+            "to": "p0",
+            "label": "det",
+            "type": 0
+          },
+          {
+            "from": "p7",
+            "to": "p1",
+            "label": "nsubj",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p2",
+            "label": "nsubj",
+            "type": 0
+          },
+          {
+            "from": "p1",
+            "to": "p3",
+            "label": "relcl",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p4",
+            "label": "prep",
+            "type": 0
+          },
+          {
+            "from": "p6",
+            "to": "p5",
+            "label": "det",
+            "type": 0
+          },
+          {
+            "from": "p4",
+            "to": "p6",
+            "label": "pobj",
+            "type": 0
+          },
+          {
+            "from": "p7",
+            "to": "p8",
+            "label": "acomp",
+            "type": 0
+          },
+          {
+            "from": "p7",
+            "to": "p9",
+            "label": "punct",
+            "type": 0
+          }
+        ]
+      },
+      {
+        "nodes": [
+          {
+            "id": "p0",
+            "x": 0,
+            "y": 200,
+            "label": "Los",
+            "type": 0,
+            "text": "Los",
+            "lemma": "el",
+            "pos": "DET",
+            "props": {
+              "dep": "det",
+              "Definite": "Def",
+              "Gender": "Masc",
+              "Number": "Plur",
+              "PronType": "Art"
+            }
+          },
+          {
+            "id": "p1",
+            "x": 150,
+            "y": 100,
+            "label": "niños",
+            "type": 0,
+            "text": "niños",
+            "lemma": "niño",
+            "pos": "NOUN",
+            "props": {
+              "dep": "nsubj",
+              "Gender": "Masc",
+              "Number": "Plur"
+            }
+          },
+          {
+            "id": "p2",
+            "x": 300,
+            "y": 300,
+            "label": "que",
+            "type": 0,
+            "text": "que",
+            "lemma": "que",
+            "pos": "PRON",
+            "props": {
+              "dep": "nsubj",
+              "PronType": "Int,Rel"
+            }
+          },
+          {
+            "id": "p3",
+            "x": 450,
+            "y": 200,
+            "label": "juegan",
+            "type": 0,
+            "text": "juegan",
+            "lemma": "jugar",
+            "pos": "VERB",
+            "props": {
+              "dep": "acl",
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "id": "p4",
+            "x": 600,
+            "y": 400,
+            "label": "en",
+            "type": 0,
+            "text": "en",
+            "lemma": "en",
+            "pos": "ADP",
+            "props": {
+              "dep": "case"
+            }
+          },
+          {
+            "id": "p5",
+            "x": 750,
+            "y": 400,
+            "label": "el",
+            "type": 0,
+            "text": "el",
+            "lemma": "el",
+            "pos": "DET",
+            "props": {
+              "dep": "det",
+              "Definite": "Def",
+              "Gender": "Masc",
+              "Number": "Sing",
+              "PronType": "Art"
+            }
+          },
+          {
+            "id": "p6",
+            "x": 900,
+            "y": 300,
+            "label": "parque",
+            "type": 0,
+            "text": "parque",
+            "lemma": "parque",
+            "pos": "NOUN",
+            "props": {
+              "dep": "obl",
+              "Gender": "Masc",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "p7",
+            "x": 1050,
+            "y": 100,
+            "label": "están",
+            "type": 0,
+            "text": "están",
+            "lemma": "estar",
+            "pos": "AUX",
+            "props": {
+              "dep": "cop",
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "id": "p8",
+            "x": 1200,
+            "y": 0,
+            "label": "cansados",
+            "type": 0,
+            "text": "cansados",
+            "lemma": "cansado",
+            "pos": "ADJ",
+            "props": {
+              "dep": "ROOT",
+              "Gender": "Masc",
+              "Number": "Plur",
+              "VerbForm": "Part"
+            }
+          },
+          {
+            "id": "p9",
+            "x": 1350,
+            "y": 100,
+            "label": ".",
+            "type": 0,
+            "text": ".",
+            "lemma": ".",
+            "pos": "PUNCT",
+            "props": {
+              "dep": "punct",
+              "PunctType": "Peri"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "p1",
+            "to": "p0",
+            "label": "det",
+            "type": 0
+          },
+          {
+            "from": "p8",
+            "to": "p1",
+            "label": "nsubj",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p2",
+            "label": "nsubj",
+            "type": 0
+          },
+          {
+            "from": "p1",
+            "to": "p3",
+            "label": "acl",
+            "type": 0
+          },
+          {
+            "from": "p6",
+            "to": "p4",
+            "label": "case",
+            "type": 0
+          },
+          {
+            "from": "p6",
+            "to": "p5",
+            "label": "det",
+            "type": 0
+          },
+          {
+            "from": "p3",
+            "to": "p6",
+            "label": "obl",
+            "type": 0
+          },
+          {
+            "from": "p8",
+            "to": "p7",
+            "label": "cop",
+            "type": 0
+          },
+          {
+            "from": "p8",
+            "to": "p9",
+            "label": "punct",
+            "type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Juan has just arrived home.",
+    "description": "Juan acaba de llegar a casa.",
+    "graphs": [
+      {
+        "nodes": [
+          {
+            "id": "p0",
+            "x": 0,
+            "y": 100,
+            "label": "Juan",
+            "type": 0,
+            "text": "Juan",
+            "lemma": "Juan",
+            "pos": "PROPN",
+            "props": {
+              "dep": "nsubj",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "a1",
+            "x": 150,
+            "y": 100,
+            "label": "has",
+            "type": 2,
+            "text": "has",
+            "lemma": "have",
+            "pos": "AUX",
+            "props": {
+              "dep": "aux",
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "id": "a2",
+            "x": 300,
+            "y": 100,
+            "label": "just",
+            "type": 2,
+            "text": "just",
+            "lemma": "just",
+            "pos": "ADV",
+            "props": {
+              "dep": "advmod"
+            }
+          },
+          {
+            "id": "p1",
+            "x": 450,
+            "y": 0,
+            "label": "arrived",
+            "type": 0,
+            "text": "arrived",
+            "lemma": "arrive",
+            "pos": "VERB",
+            "props": {
+              "dep": "ROOT",
+              "Aspect": "Perf",
+              "Tense": "Past",
+              "VerbForm": "Part"
+            }
+          },
+          {
+            "id": "p2",
+            "x": 600,
+            "y": 100,
+            "label": "home",
+            "type": 0,
+            "text": "home",
+            "lemma": "home",
+            "pos": "ADV",
+            "props": {
+              "dep": "advmod"
+            }
+          },
+          {
+            "id": "p3",
+            "x": 750,
+            "y": 100,
+            "label": ".",
+            "type": 0,
+            "text": ".",
+            "lemma": ".",
+            "pos": "PUNCT",
+            "props": {
+              "dep": "punct",
+              "PunctType": "Peri"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "p1",
+            "to": "p0",
+            "label": "nsubj",
+            "type": 0
+          },
+          {
+            "from": "p1",
+            "to": "a1",
+            "label": "aux",
+            "type": 0
+          },
+          {
+            "from": "p1",
+            "to": "a2",
+            "label": "advmod",
+            "type": 0
+          },
+          {
+            "from": "p1",
+            "to": "p2",
+            "label": "advmod",
+            "type": 0
+          },
+          {
+            "from": "p1",
+            "to": "p3",
+            "label": "punct",
+            "type": 0
+          }
+        ]
+      },
+      {
+        "nodes": [
+          {
+            "id": "p0",
+            "x": 0,
+            "y": 100,
+            "label": "Juan",
+            "type": 0,
+            "text": "Juan",
+            "lemma": "Juan",
+            "pos": "PROPN",
+            "props": {
+              "dep": "nsubj"
+            }
+          },
+          {
+            "id": "b1",
+            "x": 150,
+            "y": 0,
+            "label": "acaba",
+            "type": 2,
+            "text": "acaba",
+            "lemma": "acabar",
+            "pos": "VERB",
+            "props": {
+              "dep": "ROOT",
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "id": "b2",
+            "x": 300,
+            "y": 200,
+            "label": "de",
+            "type": 2,
+            "text": "de",
+            "lemma": "de",
+            "pos": "ADP",
+            "props": {
+              "dep": "mark"
+            }
+          },
+          {
+            "id": "p1",
+            "x": 450,
+            "y": 100,
+            "label": "llegar",
+            "type": 0,
+            "text": "llegar",
+            "lemma": "llegar",
+            "pos": "VERB",
+            "props": {
+              "dep": "xcomp",
+              "VerbForm": "Inf"
+            }
+          },
+          {
+            "id": "b4",
+            "x": 600,
+            "y": 200,
+            "label": "a",
+            "type": 2,
+            "text": "a",
+            "lemma": "a",
+            "pos": "ADP",
+            "props": {
+              "dep": "case"
+            }
+          },
+          {
+            "id": "p2",
+            "x": 750,
+            "y": 100,
+            "label": "casa",
+            "type": 0,
+            "text": "casa",
+            "lemma": "casa",
+            "pos": "NOUN",
+            "props": {
+              "dep": "obl",
+              "Gender": "Fem",
+              "Number": "Sing"
+            }
+          },
+          {
+            "id": "p3",
+            "x": 900,
+            "y": 100,
+            "label": ".",
+            "type": 0,
+            "text": ".",
+            "lemma": ".",
+            "pos": "PUNCT",
+            "props": {
+              "dep": "punct",
+              "PunctType": "Peri"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "b1",
+            "to": "p0",
+            "label": "nsubj",
+            "type": 0
+          },
+          {
+            "from": "p1",
+            "to": "b2",
+            "label": "mark",
+            "type": 0
+          },
+          {
+            "from": "b1",
+            "to": "p1",
+            "label": "xcomp",
+            "type": 0
+          },
+          {
+            "from": "p2",
+            "to": "b4",
+            "label": "case",
+            "type": 0
+          },
+          {
+            "from": "b1",
+            "to": "p2",
+            "label": "obl",
+            "type": 0
+          },
+          {
+            "from": "b1",
+            "to": "p3",
+            "label": "punct",
+            "type": 0
+          }
+        ]
+      }
+    ]
+  }
+]

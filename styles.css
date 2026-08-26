@@ -205,6 +205,57 @@ body.panels-2:has(#propertiesPanel.prop-collapsed) #panels { right: 30px; }
 body.panels-2 #canvas2 { display: block; }
 body.panels-2 #canvas2 { border-left: 1px solid var(--ui-border); }
 
+/* ── Group bar ────────────────────────────────────────────────────────────
+   Present only when the document is a collection: base.js's page script puts
+   `.has-groups` on <body> from doc.isCollection(), so an old file opens the
+   page it has always opened and this rule never fires.
+
+   It stops where the properties drawer starts and follows it when the drawer
+   collapses, exactly as #panels does above — a bar running under the drawer
+   would put its last field somewhere unclickable. */
+#groupBar { display: none; }
+body.has-groups #groupBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: fixed;
+  left: 0; right: 240px; bottom: 0;
+  height: 32px;
+  padding: 0 8px;
+  background: var(--ui-bg);
+  border-top: 1px solid var(--ui-border);
+  color: var(--ui-text);
+  font-size: 0.85em;
+  z-index: 60;
+}
+body.has-groups:has(#propertiesPanel.prop-collapsed) #groupBar { right: 30px; }
+/* And the panels give it the room, rather than being drawn underneath it. */
+body.has-groups #panels { bottom: 32px; }
+
+#groupBar button {
+  min-width: 26px;
+  padding: 2px 6px;
+  background: transparent;
+  border: 1px solid var(--ui-border);
+}
+#groupBar button:disabled { opacity: 0.35; cursor: default; }
+#groupBar select { max-width: 260px; }
+#groupBar select,
+#groupBar input {
+  height: 22px;
+  padding: 0 6px;
+  background: var(--ui-bg-hover);
+  color: var(--ui-text);
+  border: 1px solid var(--ui-border);
+  border-radius: 3px;
+  font-size: inherit;
+}
+#groupBar input { flex: 1 1 0; min-width: 60px; }
+#groupNote { margin-left: auto; opacity: 0.6; white-space: nowrap; }
+/* Two of three graphs on screen is not a detail; it is what the next save
+   depends on. */
+#groupNote.warn { opacity: 1; color: var(--type3-color); }
+
 /* Which panel has the focus. Inset so it does not shift the layout. */
 #panels canvas.is-active {
   outline: 2px solid var(--type1-color);

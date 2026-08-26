@@ -25,6 +25,21 @@
       </div>
     </div>
 
+    <!-- Document menu. Everything a file may hold beyond one lone graph: a
+         group of graphs meant to be compared, and a collection of such groups.
+         The shapes and the reasons are in js/document.js. -->
+    <div class="menu">
+      <button class="menu-trigger">Document</button>
+      <div class="menu-dropdown">
+        <button class="menu-action" id="menuSplit">Split into two</button>
+        <button class="menu-action" id="menuMerge">Merge to one</button>
+        <div class="menu-separator"></div>
+        <button class="menu-action" id="menuAddGroup">Add group</button>
+        <button class="menu-action" id="menuPrevGroup">Previous group</button>
+        <button class="menu-action" id="menuNextGroup">Next group</button>
+      </div>
+    </div>
+
     <!-- Layout menu -->
     <div class="menu">
       <button class="menu-trigger">Layout</button>
@@ -78,7 +93,7 @@
   </div>
 
 
-  <!-- Panels. The second canvas is inert until base.js's PANEL_COUNT is raised:
+  <!-- Panels. The second canvas is inert until base.js's MAX_PANELS is raised:
        it is `display: none` unless <body> carries the .panels-2 class, which
        base.js adds only when it actually built a second editor. With one panel
        #panels covers the viewport exactly, so #canvas measures as it always
@@ -87,6 +102,20 @@
     <canvas id="canvas"></canvas>
     <canvas id="canvas2"></canvas>
   </div>
+
+  <!-- Group bar. Not there at all unless the file holds more than a lone
+       graph, because until then it has nothing to say: see isCollection() in
+       js/document.js. The data decides the interface, and nobody picks a mode. -->
+  <div id="groupBar">
+    <button id="groupPrev" title="Previous group">&#8592;</button>
+    <select id="groupSelect" title="Go to group"></select>
+    <button id="groupNext" title="Next group">&#8594;</button>
+    <button id="groupAdd" title="Add group">+</button>
+    <input id="groupName" placeholder="Name…" autocomplete="off">
+    <input id="groupDescription" placeholder="Description…" autocomplete="off">
+    <span id="groupNote"></span>
+  </div>
+
 
   <!-- Help modal -->
   <div id="helpModal" style="display:none">
@@ -207,6 +236,102 @@
       window.graph.edges = g.edges;
       applyLayout(window.graph.nodes, window.graph.edges, window.activeLayout);
     });
+
+    // ── Document menu and group bar ───────────────────────────────────────
+    // The bar is built from the document and never from what the user last
+    // clicked, so there is one place that knows what is on screen. Everything
+    // below either asks document.js to change something or redraws from it.
+    const _groupSel  = document.getElementById('groupSelect');
+    const _groupName = document.getElementById('groupName');
+    const _groupDesc = document.getElementById('groupDescription');
+    const _groupNote = document.getElementById('groupNote');
+    const _groupPrev = document.getElementById('groupPrev');
+    const _groupNext = document.getElementById('groupNext');
+
+    function _groupLabel(group, i, total) {
+      const name = (group.name || '').trim();
+      return `${i + 1} / ${total}` + (name ? ` · ${name}` : '');
+    }
+
+    function renderGroupBar(doc) {
+      // The bar appears with the collection and leaves with it. An old file
+      // opens the page it has always opened.
+      const shown = doc.isCollection();
+      document.body.classList.toggle('has-groups', shown);
+      if (!shown) return;
+
+      const total = doc.groups.length;
+      _groupSel.innerHTML = '';
+      doc.groups.forEach((g, i) => {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = _groupLabel(g, i, total);
+        _groupSel.appendChild(option);
+      });
+      _groupSel.value = doc.cursor;
+      _groupPrev.disabled = doc.cursor === 0;
+      _groupNext.disabled = doc.cursor >= total - 1;
+
+      const group = doc.group;
+      _groupName.value = group?.name || '';
+      _groupDesc.value = group?.description || '';
+
+      // **Where the group holding more graphs than fit gets said out loud.**
+      // It was a console warning, which is to say it was said to nobody: the
+      // one person who needs to know that two of three graphs are on screen is
+      // the one about to save the file.
+      const graphs = group ? group.graphs.length : 0;
+      const hidden = graphs > doc.visible;
+      _groupNote.textContent = hidden
+        ? `${graphs} graphs, ${doc.visible} shown — the rest are kept on save`
+        : `${graphs} graph${graphs === 1 ? '' : 's'}`;
+      _groupNote.classList.toggle('warn', hidden);
+    }
+    window.onDocumentChange = renderGroupBar;
+
+    document.getElementById('menuSplit').addEventListener('click', () => {
+      _closeAll();
+      if (window.editors.length < 2) {
+        alert('This page has one panel, so there is nowhere to show the second '
+            + 'graph. Raise MAX_PANELS in js/base.js and add a <canvas id="canvas2">.');
+        return;
+      }
+      if (!window.doc.splitInTwo()) alert('This group already holds more than one graph.');
+    });
+    document.getElementById('menuMerge').addEventListener('click', () => {
+      _closeAll();
+      const group = window.doc.group;
+      if (!group || group.graphs.length < 2) { alert('This group holds one graph already.'); return; }
+      // Asked, because it is the one command here that throws data away.
+      if (!confirm(`Keep the first graph and discard the other ${group.graphs.length - 1}?`)) return;
+      window.doc.mergeToOne();
+    });
+    document.getElementById('menuAddGroup').addEventListener('click', () => {
+      _closeAll(); window.doc.addGroup();
+    });
+    document.getElementById('menuPrevGroup').addEventListener('click', () => {
+      _closeAll(); window.doc.goToGroup(-1);
+    });
+    document.getElementById('menuNextGroup').addEventListener('click', () => {
+      _closeAll(); window.doc.goToGroup(1);
+    });
+
+    _groupPrev.addEventListener('click', () => window.doc.goToGroup(-1));
+    _groupNext.addEventListener('click', () => window.doc.goToGroup(1));
+    document.getElementById('groupAdd').addEventListener('click', () => window.doc.addGroup());
+    _groupSel.addEventListener('change', () => window.doc.goTo(Number(_groupSel.value)));
+
+    // Typed into, not rebuilt from: redrawing the bar here would take the
+    // caret with it on every keystroke. Only the option label is touched.
+    function _metaInput(input, field) {
+      input.addEventListener('input', () => {
+        window.doc.setMeta(field, input.value.trim());
+        const option = _groupSel.options[window.doc.cursor];
+        if (option) option.textContent = _groupLabel(window.doc.group, window.doc.cursor, window.doc.groups.length);
+      });
+    }
+    _metaInput(_groupName, 'name');
+    _metaInput(_groupDesc, 'description');
 
     // ── Layout menu ───────────────────────────────────────────────────────
     document.getElementById('menuArrange').addEventListener('click', () => {

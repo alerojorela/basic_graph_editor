@@ -138,7 +138,7 @@
 				`This group holds ${graphs.length} graphs and there are ${editors.length} ` +
 				`panel(s). The rest are not shown, and are written back untouched on save.`);
 		}
-		// **How many panels there are is the document's business.** PANEL_COUNT
+		// **How many panels there are is the document's business.** MAX_PANELS
 		// is a ceiling — how many this page could hold — and the group says how
 		// many it wants. Open a file with one graph and you get one panel, even
 		// on a page built for two.
@@ -147,9 +147,18 @@
 			.replace(/\bpanels-\d+\b/g, '').trim() + ` panels-${doc.visible}`;
 		editors.forEach((editor, i) => {
 			editor.fromJSON(graphs[i] ?? { nodes: [], edges: [] });
+			// **An undo stack belongs to a graph, not to a panel.** Without
+			// this, moving to the next group and pressing Ctrl+Z pulled the
+			// previous group's graph into the panel — and then saving wrote it
+			// into the wrong group. Six snapshots of something you are no
+			// longer looking at.
+			editor._undoStack = [];
+			editor._redoStack = [];
+			editor.dirty = false;
 			editor.resizeCanvas();
 			editor.centerGraph();
 		});
+		if (typeof window.onDocumentChange === 'function') window.onDocumentChange(doc);
 	}
 
 	/**
@@ -183,6 +192,28 @@
 		const group = doc.groups[0];
 		if (!group || group.graphs.length !== 1) return false;
 		return !KEPT.some(k => group[k] != null) && group.graphs[0].validated == null;
+	}
+
+	/**
+	 * Whether this document is more than a lone graph, and so whether the group
+	 * bar has anything to say.
+	 *
+	 * **The data decides the interface.** Open a file this editor has always
+	 * written and the page is the page it always was; open a collection and the
+	 * controls for moving through it appear, because now there is somewhere to
+	 * move to. Nobody chooses a mode: the file already said which one it is.
+	 */
+	function isCollection() { return doc.groups.length > 1 || !isFlat(); }
+
+	/**
+	 * Set a metadata field on the current group — `name`, `description`,
+	 * `commentary`. Writing one is what turns a lone graph into a document
+	 * worth keeping as a collection, so `isCollection()` follows.
+	 */
+	function setMeta(field, value) {
+		const group = doc.group;
+		if (!group) return;
+		if (value) group[field] = value; else delete group[field];
 	}
 
 	/** The document as it should be written: the shape you have. */
@@ -231,13 +262,19 @@
 		return true;
 	}
 
-	function goToGroup(delta) {
+	/**
+	 * Move to another group, keeping what the panels hold. `collect()` first is
+	 * the whole of it: leave without collecting and every edit made in this
+	 * group is gone, and gone silently, which is the worst way to lose work.
+	 */
+	function goTo(index) {
+		if (index === doc.cursor || index < 0 || index >= doc.groups.length) return false;
 		collect();
-		const next = doc.cursor + delta;
-		if (next < 0 || next >= doc.groups.length) return false;
-		show(next);
+		show(index);
 		return true;
 	}
+
+	function goToGroup(delta) { return goTo(doc.cursor + delta); }
 
 	/** Start over: one group, one empty graph, flat on save. */
 	function reset() {
@@ -249,8 +286,8 @@
 	}
 
 	window.doc = Object.assign(doc, {
-		parse, load, show, collect, serialize, isFlat,
-		splitInTwo, mergeToOne, addGroup, goToGroup, reset,
+		parse, load, show, collect, serialize, isFlat, isCollection, setMeta,
+		splitInTwo, mergeToOne, addGroup, goTo, goToGroup, reset,
 	});
 
 	// One group holding whatever the page started with, so `doc` is never empty.

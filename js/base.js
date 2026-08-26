@@ -1109,7 +1109,7 @@ class GraphEditor {
 		// both if both had a selection.
 		//
 		// The undo stacks were already per editor. What was wrong was the
-		// delivery, not the data. With PANEL_COUNT = 1 this is always true.
+		// delivery, not the data. With MAX_PANELS = 1 this is always true.
 		if (window.graph && window.graph !== this) return;
 		const tag = e.target.tagName;
 		if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
@@ -1245,10 +1245,14 @@ class GraphEditor {
 
 // ── Panels ────────────────────────────────────────────────────────────────────
 //
-// How many editors this page may hold. **One, and one is the whole of what
-// changes at this value**: a single instance, `window.graph` pointing at it and
-// never moving, and not one extra listener bound. Raise it and the editor can
-// show several graphs side by side.
+// How many editors this page may hold **at most**. The name says ceiling and
+// means it: the document decides how many panels are actually in use, and it
+// decides it from the file — a group holding one graph opens one panel on a
+// page built for two. See `show()` in document.js.
+//
+// At one, and one is the whole of what changes at that value: a single
+// instance, `window.graph` pointing at it and never moving, and not one extra
+// listener bound. Raise it and the editor can show several graphs side by side.
 //
 // Two things have to agree for a second panel to appear, and that is on purpose:
 // this constant sets the ceiling, and the page decides what actually exists by
@@ -1262,15 +1266,15 @@ class GraphEditor {
 // `new GraphEditor(...)` by hand for panel B. It works, which is the evidence
 // that the class was multi-instance all along; what was missing was the editor
 // admitting it.
-const PANEL_COUNT = 2;
+const MAX_PANELS = 2;
 
 // Which canvases actually exist. The constant sets the ceiling; the page
 // decides what is really there.
 const panelCanvases = [];
-for (let i = 0; i < PANEL_COUNT; i++) {
+for (let i = 0; i < MAX_PANELS; i++) {
 	const element = i === 0 ? canvas : document.getElementById(`canvas${i + 1}`);
 	if (!element) {
-		console.warn(`PANEL_COUNT is ${PANEL_COUNT} but there is no <canvas id="canvas${i + 1}">.`);
+		console.warn(`MAX_PANELS is ${MAX_PANELS} but there is no <canvas id="canvas${i + 1}">.`);
 		break;
 	}
 	panelCanvases.push(element);
@@ -1347,7 +1351,7 @@ if (editors.length > 1) {
 //
 // These go through `window.graph` and not through the `graph` const so that
 // Save, Load and New act on the focused panel once there is more than one. With
-// PANEL_COUNT = 1 the two are the same object and nothing changes.
+// MAX_PANELS = 1 the two are the same object and nothing changes.
 // Save and Load go through the document layer, which knows the file may hold
 // more than the panels are showing. `saveGraph()` and `loadGraph()` stay as
 // they were, one graph in and out, and document.js is built on top of them.

@@ -1,6 +1,10 @@
 {
   "name": "One sentence in two languages",
   "description": "English and Spanish, spaCy dependencies, hand-aligned; unpaired words in red",
+  "tools": [
+    "spaCy en_core_web_trf",
+    "spaCy es_dep_news_trf"
+  ],
   "graphs": [
     {
       "id": 1,
@@ -11,11 +15,10 @@
           "name": "English",
           "nodes": [
             {
-              "id": "p0",
-              "x": 0,
-              "y": 200,
+              "x": 40,
+              "y": 220,
               "label": "The",
-              "type": 0,
+              "id": "p0",
               "text": "The",
               "lemma": "the",
               "pos": "DET",
@@ -26,11 +29,10 @@
               }
             },
             {
-              "id": "p1",
-              "x": 150,
-              "y": 200,
+              "x": 130,
+              "y": 220,
               "label": "big",
-              "type": 0,
+              "id": "p1",
               "text": "big",
               "lemma": "big",
               "pos": "ADJ",
@@ -40,11 +42,10 @@
               }
             },
             {
-              "id": "p2",
-              "x": 300,
-              "y": 100,
+              "x": 85,
+              "y": 130,
               "label": "house",
-              "type": 0,
+              "id": "p2",
               "text": "house",
               "lemma": "house",
               "pos": "NOUN",
@@ -54,11 +55,10 @@
               }
             },
             {
-              "id": "p3",
-              "x": 450,
-              "y": 0,
+              "x": 198,
+              "y": 40,
               "label": "has",
-              "type": 0,
+              "id": "p3",
               "text": "has",
               "lemma": "have",
               "pos": "VERB",
@@ -72,11 +72,10 @@
               }
             },
             {
-              "id": "p4",
-              "x": 600,
-              "y": 200,
+              "x": 220,
+              "y": 220,
               "label": "blue",
-              "type": 0,
+              "id": "p4",
               "text": "blue",
               "lemma": "blue",
               "pos": "ADJ",
@@ -86,11 +85,10 @@
               }
             },
             {
-              "id": "p5",
-              "x": 750,
-              "y": 100,
+              "x": 220,
+              "y": 130,
               "label": "windows",
-              "type": 0,
+              "id": "p5",
               "text": "windows",
               "lemma": "window",
               "pos": "NOUN",
@@ -100,11 +98,10 @@
               }
             },
             {
-              "id": "p6",
-              "x": 900,
-              "y": 100,
+              "x": 310,
+              "y": 130,
               "label": ".",
-              "type": 0,
+              "id": "p6",
               "text": ".",
               "lemma": ".",
               "pos": "PUNCT",
@@ -116,40 +113,34 @@
           ],
           "edges": [
             {
-              "from": "p2",
-              "to": "p0",
               "label": "det",
-              "type": 0
-            },
-            {
               "from": "p2",
-              "to": "p1",
-              "label": "amod",
-              "type": 0
+              "to": "p0"
             },
             {
-              "from": "p3",
-              "to": "p2",
+              "label": "amod",
+              "from": "p2",
+              "to": "p1"
+            },
+            {
               "label": "nsubj",
-              "type": 0
+              "from": "p3",
+              "to": "p2"
             },
             {
-              "from": "p5",
-              "to": "p4",
               "label": "amod",
-              "type": 0
+              "from": "p5",
+              "to": "p4"
             },
             {
-              "from": "p3",
-              "to": "p5",
               "label": "dobj",
-              "type": 0
+              "from": "p3",
+              "to": "p5"
             },
             {
-              "from": "p3",
-              "to": "p6",
               "label": "punct",
-              "type": 0
+              "from": "p3",
+              "to": "p6"
             }
           ]
         },
@@ -157,11 +148,10 @@
           "name": "Spanish",
           "nodes": [
             {
-              "id": "p0",
-              "x": 0,
-              "y": 200,
+              "x": 40,
+              "y": 220,
               "label": "La",
-              "type": 0,
+              "id": "p0",
               "text": "La",
               "lemma": "el",
               "pos": "DET",
@@ -174,11 +164,10 @@
               }
             },
             {
-              "id": "p2",
-              "x": 150,
-              "y": 100,
+              "x": 85,
+              "y": 130,
               "label": "casa",
-              "type": 0,
+              "id": "p2",
               "text": "casa",
               "lemma": "casa",
               "pos": "NOUN",
@@ -189,11 +178,10 @@
               }
             },
             {
-              "id": "p1",
-              "x": 300,
-              "y": 200,
+              "x": 130,
+              "y": 220,
               "label": "grande",
-              "type": 0,
+              "id": "p1",
               "text": "grande",
               "lemma": "grande",
               "pos": "ADJ",
@@ -203,11 +191,10 @@
               }
             },
             {
-              "id": "p3",
-              "x": 450,
-              "y": 0,
+              "x": 198,
+              "y": 40,
               "label": "tiene",
-              "type": 0,
+              "id": "p3",
               "text": "tiene",
               "lemma": "tener",
               "pos": "VERB",
@@ -221,11 +208,10 @@
               }
             },
             {
-              "id": "p5",
-              "x": 600,
-              "y": 100,
+              "x": 220,
+              "y": 130,
               "label": "ventanas",
-              "type": 0,
+              "id": "p5",
               "text": "ventanas",
               "lemma": "ventana",
               "pos": "NOUN",
@@ -236,11 +222,10 @@
               }
             },
             {
-              "id": "p4",
-              "x": 750,
-              "y": 200,
+              "x": 220,
+              "y": 220,
               "label": "azules",
-              "type": 0,
+              "id": "p4",
               "text": "azules",
               "lemma": "azul",
               "pos": "ADJ",
@@ -250,11 +235,10 @@
               }
             },
             {
-              "id": "p6",
-              "x": 900,
-              "y": 100,
+              "x": 310,
+              "y": 130,
               "label": ".",
-              "type": 0,
+              "id": "p6",
               "text": ".",
               "lemma": ".",
               "pos": "PUNCT",
@@ -266,40 +250,34 @@
           ],
           "edges": [
             {
-              "from": "p2",
-              "to": "p0",
               "label": "det",
-              "type": 0
-            },
-            {
-              "from": "p3",
-              "to": "p2",
-              "label": "nsubj",
-              "type": 0
-            },
-            {
               "from": "p2",
-              "to": "p1",
-              "label": "amod",
-              "type": 0
+              "to": "p0"
             },
             {
+              "label": "nsubj",
               "from": "p3",
-              "to": "p5",
+              "to": "p2"
+            },
+            {
+              "label": "amod",
+              "from": "p2",
+              "to": "p1"
+            },
+            {
               "label": "obj",
-              "type": 0
-            },
-            {
-              "from": "p5",
-              "to": "p4",
-              "label": "amod",
-              "type": 0
-            },
-            {
               "from": "p3",
-              "to": "p6",
+              "to": "p5"
+            },
+            {
+              "label": "amod",
+              "from": "p5",
+              "to": "p4"
+            },
+            {
               "label": "punct",
-              "type": 0
+              "from": "p3",
+              "to": "p6"
             }
           ]
         }
@@ -314,11 +292,11 @@
           "name": "English",
           "nodes": [
             {
-              "id": "a0",
-              "x": 0,
-              "y": 100,
+              "x": 40,
+              "y": 130,
               "label": "I",
               "type": 2,
+              "id": "a0",
               "text": "I",
               "lemma": "I",
               "pos": "PRON",
@@ -331,11 +309,10 @@
               }
             },
             {
-              "id": "p0",
-              "x": 150,
-              "y": 0,
+              "x": 130,
+              "y": 40,
               "label": "saw",
-              "type": 0,
+              "id": "p0",
               "text": "saw",
               "lemma": "see",
               "pos": "VERB",
@@ -346,11 +323,10 @@
               }
             },
             {
-              "id": "p1",
-              "x": 300,
-              "y": 200,
+              "x": 85,
+              "y": 220,
               "label": "a",
-              "type": 0,
+              "id": "p1",
               "text": "a",
               "lemma": "a",
               "pos": "DET",
@@ -361,11 +337,10 @@
               }
             },
             {
-              "id": "p2",
-              "x": 450,
-              "y": 100,
+              "x": 130,
+              "y": 130,
               "label": "man",
-              "type": 0,
+              "id": "p2",
               "text": "man",
               "lemma": "man",
               "pos": "NOUN",
@@ -375,11 +350,10 @@
               }
             },
             {
-              "id": "p3",
-              "x": 600,
-              "y": 200,
+              "x": 175,
+              "y": 220,
               "label": "with",
-              "type": 0,
+              "id": "p3",
               "text": "with",
               "lemma": "with",
               "pos": "ADP",
@@ -388,11 +362,10 @@
               }
             },
             {
-              "id": "p4",
-              "x": 750,
+              "x": 175,
               "y": 400,
               "label": "a",
-              "type": 0,
+              "id": "p4",
               "text": "a",
               "lemma": "a",
               "pos": "DET",
@@ -403,11 +376,10 @@
               }
             },
             {
-              "id": "p5",
-              "x": 900,
-              "y": 300,
+              "x": 175,
+              "y": 310,
               "label": "telescope",
-              "type": 0,
+              "id": "p5",
               "text": "telescope",
               "lemma": "telescope",
               "pos": "NOUN",
@@ -417,11 +389,10 @@
               }
             },
             {
-              "id": "p6",
-              "x": 1050,
-              "y": 100,
+              "x": 220,
+              "y": 130,
               "label": ".",
-              "type": 0,
+              "id": "p6",
               "text": ".",
               "lemma": ".",
               "pos": "PUNCT",
@@ -433,46 +404,39 @@
           ],
           "edges": [
             {
-              "from": "p0",
-              "to": "a0",
               "label": "nsubj",
-              "type": 0
-            },
-            {
-              "from": "p2",
-              "to": "p1",
-              "label": "det",
-              "type": 0
-            },
-            {
               "from": "p0",
-              "to": "p2",
+              "to": "a0"
+            },
+            {
+              "label": "det",
+              "from": "p2",
+              "to": "p1"
+            },
+            {
               "label": "dobj",
-              "type": 0
-            },
-            {
-              "from": "p2",
-              "to": "p3",
-              "label": "prep",
-              "type": 0
-            },
-            {
-              "from": "p5",
-              "to": "p4",
-              "label": "det",
-              "type": 0
-            },
-            {
-              "from": "p3",
-              "to": "p5",
-              "label": "pobj",
-              "type": 0
-            },
-            {
               "from": "p0",
-              "to": "p6",
+              "to": "p2"
+            },
+            {
+              "label": "prep",
+              "from": "p2",
+              "to": "p3"
+            },
+            {
+              "label": "det",
+              "from": "p5",
+              "to": "p4"
+            },
+            {
+              "label": "pobj",
+              "from": "p3",
+              "to": "p5"
+            },
+            {
               "label": "punct",
-              "type": 0
+              "from": "p0",
+              "to": "p6"
             }
           ]
         },
@@ -480,11 +444,10 @@
           "name": "Spanish",
           "nodes": [
             {
-              "id": "p0",
-              "x": 0,
-              "y": 0,
+              "x": 220,
+              "y": 40,
               "label": "Vi",
-              "type": 0,
+              "id": "p0",
               "text": "Vi",
               "lemma": "ver",
               "pos": "VERB",
@@ -498,11 +461,11 @@
               }
             },
             {
-              "id": "b1",
-              "x": 150,
-              "y": 200,
+              "x": 40,
+              "y": 220,
               "label": "a",
               "type": 2,
+              "id": "b1",
               "text": "a",
               "lemma": "a",
               "pos": "ADP",
@@ -511,11 +474,10 @@
               }
             },
             {
-              "id": "p1",
-              "x": 300,
-              "y": 200,
+              "x": 130,
+              "y": 220,
               "label": "un",
-              "type": 0,
+              "id": "p1",
               "text": "un",
               "lemma": "uno",
               "pos": "DET",
@@ -528,11 +490,10 @@
               }
             },
             {
-              "id": "p2",
-              "x": 450,
-              "y": 100,
+              "x": 85,
+              "y": 130,
               "label": "hombre",
-              "type": 0,
+              "id": "p2",
               "text": "hombre",
               "lemma": "hombre",
               "pos": "NOUN",
@@ -543,11 +504,10 @@
               }
             },
             {
-              "id": "p3",
-              "x": 600,
-              "y": 200,
+              "x": 220,
+              "y": 220,
               "label": "con",
-              "type": 0,
+              "id": "p3",
               "text": "con",
               "lemma": "con",
               "pos": "ADP",
@@ -556,11 +516,10 @@
               }
             },
             {
-              "id": "p4",
-              "x": 750,
-              "y": 200,
+              "x": 310,
+              "y": 220,
               "label": "un",
-              "type": 0,
+              "id": "p4",
               "text": "un",
               "lemma": "uno",
               "pos": "DET",
@@ -573,11 +532,10 @@
               }
             },
             {
-              "id": "p5",
-              "x": 900,
-              "y": 100,
+              "x": 265,
+              "y": 130,
               "label": "telescopio",
-              "type": 0,
+              "id": "p5",
               "text": "telescopio",
               "lemma": "telescopio",
               "pos": "NOUN",
@@ -588,11 +546,10 @@
               }
             },
             {
-              "id": "p6",
-              "x": 1050,
-              "y": 100,
+              "x": 355,
+              "y": 130,
               "label": ".",
-              "type": 0,
+              "id": "p6",
               "text": ".",
               "lemma": ".",
               "pos": "PUNCT",
@@ -604,46 +561,39 @@
           ],
           "edges": [
             {
-              "from": "p2",
-              "to": "b1",
               "label": "case",
-              "type": 0
-            },
-            {
               "from": "p2",
-              "to": "p1",
-              "label": "det",
-              "type": 0
+              "to": "b1"
             },
             {
-              "from": "p0",
-              "to": "p2",
+              "label": "det",
+              "from": "p2",
+              "to": "p1"
+            },
+            {
               "label": "obj",
-              "type": 0
+              "from": "p0",
+              "to": "p2"
             },
             {
-              "from": "p5",
-              "to": "p3",
               "label": "case",
-              "type": 0
-            },
-            {
               "from": "p5",
-              "to": "p4",
+              "to": "p3"
+            },
+            {
               "label": "det",
-              "type": 0
+              "from": "p5",
+              "to": "p4"
             },
             {
-              "from": "p0",
-              "to": "p5",
               "label": "obl",
-              "type": 0
+              "from": "p0",
+              "to": "p5"
             },
             {
-              "from": "p0",
-              "to": "p6",
               "label": "punct",
-              "type": 0
+              "from": "p0",
+              "to": "p6"
             }
           ]
         }
@@ -658,11 +608,10 @@
           "name": "English",
           "nodes": [
             {
-              "id": "p0",
-              "x": 0,
-              "y": 200,
+              "x": 40,
+              "y": 220,
               "label": "The",
-              "type": 0,
+              "id": "p0",
               "text": "The",
               "lemma": "the",
               "pos": "DET",
@@ -673,11 +622,10 @@
               }
             },
             {
-              "id": "p1",
-              "x": 150,
-              "y": 100,
+              "x": 85,
+              "y": 130,
               "label": "children",
-              "type": 0,
+              "id": "p1",
               "text": "children",
               "lemma": "child",
               "pos": "NOUN",
@@ -687,11 +635,10 @@
               }
             },
             {
-              "id": "p2",
-              "x": 300,
-              "y": 300,
+              "x": 85,
+              "y": 310,
               "label": "who",
-              "type": 0,
+              "id": "p2",
               "text": "who",
               "lemma": "who",
               "pos": "PRON",
@@ -700,11 +647,10 @@
               }
             },
             {
-              "id": "p3",
-              "x": 450,
-              "y": 200,
+              "x": 130,
+              "y": 220,
               "label": "play",
-              "type": 0,
+              "id": "p3",
               "text": "play",
               "lemma": "play",
               "pos": "VERB",
@@ -715,11 +661,10 @@
               }
             },
             {
-              "id": "p4",
-              "x": 600,
-              "y": 300,
+              "x": 175,
+              "y": 310,
               "label": "in",
-              "type": 0,
+              "id": "p4",
               "text": "in",
               "lemma": "in",
               "pos": "ADP",
@@ -728,11 +673,10 @@
               }
             },
             {
-              "id": "p5",
-              "x": 750,
-              "y": 500,
+              "x": 175,
+              "y": 490,
               "label": "the",
-              "type": 0,
+              "id": "p5",
               "text": "the",
               "lemma": "the",
               "pos": "DET",
@@ -743,11 +687,10 @@
               }
             },
             {
-              "id": "p6",
-              "x": 900,
+              "x": 175,
               "y": 400,
               "label": "park",
-              "type": 0,
+              "id": "p6",
               "text": "park",
               "lemma": "park",
               "pos": "NOUN",
@@ -757,11 +700,10 @@
               }
             },
             {
-              "id": "p7",
-              "x": 1050,
-              "y": 0,
+              "x": 175,
+              "y": 40,
               "label": "are",
-              "type": 0,
+              "id": "p7",
               "text": "are",
               "lemma": "be",
               "pos": "AUX",
@@ -773,11 +715,10 @@
               }
             },
             {
-              "id": "p8",
-              "x": 1200,
-              "y": 100,
+              "x": 175,
+              "y": 130,
               "label": "tired",
-              "type": 0,
+              "id": "p8",
               "text": "tired",
               "lemma": "tired",
               "pos": "ADJ",
@@ -787,11 +728,10 @@
               }
             },
             {
-              "id": "p9",
-              "x": 1350,
-              "y": 100,
+              "x": 265,
+              "y": 130,
               "label": ".",
-              "type": 0,
+              "id": "p9",
               "text": ".",
               "lemma": ".",
               "pos": "PUNCT",
@@ -803,58 +743,49 @@
           ],
           "edges": [
             {
-              "from": "p1",
-              "to": "p0",
               "label": "det",
-              "type": 0
-            },
-            {
-              "from": "p7",
-              "to": "p1",
-              "label": "nsubj",
-              "type": 0
-            },
-            {
-              "from": "p3",
-              "to": "p2",
-              "label": "nsubj",
-              "type": 0
-            },
-            {
               "from": "p1",
-              "to": "p3",
+              "to": "p0"
+            },
+            {
+              "label": "nsubj",
+              "from": "p7",
+              "to": "p1"
+            },
+            {
+              "label": "nsubj",
+              "from": "p3",
+              "to": "p2"
+            },
+            {
               "label": "relcl",
-              "type": 0
+              "from": "p1",
+              "to": "p3"
             },
             {
-              "from": "p3",
-              "to": "p4",
               "label": "prep",
-              "type": 0
+              "from": "p3",
+              "to": "p4"
             },
             {
-              "from": "p6",
-              "to": "p5",
               "label": "det",
-              "type": 0
+              "from": "p6",
+              "to": "p5"
             },
             {
-              "from": "p4",
-              "to": "p6",
               "label": "pobj",
-              "type": 0
+              "from": "p4",
+              "to": "p6"
             },
             {
-              "from": "p7",
-              "to": "p8",
               "label": "acomp",
-              "type": 0
+              "from": "p7",
+              "to": "p8"
             },
             {
-              "from": "p7",
-              "to": "p9",
               "label": "punct",
-              "type": 0
+              "from": "p7",
+              "to": "p9"
             }
           ]
         },
@@ -862,11 +793,10 @@
           "name": "Spanish",
           "nodes": [
             {
-              "id": "p0",
-              "x": 0,
-              "y": 200,
+              "x": 40,
+              "y": 220,
               "label": "Los",
-              "type": 0,
+              "id": "p0",
               "text": "Los",
               "lemma": "el",
               "pos": "DET",
@@ -879,11 +809,10 @@
               }
             },
             {
-              "id": "p1",
-              "x": 150,
-              "y": 100,
+              "x": 85,
+              "y": 130,
               "label": "niños",
-              "type": 0,
+              "id": "p1",
               "text": "niños",
               "lemma": "niño",
               "pos": "NOUN",
@@ -894,11 +823,10 @@
               }
             },
             {
-              "id": "p2",
-              "x": 300,
-              "y": 300,
+              "x": 85,
+              "y": 310,
               "label": "que",
-              "type": 0,
+              "id": "p2",
               "text": "que",
               "lemma": "que",
               "pos": "PRON",
@@ -908,11 +836,10 @@
               }
             },
             {
-              "id": "p3",
-              "x": 450,
-              "y": 200,
+              "x": 130,
+              "y": 220,
               "label": "juegan",
-              "type": 0,
+              "id": "p3",
               "text": "juegan",
               "lemma": "jugar",
               "pos": "VERB",
@@ -926,11 +853,10 @@
               }
             },
             {
-              "id": "p4",
-              "x": 600,
+              "x": 130,
               "y": 400,
               "label": "en",
-              "type": 0,
+              "id": "p4",
               "text": "en",
               "lemma": "en",
               "pos": "ADP",
@@ -939,11 +865,10 @@
               }
             },
             {
-              "id": "p5",
-              "x": 750,
+              "x": 220,
               "y": 400,
               "label": "el",
-              "type": 0,
+              "id": "p5",
               "text": "el",
               "lemma": "el",
               "pos": "DET",
@@ -956,11 +881,10 @@
               }
             },
             {
-              "id": "p6",
-              "x": 900,
-              "y": 300,
+              "x": 175,
+              "y": 310,
               "label": "parque",
-              "type": 0,
+              "id": "p6",
               "text": "parque",
               "lemma": "parque",
               "pos": "NOUN",
@@ -971,11 +895,10 @@
               }
             },
             {
-              "id": "p7",
-              "x": 1050,
-              "y": 100,
+              "x": 175,
+              "y": 130,
               "label": "están",
-              "type": 0,
+              "id": "p7",
               "text": "están",
               "lemma": "estar",
               "pos": "AUX",
@@ -989,11 +912,10 @@
               }
             },
             {
-              "id": "p8",
-              "x": 1200,
-              "y": 0,
+              "x": 175,
+              "y": 40,
               "label": "cansados",
-              "type": 0,
+              "id": "p8",
               "text": "cansados",
               "lemma": "cansado",
               "pos": "ADJ",
@@ -1005,11 +927,10 @@
               }
             },
             {
-              "id": "p9",
-              "x": 1350,
-              "y": 100,
+              "x": 265,
+              "y": 130,
               "label": ".",
-              "type": 0,
+              "id": "p9",
               "text": ".",
               "lemma": ".",
               "pos": "PUNCT",
@@ -1021,58 +942,49 @@
           ],
           "edges": [
             {
-              "from": "p1",
-              "to": "p0",
               "label": "det",
-              "type": 0
-            },
-            {
-              "from": "p8",
-              "to": "p1",
-              "label": "nsubj",
-              "type": 0
-            },
-            {
-              "from": "p3",
-              "to": "p2",
-              "label": "nsubj",
-              "type": 0
-            },
-            {
               "from": "p1",
-              "to": "p3",
+              "to": "p0"
+            },
+            {
+              "label": "nsubj",
+              "from": "p8",
+              "to": "p1"
+            },
+            {
+              "label": "nsubj",
+              "from": "p3",
+              "to": "p2"
+            },
+            {
               "label": "acl",
-              "type": 0
+              "from": "p1",
+              "to": "p3"
             },
             {
-              "from": "p6",
-              "to": "p4",
               "label": "case",
-              "type": 0
-            },
-            {
               "from": "p6",
-              "to": "p5",
+              "to": "p4"
+            },
+            {
               "label": "det",
-              "type": 0
+              "from": "p6",
+              "to": "p5"
             },
             {
-              "from": "p3",
-              "to": "p6",
               "label": "obl",
-              "type": 0
+              "from": "p3",
+              "to": "p6"
             },
             {
-              "from": "p8",
-              "to": "p7",
               "label": "cop",
-              "type": 0
+              "from": "p8",
+              "to": "p7"
             },
             {
-              "from": "p8",
-              "to": "p9",
               "label": "punct",
-              "type": 0
+              "from": "p8",
+              "to": "p9"
             }
           ]
         }
@@ -1087,11 +999,10 @@
           "name": "English",
           "nodes": [
             {
-              "id": "p0",
-              "x": 0,
-              "y": 100,
+              "x": 40,
+              "y": 130,
               "label": "Juan",
-              "type": 0,
+              "id": "p0",
               "text": "Juan",
               "lemma": "Juan",
               "pos": "PROPN",
@@ -1101,11 +1012,11 @@
               }
             },
             {
-              "id": "a1",
-              "x": 150,
-              "y": 100,
+              "x": 130,
+              "y": 130,
               "label": "has",
               "type": 2,
+              "id": "a1",
               "text": "has",
               "lemma": "have",
               "pos": "AUX",
@@ -1119,11 +1030,11 @@
               }
             },
             {
-              "id": "a2",
-              "x": 300,
-              "y": 100,
+              "x": 220,
+              "y": 130,
               "label": "just",
               "type": 2,
+              "id": "a2",
               "text": "just",
               "lemma": "just",
               "pos": "ADV",
@@ -1132,11 +1043,10 @@
               }
             },
             {
-              "id": "p1",
-              "x": 450,
-              "y": 0,
+              "x": 220,
+              "y": 40,
               "label": "arrived",
-              "type": 0,
+              "id": "p1",
               "text": "arrived",
               "lemma": "arrive",
               "pos": "VERB",
@@ -1148,11 +1058,10 @@
               }
             },
             {
-              "id": "p2",
-              "x": 600,
-              "y": 100,
+              "x": 310,
+              "y": 130,
               "label": "home",
-              "type": 0,
+              "id": "p2",
               "text": "home",
               "lemma": "home",
               "pos": "ADV",
@@ -1161,11 +1070,10 @@
               }
             },
             {
-              "id": "p3",
-              "x": 750,
-              "y": 100,
+              "x": 400,
+              "y": 130,
               "label": ".",
-              "type": 0,
+              "id": "p3",
               "text": ".",
               "lemma": ".",
               "pos": "PUNCT",
@@ -1177,34 +1085,29 @@
           ],
           "edges": [
             {
-              "from": "p1",
-              "to": "p0",
               "label": "nsubj",
-              "type": 0
+              "from": "p1",
+              "to": "p0"
             },
             {
-              "from": "p1",
-              "to": "a1",
               "label": "aux",
-              "type": 0
+              "from": "p1",
+              "to": "a1"
             },
             {
-              "from": "p1",
-              "to": "a2",
               "label": "advmod",
-              "type": 0
+              "from": "p1",
+              "to": "a2"
             },
             {
-              "from": "p1",
-              "to": "p2",
               "label": "advmod",
-              "type": 0
+              "from": "p1",
+              "to": "p2"
             },
             {
-              "from": "p1",
-              "to": "p3",
               "label": "punct",
-              "type": 0
+              "from": "p1",
+              "to": "p3"
             }
           ]
         },
@@ -1212,11 +1115,10 @@
           "name": "Spanish",
           "nodes": [
             {
-              "id": "p0",
-              "x": 0,
-              "y": 100,
+              "x": 40,
+              "y": 130,
               "label": "Juan",
-              "type": 0,
+              "id": "p0",
               "text": "Juan",
               "lemma": "Juan",
               "pos": "PROPN",
@@ -1225,11 +1127,11 @@
               }
             },
             {
-              "id": "b1",
-              "x": 150,
-              "y": 0,
+              "x": 175,
+              "y": 40,
               "label": "acaba",
               "type": 2,
+              "id": "b1",
               "text": "acaba",
               "lemma": "acabar",
               "pos": "VERB",
@@ -1243,11 +1145,11 @@
               }
             },
             {
-              "id": "b2",
-              "x": 300,
-              "y": 200,
+              "x": 130,
+              "y": 220,
               "label": "de",
               "type": 2,
+              "id": "b2",
               "text": "de",
               "lemma": "de",
               "pos": "ADP",
@@ -1256,11 +1158,10 @@
               }
             },
             {
-              "id": "p1",
-              "x": 450,
-              "y": 100,
+              "x": 130,
+              "y": 130,
               "label": "llegar",
-              "type": 0,
+              "id": "p1",
               "text": "llegar",
               "lemma": "llegar",
               "pos": "VERB",
@@ -1270,11 +1171,11 @@
               }
             },
             {
-              "id": "b4",
-              "x": 600,
-              "y": 200,
+              "x": 220,
+              "y": 220,
               "label": "a",
               "type": 2,
+              "id": "b4",
               "text": "a",
               "lemma": "a",
               "pos": "ADP",
@@ -1283,11 +1184,10 @@
               }
             },
             {
-              "id": "p2",
-              "x": 750,
-              "y": 100,
+              "x": 220,
+              "y": 130,
               "label": "casa",
-              "type": 0,
+              "id": "p2",
               "text": "casa",
               "lemma": "casa",
               "pos": "NOUN",
@@ -1298,11 +1198,10 @@
               }
             },
             {
-              "id": "p3",
-              "x": 900,
-              "y": 100,
+              "x": 310,
+              "y": 130,
               "label": ".",
-              "type": 0,
+              "id": "p3",
               "text": ".",
               "lemma": ".",
               "pos": "PUNCT",
@@ -1314,40 +1213,34 @@
           ],
           "edges": [
             {
-              "from": "b1",
-              "to": "p0",
               "label": "nsubj",
-              "type": 0
+              "from": "b1",
+              "to": "p0"
             },
             {
-              "from": "p1",
-              "to": "b2",
               "label": "mark",
-              "type": 0
+              "from": "p1",
+              "to": "b2"
             },
             {
-              "from": "b1",
-              "to": "p1",
               "label": "xcomp",
-              "type": 0
+              "from": "b1",
+              "to": "p1"
             },
             {
-              "from": "p2",
-              "to": "b4",
               "label": "case",
-              "type": 0
+              "from": "p2",
+              "to": "b4"
             },
             {
-              "from": "b1",
-              "to": "p2",
               "label": "obl",
-              "type": 0
+              "from": "b1",
+              "to": "p2"
             },
             {
-              "from": "b1",
-              "to": "p3",
               "label": "punct",
-              "type": 0
+              "from": "b1",
+              "to": "p3"
             }
           ]
         }

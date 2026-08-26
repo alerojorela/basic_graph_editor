@@ -1,0 +1,1542 @@
+{
+  "name": "Two analyses of one sentence · EN",
+  "description": "spaCy dependencies · Stanza constituents (Penn Treebank)",
+  "tools": [
+    "spaCy en_core_web_trf",
+    "Stanza en constituency"
+  ],
+  "graphs": [
+    {
+      "id": 1,
+      "name": "The big house has blue windows.",
+      "graphs": [
+        {
+          "name": "dependencies",
+          "nodes": [
+            {
+              "x": 40,
+              "y": 220,
+              "label": "The",
+              "id": "t0",
+              "text": "The",
+              "lemma": "the",
+              "pos": "DET",
+              "props": {
+                "dep": "det",
+                "Definite": "Def",
+                "PronType": "Art"
+              }
+            },
+            {
+              "x": 130,
+              "y": 220,
+              "label": "big",
+              "id": "t1",
+              "text": "big",
+              "lemma": "big",
+              "pos": "ADJ",
+              "props": {
+                "dep": "amod",
+                "Degree": "Pos"
+              }
+            },
+            {
+              "x": 85,
+              "y": 130,
+              "label": "house",
+              "id": "t2",
+              "text": "house",
+              "lemma": "house",
+              "pos": "NOUN",
+              "props": {
+                "dep": "nsubj",
+                "Number": "Sing"
+              }
+            },
+            {
+              "x": 198,
+              "y": 40,
+              "label": "has",
+              "id": "t3",
+              "text": "has",
+              "lemma": "have",
+              "pos": "VERB",
+              "props": {
+                "dep": "ROOT",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "3",
+                "Tense": "Pres",
+                "VerbForm": "Fin"
+              }
+            },
+            {
+              "x": 220,
+              "y": 220,
+              "label": "blue",
+              "id": "t4",
+              "text": "blue",
+              "lemma": "blue",
+              "pos": "ADJ",
+              "props": {
+                "dep": "amod",
+                "Degree": "Pos"
+              }
+            },
+            {
+              "x": 220,
+              "y": 130,
+              "label": "windows",
+              "id": "t5",
+              "text": "windows",
+              "lemma": "window",
+              "pos": "NOUN",
+              "props": {
+                "dep": "dobj",
+                "Number": "Plur"
+              }
+            },
+            {
+              "x": 310,
+              "y": 130,
+              "label": ".",
+              "id": "t6",
+              "text": ".",
+              "lemma": ".",
+              "pos": "PUNCT",
+              "props": {
+                "dep": "punct",
+                "PunctType": "Peri"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "label": "det",
+              "from": "t2",
+              "to": "t0"
+            },
+            {
+              "label": "amod",
+              "from": "t2",
+              "to": "t1"
+            },
+            {
+              "label": "nsubj",
+              "from": "t3",
+              "to": "t2"
+            },
+            {
+              "label": "amod",
+              "from": "t5",
+              "to": "t4"
+            },
+            {
+              "label": "dobj",
+              "from": "t3",
+              "to": "t5"
+            },
+            {
+              "label": "punct",
+              "from": "t3",
+              "to": "t6"
+            }
+          ]
+        },
+        {
+          "name": "constituents",
+          "nodes": [
+            {
+              "x": 288,
+              "y": 40,
+              "label": "ROOT",
+              "type": 1,
+              "id": "c0",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 288,
+              "y": 130,
+              "label": "S",
+              "type": 1,
+              "id": "c1",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 130,
+              "y": 220,
+              "label": "NP",
+              "type": 1,
+              "id": "c2",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 40,
+              "y": 310,
+              "label": "The",
+              "id": "t0",
+              "text": "The",
+              "pos": "DT",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 130,
+              "y": 310,
+              "label": "big",
+              "id": "t1",
+              "text": "big",
+              "pos": "JJ",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 220,
+              "y": 310,
+              "label": "house",
+              "id": "t2",
+              "text": "house",
+              "pos": "NN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 355,
+              "y": 220,
+              "label": "VP",
+              "type": 1,
+              "id": "c3",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 310,
+              "y": 310,
+              "label": "has",
+              "id": "t3",
+              "text": "has",
+              "pos": "VBZ",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 400,
+              "y": 310,
+              "label": "NP",
+              "type": 1,
+              "id": "c4",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 355,
+              "y": 400,
+              "label": "blue",
+              "id": "t4",
+              "text": "blue",
+              "pos": "JJ",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 445,
+              "y": 400,
+              "label": "windows",
+              "id": "t5",
+              "text": "windows",
+              "pos": "NNS",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 445,
+              "y": 220,
+              "label": ".",
+              "id": "t6",
+              "text": ".",
+              "pos": ".",
+              "props": {
+                "clase": "cat"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "c2",
+              "to": "t0"
+            },
+            {
+              "from": "c2",
+              "to": "t1"
+            },
+            {
+              "from": "c2",
+              "to": "t2"
+            },
+            {
+              "from": "c1",
+              "to": "c2"
+            },
+            {
+              "from": "c3",
+              "to": "t3"
+            },
+            {
+              "from": "c4",
+              "to": "t4"
+            },
+            {
+              "from": "c4",
+              "to": "t5"
+            },
+            {
+              "from": "c3",
+              "to": "c4"
+            },
+            {
+              "from": "c1",
+              "to": "c3"
+            },
+            {
+              "from": "c1",
+              "to": "t6"
+            },
+            {
+              "from": "c0",
+              "to": "c1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "The children who play in the park are tired.",
+      "graphs": [
+        {
+          "name": "dependencies",
+          "nodes": [
+            {
+              "x": 40,
+              "y": 220,
+              "label": "The",
+              "id": "t0",
+              "text": "The",
+              "lemma": "the",
+              "pos": "DET",
+              "props": {
+                "dep": "det",
+                "Definite": "Def",
+                "PronType": "Art"
+              }
+            },
+            {
+              "x": 85,
+              "y": 130,
+              "label": "children",
+              "id": "t1",
+              "text": "children",
+              "lemma": "child",
+              "pos": "NOUN",
+              "props": {
+                "dep": "nsubj",
+                "Number": "Plur"
+              }
+            },
+            {
+              "x": 85,
+              "y": 310,
+              "label": "who",
+              "id": "t2",
+              "text": "who",
+              "lemma": "who",
+              "pos": "PRON",
+              "props": {
+                "dep": "nsubj"
+              }
+            },
+            {
+              "x": 130,
+              "y": 220,
+              "label": "play",
+              "id": "t3",
+              "text": "play",
+              "lemma": "play",
+              "pos": "VERB",
+              "props": {
+                "dep": "relcl",
+                "Tense": "Pres",
+                "VerbForm": "Fin"
+              }
+            },
+            {
+              "x": 175,
+              "y": 310,
+              "label": "in",
+              "id": "t4",
+              "text": "in",
+              "lemma": "in",
+              "pos": "ADP",
+              "props": {
+                "dep": "prep"
+              }
+            },
+            {
+              "x": 175,
+              "y": 490,
+              "label": "the",
+              "id": "t5",
+              "text": "the",
+              "lemma": "the",
+              "pos": "DET",
+              "props": {
+                "dep": "det",
+                "Definite": "Def",
+                "PronType": "Art"
+              }
+            },
+            {
+              "x": 175,
+              "y": 400,
+              "label": "park",
+              "id": "t6",
+              "text": "park",
+              "lemma": "park",
+              "pos": "NOUN",
+              "props": {
+                "dep": "pobj",
+                "Number": "Sing"
+              }
+            },
+            {
+              "x": 175,
+              "y": 40,
+              "label": "are",
+              "id": "t7",
+              "text": "are",
+              "lemma": "be",
+              "pos": "AUX",
+              "props": {
+                "dep": "ROOT",
+                "Mood": "Ind",
+                "Tense": "Pres",
+                "VerbForm": "Fin"
+              }
+            },
+            {
+              "x": 175,
+              "y": 130,
+              "label": "tired",
+              "id": "t8",
+              "text": "tired",
+              "lemma": "tired",
+              "pos": "ADJ",
+              "props": {
+                "dep": "acomp",
+                "Degree": "Pos"
+              }
+            },
+            {
+              "x": 265,
+              "y": 130,
+              "label": ".",
+              "id": "t9",
+              "text": ".",
+              "lemma": ".",
+              "pos": "PUNCT",
+              "props": {
+                "dep": "punct",
+                "PunctType": "Peri"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "label": "det",
+              "from": "t1",
+              "to": "t0"
+            },
+            {
+              "label": "nsubj",
+              "from": "t7",
+              "to": "t1"
+            },
+            {
+              "label": "nsubj",
+              "from": "t3",
+              "to": "t2"
+            },
+            {
+              "label": "relcl",
+              "from": "t1",
+              "to": "t3"
+            },
+            {
+              "label": "prep",
+              "from": "t3",
+              "to": "t4"
+            },
+            {
+              "label": "det",
+              "from": "t6",
+              "to": "t5"
+            },
+            {
+              "label": "pobj",
+              "from": "t4",
+              "to": "t6"
+            },
+            {
+              "label": "acomp",
+              "from": "t7",
+              "to": "t8"
+            },
+            {
+              "label": "punct",
+              "from": "t7",
+              "to": "t9"
+            }
+          ]
+        },
+        {
+          "name": "constituents",
+          "nodes": [
+            {
+              "x": 333,
+              "y": 40,
+              "label": "ROOT",
+              "type": 1,
+              "id": "c0",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 333,
+              "y": 130,
+              "label": "S",
+              "type": 1,
+              "id": "c1",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 175,
+              "y": 220,
+              "label": "NP",
+              "type": 1,
+              "id": "c2",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 85,
+              "y": 310,
+              "label": "NP",
+              "type": 1,
+              "id": "c3",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 40,
+              "y": 400,
+              "label": "The",
+              "id": "t0",
+              "text": "The",
+              "pos": "DT",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 130,
+              "y": 400,
+              "label": "children",
+              "id": "t1",
+              "text": "children",
+              "pos": "NNS",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 265,
+              "y": 310,
+              "label": "SBAR",
+              "type": 1,
+              "id": "c4",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 220,
+              "y": 400,
+              "label": "WHNP",
+              "type": 1,
+              "id": "c5",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 220,
+              "y": 490,
+              "label": "who",
+              "id": "t2",
+              "text": "who",
+              "pos": "WP",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 310,
+              "y": 400,
+              "label": "S",
+              "type": 1,
+              "id": "c6",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 310,
+              "y": 490,
+              "label": "VP",
+              "type": 1,
+              "id": "c7",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 265,
+              "y": 580,
+              "label": "play",
+              "id": "t3",
+              "text": "play",
+              "pos": "VBP",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 355,
+              "y": 580,
+              "label": "PP",
+              "type": 1,
+              "id": "c8",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 310,
+              "y": 670,
+              "label": "in",
+              "id": "t4",
+              "text": "in",
+              "pos": "IN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 400,
+              "y": 670,
+              "label": "NP",
+              "type": 1,
+              "id": "c9",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 355,
+              "y": 760,
+              "label": "the",
+              "id": "t5",
+              "text": "the",
+              "pos": "DT",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 445,
+              "y": 760,
+              "label": "park",
+              "id": "t6",
+              "text": "park",
+              "pos": "NN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 400,
+              "y": 220,
+              "label": "VP",
+              "type": 1,
+              "id": "c10",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 355,
+              "y": 310,
+              "label": "are",
+              "id": "t7",
+              "text": "are",
+              "pos": "VBP",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 445,
+              "y": 310,
+              "label": "ADJP",
+              "type": 1,
+              "id": "c11",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 445,
+              "y": 400,
+              "label": "tired",
+              "id": "t8",
+              "text": "tired",
+              "pos": "JJ",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 490,
+              "y": 220,
+              "label": ".",
+              "id": "t9",
+              "text": ".",
+              "pos": ".",
+              "props": {
+                "clase": "cat"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "c3",
+              "to": "t0"
+            },
+            {
+              "from": "c3",
+              "to": "t1"
+            },
+            {
+              "from": "c2",
+              "to": "c3"
+            },
+            {
+              "from": "c5",
+              "to": "t2"
+            },
+            {
+              "from": "c4",
+              "to": "c5"
+            },
+            {
+              "from": "c7",
+              "to": "t3"
+            },
+            {
+              "from": "c8",
+              "to": "t4"
+            },
+            {
+              "from": "c9",
+              "to": "t5"
+            },
+            {
+              "from": "c9",
+              "to": "t6"
+            },
+            {
+              "from": "c8",
+              "to": "c9"
+            },
+            {
+              "from": "c7",
+              "to": "c8"
+            },
+            {
+              "from": "c6",
+              "to": "c7"
+            },
+            {
+              "from": "c4",
+              "to": "c6"
+            },
+            {
+              "from": "c2",
+              "to": "c4"
+            },
+            {
+              "from": "c1",
+              "to": "c2"
+            },
+            {
+              "from": "c10",
+              "to": "t7"
+            },
+            {
+              "from": "c11",
+              "to": "t8"
+            },
+            {
+              "from": "c10",
+              "to": "c11"
+            },
+            {
+              "from": "c1",
+              "to": "c10"
+            },
+            {
+              "from": "c1",
+              "to": "t9"
+            },
+            {
+              "from": "c0",
+              "to": "c1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Juan has just arrived home.",
+      "graphs": [
+        {
+          "name": "dependencies",
+          "nodes": [
+            {
+              "x": 40,
+              "y": 130,
+              "label": "Juan",
+              "id": "t0",
+              "text": "Juan",
+              "lemma": "Juan",
+              "pos": "PROPN",
+              "props": {
+                "dep": "nsubj",
+                "Number": "Sing"
+              }
+            },
+            {
+              "x": 130,
+              "y": 130,
+              "label": "has",
+              "id": "t1",
+              "text": "has",
+              "lemma": "have",
+              "pos": "AUX",
+              "props": {
+                "dep": "aux",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "3",
+                "Tense": "Pres",
+                "VerbForm": "Fin"
+              }
+            },
+            {
+              "x": 220,
+              "y": 130,
+              "label": "just",
+              "id": "t2",
+              "text": "just",
+              "lemma": "just",
+              "pos": "ADV",
+              "props": {
+                "dep": "advmod"
+              }
+            },
+            {
+              "x": 220,
+              "y": 40,
+              "label": "arrived",
+              "id": "t3",
+              "text": "arrived",
+              "lemma": "arrive",
+              "pos": "VERB",
+              "props": {
+                "dep": "ROOT",
+                "Aspect": "Perf",
+                "Tense": "Past",
+                "VerbForm": "Part"
+              }
+            },
+            {
+              "x": 310,
+              "y": 130,
+              "label": "home",
+              "id": "t4",
+              "text": "home",
+              "lemma": "home",
+              "pos": "ADV",
+              "props": {
+                "dep": "advmod"
+              }
+            },
+            {
+              "x": 400,
+              "y": 130,
+              "label": ".",
+              "id": "t5",
+              "text": ".",
+              "lemma": ".",
+              "pos": "PUNCT",
+              "props": {
+                "dep": "punct",
+                "PunctType": "Peri"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "label": "nsubj",
+              "from": "t3",
+              "to": "t0"
+            },
+            {
+              "label": "aux",
+              "from": "t3",
+              "to": "t1"
+            },
+            {
+              "label": "advmod",
+              "from": "t3",
+              "to": "t2"
+            },
+            {
+              "label": "advmod",
+              "from": "t3",
+              "to": "t4"
+            },
+            {
+              "label": "punct",
+              "from": "t3",
+              "to": "t5"
+            }
+          ]
+        },
+        {
+          "name": "constituents",
+          "nodes": [
+            {
+              "x": 186,
+              "y": 40,
+              "label": "ROOT",
+              "type": 1,
+              "id": "c0",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 186,
+              "y": 130,
+              "label": "S",
+              "type": 1,
+              "id": "c1",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 40,
+              "y": 220,
+              "label": "NP",
+              "type": 1,
+              "id": "c2",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 40,
+              "y": 310,
+              "label": "Juan",
+              "id": "t0",
+              "text": "Juan",
+              "pos": "NNP",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 243,
+              "y": 220,
+              "label": "VP",
+              "type": 1,
+              "id": "c3",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 130,
+              "y": 310,
+              "label": "has",
+              "id": "t1",
+              "text": "has",
+              "pos": "VBZ",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 220,
+              "y": 310,
+              "label": "ADVP",
+              "type": 1,
+              "id": "c4",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 220,
+              "y": 400,
+              "label": "just",
+              "id": "t2",
+              "text": "just",
+              "pos": "RB",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 355,
+              "y": 310,
+              "label": "VP",
+              "type": 1,
+              "id": "c5",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 310,
+              "y": 400,
+              "label": "arrived",
+              "id": "t3",
+              "text": "arrived",
+              "pos": "VBN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 400,
+              "y": 400,
+              "label": "ADVP",
+              "type": 1,
+              "id": "c6",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 400,
+              "y": 490,
+              "label": "home",
+              "id": "t4",
+              "text": "home",
+              "pos": "RB",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 333,
+              "y": 220,
+              "label": ".",
+              "id": "t5",
+              "text": ".",
+              "pos": ".",
+              "props": {
+                "clase": "cat"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "c2",
+              "to": "t0"
+            },
+            {
+              "from": "c1",
+              "to": "c2"
+            },
+            {
+              "from": "c3",
+              "to": "t1"
+            },
+            {
+              "from": "c4",
+              "to": "t2"
+            },
+            {
+              "from": "c3",
+              "to": "c4"
+            },
+            {
+              "from": "c5",
+              "to": "t3"
+            },
+            {
+              "from": "c6",
+              "to": "t4"
+            },
+            {
+              "from": "c5",
+              "to": "c6"
+            },
+            {
+              "from": "c3",
+              "to": "c5"
+            },
+            {
+              "from": "c1",
+              "to": "c3"
+            },
+            {
+              "from": "c1",
+              "to": "t5"
+            },
+            {
+              "from": "c0",
+              "to": "c1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "I saw a man with a telescope.",
+      "graphs": [
+        {
+          "name": "dependencies",
+          "nodes": [
+            {
+              "x": 40,
+              "y": 130,
+              "label": "I",
+              "id": "t0",
+              "text": "I",
+              "lemma": "I",
+              "pos": "PRON",
+              "props": {
+                "dep": "nsubj",
+                "Case": "Nom",
+                "Number": "Sing",
+                "Person": "1",
+                "PronType": "Prs"
+              }
+            },
+            {
+              "x": 130,
+              "y": 40,
+              "label": "saw",
+              "id": "t1",
+              "text": "saw",
+              "lemma": "see",
+              "pos": "VERB",
+              "props": {
+                "dep": "ROOT",
+                "Tense": "Past",
+                "VerbForm": "Fin"
+              }
+            },
+            {
+              "x": 85,
+              "y": 220,
+              "label": "a",
+              "id": "t2",
+              "text": "a",
+              "lemma": "a",
+              "pos": "DET",
+              "props": {
+                "dep": "det",
+                "Definite": "Ind",
+                "PronType": "Art"
+              }
+            },
+            {
+              "x": 130,
+              "y": 130,
+              "label": "man",
+              "id": "t3",
+              "text": "man",
+              "lemma": "man",
+              "pos": "NOUN",
+              "props": {
+                "dep": "dobj",
+                "Number": "Sing"
+              }
+            },
+            {
+              "x": 175,
+              "y": 220,
+              "label": "with",
+              "id": "t4",
+              "text": "with",
+              "lemma": "with",
+              "pos": "ADP",
+              "props": {
+                "dep": "prep"
+              }
+            },
+            {
+              "x": 175,
+              "y": 400,
+              "label": "a",
+              "id": "t5",
+              "text": "a",
+              "lemma": "a",
+              "pos": "DET",
+              "props": {
+                "dep": "det",
+                "Definite": "Ind",
+                "PronType": "Art"
+              }
+            },
+            {
+              "x": 175,
+              "y": 310,
+              "label": "telescope",
+              "id": "t6",
+              "text": "telescope",
+              "lemma": "telescope",
+              "pos": "NOUN",
+              "props": {
+                "dep": "pobj",
+                "Number": "Sing"
+              }
+            },
+            {
+              "x": 220,
+              "y": 130,
+              "label": ".",
+              "id": "t7",
+              "text": ".",
+              "lemma": ".",
+              "pos": "PUNCT",
+              "props": {
+                "dep": "punct",
+                "PunctType": "Peri"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "label": "nsubj",
+              "from": "t1",
+              "to": "t0"
+            },
+            {
+              "label": "det",
+              "from": "t3",
+              "to": "t2"
+            },
+            {
+              "label": "dobj",
+              "from": "t1",
+              "to": "t3"
+            },
+            {
+              "label": "prep",
+              "from": "t3",
+              "to": "t4"
+            },
+            {
+              "label": "det",
+              "from": "t6",
+              "to": "t5"
+            },
+            {
+              "label": "pobj",
+              "from": "t4",
+              "to": "t6"
+            },
+            {
+              "label": "punct",
+              "from": "t1",
+              "to": "t7"
+            }
+          ]
+        },
+        {
+          "name": "constituents",
+          "nodes": [
+            {
+              "x": 153,
+              "y": 40,
+              "label": "ROOT",
+              "type": 1,
+              "id": "c0",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 153,
+              "y": 130,
+              "label": "S",
+              "type": 1,
+              "id": "c1",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 40,
+              "y": 220,
+              "label": "NP",
+              "type": 1,
+              "id": "c2",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 40,
+              "y": 310,
+              "label": "I",
+              "id": "t0",
+              "text": "I",
+              "pos": "PRP",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 175,
+              "y": 220,
+              "label": "VP",
+              "type": 1,
+              "id": "c3",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 130,
+              "y": 310,
+              "label": "saw",
+              "id": "t1",
+              "text": "saw",
+              "pos": "VBD",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 220,
+              "y": 310,
+              "label": "NP",
+              "type": 1,
+              "id": "c4",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 130,
+              "y": 400,
+              "label": "NP",
+              "type": 1,
+              "id": "c5",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 85,
+              "y": 490,
+              "label": "a",
+              "id": "t2",
+              "text": "a",
+              "pos": "DT",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 175,
+              "y": 490,
+              "label": "man",
+              "id": "t3",
+              "text": "man",
+              "pos": "NN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 310,
+              "y": 400,
+              "label": "PP",
+              "type": 1,
+              "id": "c6",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 265,
+              "y": 490,
+              "label": "with",
+              "id": "t4",
+              "text": "with",
+              "pos": "IN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 355,
+              "y": 490,
+              "label": "NP",
+              "type": 1,
+              "id": "c7",
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "x": 310,
+              "y": 580,
+              "label": "a",
+              "id": "t5",
+              "text": "a",
+              "pos": "DT",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 400,
+              "y": 580,
+              "label": "telescope",
+              "id": "t6",
+              "text": "telescope",
+              "pos": "NN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "x": 265,
+              "y": 220,
+              "label": ".",
+              "id": "t7",
+              "text": ".",
+              "pos": ".",
+              "props": {
+                "clase": "cat"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "c2",
+              "to": "t0"
+            },
+            {
+              "from": "c1",
+              "to": "c2"
+            },
+            {
+              "from": "c3",
+              "to": "t1"
+            },
+            {
+              "from": "c5",
+              "to": "t2"
+            },
+            {
+              "from": "c5",
+              "to": "t3"
+            },
+            {
+              "from": "c4",
+              "to": "c5"
+            },
+            {
+              "from": "c6",
+              "to": "t4"
+            },
+            {
+              "from": "c7",
+              "to": "t5"
+            },
+            {
+              "from": "c7",
+              "to": "t6"
+            },
+            {
+              "from": "c6",
+              "to": "c7"
+            },
+            {
+              "from": "c4",
+              "to": "c6"
+            },
+            {
+              "from": "c3",
+              "to": "c4"
+            },
+            {
+              "from": "c1",
+              "to": "c3"
+            },
+            {
+              "from": "c1",
+              "to": "t7"
+            },
+            {
+              "from": "c0",
+              "to": "c1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

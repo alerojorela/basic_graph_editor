@@ -59,8 +59,45 @@ instead:
 
 ## Automatic layout
 
-Via the **Layout** menu. Available engines: **ELK** (default: tree), **WebCola**.
-Selecting a layout option applies it immediately. Dagre and Graphviz options are present but commented out.
+Via the **Layout** menu: **ELK**, **WebCola** and **Graphviz**. Picking one
+applies it immediately and remembers it, so **Arrange** repeats the last choice.
+Dagre is still in `js/layout.js` but out of the menu, its `<script>` commented
+out with it.
+
+Which one to pick is a question with a measured answer. On the 242-node Madrid
+metro sample, counting how many pairs of edges cross and how many edges pass
+straight through an unrelated node:
+
+| | time | crossings | edges through a node |
+|---|---|---|---|
+| `cola` | 556 ms | 12 | 0 |
+| `gv-neato` | 243 ms | 24 | 5 |
+| `elk-stress` | 7290 ms | 13 | 8 |
+| `gv-dot` | 125 ms | 63 | 37 |
+| `gv-fdp` | 232 ms | 192 | 22 |
+| `elk-mrtree` | 91 ms | 215 | 170 |
+| `gv-circo` | 3457 ms | 266 | 25 |
+| `gv-twopi` | 22 ms | 376 | 32 |
+
+**Cola for a network, neato if you want it fast.** The bottom of the table is
+not a set of bugs: `twopi` is radial and `mrtree` is a tree layout, and a metro
+map is neither, so every edge that does not follow the tree cuts across. Pick
+the engine for the shape of the graph.
+
+`gv-dot` has a problem of its own. Graphviz routes edges as Bézier splines that
+go around obstacles and returns their control points, and the editor draws
+straight lines and drops them — 13 % of dot's edges on that sample are curved,
+deviating up to 863 px from the chord. `neato`, `fdp` and `twopi` return
+straight edges anyway, so they lose nothing.
+
+`sfdp` is not offered: it aborts inside the WebAssembly build on any graph of
+size.
+
+**Layouts freeze the page while they run** — every engine, since they all work
+on the main thread. Above 100 nodes a `Processing…` overlay goes up first, and
+while a layout is running further requests are ignored: the clicks nobody could
+make during a seven-second freeze are queued by the browser and would otherwise
+all fire at the end.
 
 ## Modules
 

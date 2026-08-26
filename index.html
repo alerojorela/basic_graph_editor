@@ -96,6 +96,10 @@
       </div>
     </div>
 
+    <!-- Shown while a layout runs. See _runLayout() for why it needs two
+         animation frames before the work starts. -->
+    <div id="busyOverlay"><div>Processing…</div></div>
+
     <!-- Help menu -->
     <div class="menu">
       <button class="menu-trigger">Help</button>
@@ -485,9 +489,40 @@
     _metaInput(_groupDesc, 'description');
 
     // ── Layout menu ───────────────────────────────────────────────────────
+    // A layout freezes the page while it runs. Measured on the 242-node Madrid
+    // metro sample: ELK stress took 7.1 s and Graphviz circo 3.4 s without
+    // painting a single frame. Nobody can click during that — but the clicks
+    // they do make are queued and all fire the moment it ends, so someone
+    // drumming on the menu through a seven-second freeze starts three layouts
+    // back to back. The guard, not the overlay, is what prevents that.
+    let _layoutBusy = false;
+    const OVERLAY_FROM = 100;   // nodes; below it every engine measured under 300 ms
+
+    async function _runLayout(mode) {
+      if (_layoutBusy) return;
+      _layoutBusy = true;
+      const overlay = document.getElementById('busyOverlay');
+      const heavy   = window.graph.nodes.length >= OVERLAY_FROM;
+      try {
+        if (heavy) {
+          overlay.style.display = 'flex';
+          // Two frames, and both are needed. Showing the overlay and starting
+          // the work in the same task paints nothing at all: the thread is busy
+          // from that moment on, so the browser never gets its turn. The first
+          // frame lets the style land, the second lets it be painted.
+          await new Promise(done =>
+            requestAnimationFrame(() => requestAnimationFrame(done)));
+        }
+        await applyLayout(window.graph.nodes, window.graph.edges, mode);
+      } finally {
+        overlay.style.display = 'none';
+        _layoutBusy = false;
+      }
+    }
+
     document.getElementById('menuArrange').addEventListener('click', () => {
       _closeAll();
-      applyLayout(window.graph.nodes, window.graph.edges, window.activeLayout);
+      _runLayout(window.activeLayout);
     });
     document.querySelectorAll('.menu-option[data-layout]').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -495,7 +530,7 @@
         btn.classList.add('active');
         window.activeLayout = btn.dataset.layout;
         _closeAll();
-        applyLayout(window.graph.nodes, window.graph.edges, window.activeLayout);
+        _runLayout(window.activeLayout);
       });
     });
 

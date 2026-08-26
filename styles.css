@@ -361,6 +361,31 @@ button:active {
 
 /* ─── Help Modal ─────────────────────────────────────────────────────────── */
 
+/* Shown while a layout runs, over everything and swallowing clicks. It is
+   painted before the work starts, never during: the main thread is blocked
+   from then on, so no animation would advance anyway — hence no spinner, which
+   would just sit there frozen and read as a hung page. */
+#busyOverlay {
+  position: fixed;
+  inset: 0;
+  display: none;                 /* _runLayout() switches this to flex */
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  cursor: progress;
+  z-index: 300;                  /* above the help modal */
+}
+
+#busyOverlay > div {
+  background: var(--ui-bg);
+  color: var(--ui-text);
+  border: 1px solid var(--ui-border);
+  border-radius: 6px;
+  padding: 14px 28px;
+  font-size: 15px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
 #helpModal {
   position: fixed;
   inset: 0;

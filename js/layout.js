@@ -196,7 +196,7 @@ function applyElkLayout(nodes, edges, mode = 'layered') {
         })),
     };
 
-    elk.layout(graph).then(result => {
+    return elk.layout(graph).then(result => {
         const nodeMap = new Map(nodes.map(n => [String(n.id), n]));
         result.children.forEach(child => {
             const n = nodeMap.get(child.id);
@@ -364,14 +364,18 @@ function applyColaLayout(nodes, edges, mode = 'cola') {
  */
 function applyLayout(nodes, edges, mode) {
     if (window.graph) { window.graph.recordAction(); window.graph.dirty = true; }
+    // Always returns something awaitable, so a caller can tell when the layout
+    // is actually finished. The synchronous engines resolve immediately, which
+    // is the truth: by the time they return, the work is done.
     if (mode.startsWith('dagre-')) {
         applyDagreLayout(nodes, edges, mode.slice(6));
         window.graph.centerGraph();                              // dagre is synchronous
     } else if (mode.startsWith('elk-')) {
-        applyElkLayout(nodes, edges, mode.slice(4)); // async, window.graph.centerGraph() called internally
+        return applyElkLayout(nodes, edges, mode.slice(4)); // async, centerGraph() called internally
     } else if (mode.startsWith('gv-')) {
-        applyGraphvizLayout(nodes, edges, mode.slice(3)); // async, window.graph.centerGraph() called internally
+        return applyGraphvizLayout(nodes, edges, mode.slice(3)); // async, centerGraph() called internally
     } else if (mode.startsWith('cola')) {
-        applyColaLayout(nodes, edges, mode);        // sync, window.graph.centerGraph() called internally
+        applyColaLayout(nodes, edges, mode);        // sync, centerGraph() called internally
     }
+    return Promise.resolve();
 }

@@ -222,9 +222,37 @@ let _vizInstance = null;
 // calls sharing — and discarding — the same instance underneath each other.
 let _vizChain = Promise.resolve();
 
-/** Convert native graph to a DOT language string. */
+/**
+ * Convert native graph to a DOT language string.
+ *
+ * The node size is declared, and that is the whole point of the preamble.
+ * Without it Graphviz packs for its own default — an ellipse of 0.75 by 0.5
+ * inches — while the editor draws a circle of 2R pixels with a label on it, so
+ * it was solving the packing problem with the wrong pieces and leaving the
+ * results too close together. Measured before this, on the 242-node Madrid
+ * metro: 52 units between centres on fdp for nodes 40 across, against 90 from
+ * ELK and 94 from cola.
+ *
+ * Graphviz counts in inches at 72 units to the inch and the editor counts in
+ * the pixels it draws with, so everything here is that one conversion. The two
+ * spacings are ELK's, deliberately: two engines asked for the same clearance
+ * should give comparable results, and if that number ever changes it should
+ * change in both.
+ */
+const _DOT_UNITS   = 72;   // Graphviz units per inch
+const _DOT_SPACING = 50;   // px between node borders — elk.spacing.nodeNode
+const _DOT_RANKSEP = 80;   // px between layers — elk.layered.spacing.nodeNodeBetweenLayers
+
 function _toDot(nodes, edges) {
-    const lines = ['digraph G {', '  graph [overlap=false];'];
+    const radius = window.graph?.R ?? window.R ?? 20;
+    const inches = side => (side / _DOT_UNITS).toFixed(3);
+    const size   = inches(2 * radius);
+    const lines = [
+        'digraph G {',
+        `  graph [overlap=false, sep="+${Math.round(_DOT_SPACING / 2)}",`
+            + ` nodesep=${inches(_DOT_SPACING)}, ranksep=${inches(_DOT_RANKSEP)}];`,
+        `  node [shape=circle, fixedsize=true, width=${size}, height=${size}];`,
+    ];
     nodes.forEach(n => {
         const label = (n.label || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"');
         lines.push(`  "${n.id}" [label="${label}"];`);

@@ -65,24 +65,36 @@ Dagre is still in `js/layout.js` but out of the menu, its `<script>` commented
 out with it.
 
 Which one to pick is a question with a measured answer. On the 242-node Madrid
-metro sample, counting how many pairs of edges cross and how many edges pass
-straight through an unrelated node:
+metro sample, counting crossing pairs of edges and the closest any two node
+centres come — the nodes are 40 across, so anything under that is an overlap:
 
-| | time | crossings | edges through a node |
+| | time | crossings | closest centres |
 |---|---|---|---|
-| `cola` | 556 ms | 12 | 0 |
-| `gv-neato` | 243 ms | 24 | 5 |
-| `elk-stress` | 7290 ms | 13 | 8 |
-| `gv-dot` | 125 ms | 63 | 37 |
-| `gv-fdp` | 232 ms | 192 | 22 |
-| `elk-mrtree` | 91 ms | 215 | 170 |
-| `gv-circo` | 3457 ms | 266 | 25 |
-| `gv-twopi` | 22 ms | 376 | 32 |
+| `cola` | 701 ms | 6 | 43 |
+| `elk-stress` | 7319 ms | 13 | **24** |
+| `gv-neato` | 279 ms | 22 | 90 |
+| `cola-down` | 726 ms | 22 | 41 |
+| `gv-dot` | 83 ms | 69 | 90 |
+| `elk-layered` | 381 ms | 126 | 65 |
+| `gv-fdp` | 185 ms | 177 | 90 |
+| `elk-mrtree` | 104 ms | 215 | 90 |
+| `gv-circo` | 3413 ms | 266 | 92 |
+| `gv-twopi` | 24 ms | 386 | 100 |
 
 **Cola for a network, neato if you want it fast.** The bottom of the table is
 not a set of bugs: `twopi` is radial and `mrtree` is a tree layout, and a metro
 map is neither, so every edge that does not follow the tree cuts across. Pick
 the engine for the shape of the graph.
+
+The last column is there because a layout has to be told how big a node is, and
+`_toDot()` used not to say. Graphviz packed for its own default ellipse while
+the editor drew a 40-pixel circle, which is how `fdp` came to leave 52 units
+between centres — a dense unreadable blob. It declares the real size now, and
+every Graphviz engine sits at 90 or more, the same clearance ELK asks for.
+
+`elk-stress` has the same fault and it is worse: its preset sets
+`desiredEdgeLength` and no `elk.spacing.nodeNode` at all, so nothing holds
+unconnected nodes apart and they end up 24 apart — overlapping.
 
 `gv-dot` has a problem of its own. Graphviz routes edges as Bézier splines that
 go around obstacles and returns their control points, and the editor draws
@@ -318,5 +330,7 @@ docker run -d --name ollama_API --restart always \
 ## License
 
 MIT — see [LICENSE](LICENSE). Copyright (c) 2026 Alejandro Rojo Gualix.
+The year is the one this repository started, and it does not move with the
+calendar: it dates the work, not the file.
 Keep the notice and you may do as you like with it. The third-party layout
 engines are not covered by it; see [Third-party code](#third-party-code).

@@ -40,9 +40,13 @@
     <div class="menu">
       <button class="menu-trigger">Document</button>
       <div class="menu-dropdown">
-        <button class="menu-action" id="menuSplit">Split into two</button>
-        <button class="menu-action" id="menuMerge">Merge to one</button>
+        <div class="menu-group-label">Graphs in this group</div>
+        <button class="menu-action" id="menuAddBefore">Add graph before</button>
+        <button class="menu-action" id="menuAddAfter">Add graph after</button>
+        <button class="menu-action" id="menuDuplicate">Duplicate graph</button>
+        <button class="menu-action" id="menuRemoveGraph">Remove graph</button>
         <div class="menu-separator"></div>
+        <div class="menu-group-label">Groups in this document</div>
         <button class="menu-action" id="menuAddGroup">Add group</button>
         <button class="menu-action" id="menuPrevGroup">Previous group</button>
         <button class="menu-action" id="menuNextGroup">Next group</button>
@@ -355,22 +359,43 @@
     }
     window.onDocumentChange = renderGroupBar;
 
-    document.getElementById('menuSplit').addEventListener('click', () => {
+    // Adding beyond MAX_PANELS is allowed and said, not refused: the editor has
+    // to be able to author the files it can read, and the group bar already
+    // reports how many graphs are on screen and that the rest are kept on save.
+    function _addGraph(offset) {
       _closeAll();
-      if (window.editors.length < 2) {
-        alert('This page has one panel, so there is nowhere to show the second '
-            + 'graph. Raise MAX_PANELS in js/base.js.');
-        return;
+      window.doc.addGraph(offset);
+      if (window.doc.group.graphs.length > window.doc.visible) {
+        alert(`This group now holds ${window.doc.group.graphs.length} graphs and there `
+            + `are ${window.doc.visible} panels. The rest are not shown, and are `
+            + `written back untouched on save.`);
       }
-      if (!window.doc.splitInTwo()) alert('This group already holds more than one graph.');
+    }
+    document.getElementById('menuAddBefore').addEventListener('click', () => _addGraph(0));
+    document.getElementById('menuAddAfter').addEventListener('click',  () => _addGraph(1));
+    document.getElementById('menuDuplicate').addEventListener('click', () => {
+      _closeAll(); window.doc.duplicateGraph();
     });
-    document.getElementById('menuMerge').addEventListener('click', () => {
+    document.getElementById('menuRemoveGraph').addEventListener('click', () => {
       _closeAll();
       const group = window.doc.group;
-      if (!group || group.graphs.length < 2) { alert('This group holds one graph already.'); return; }
-      // Asked, because it is the one command here that throws data away.
-      if (!confirm(`Keep the first graph and discard the other ${group.graphs.length - 1}?`)) return;
-      window.doc.mergeToOne();
+      const panel = window.doc.focused();
+      const graph = group?.graphs[panel];
+      if (!graph) return;
+      // **Always asked, even for an empty graph.** Which panel has the focus is
+      // not something you can be sure of at a glance with three of them open,
+      // so the question is also what tells you which one is about to go.
+      const what = graph.name ? `«${graph.name}»` : `the graph in panel ${panel + 1}`;
+      const size = graph.nodes?.length
+        ? `, with its ${graph.nodes.length} nodes`
+        : ' (it is empty)';
+      const andGroup = group.graphs.length === 1
+        ? '\n\nIt is the only graph in this group, so the group goes with it.'
+        : '';
+      if (!confirm(`Remove ${what}${size}?${andGroup}`)) return;
+      if (!window.doc.removeGraph()) {
+        alert('This is the only graph in the document. File → New empties it.');
+      }
     });
     document.getElementById('menuAddGroup').addEventListener('click', () => {
       _closeAll(); window.doc.addGroup();

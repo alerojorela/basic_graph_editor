@@ -295,32 +295,81 @@
 
 	// ── Shape commands ────────────────────────────────────────────────────────
 
+	// ── Graphs inside a group ─────────────────────────────────────────────────
+	//
+	// **These replace `Split into two` and `Merge to one`, and the reason is
+	// that those two only ever described the jump from one panel to two.** With
+	// a ceiling of three, «split into how many?» has no answer, and «merge»
+	// silently picked the first graph as the survivor. Insert and remove say
+	// what they do at any count, and where they do it: **at the focused panel**,
+	// which is the same rule the rest of the editor already follows.
+	//
+	// A group may end up holding more graphs than there are panels. That is
+	// allowed rather than refused: the editor must be able to author what it can
+	// read, and the group bar says how many are on screen and that the rest are
+	// written back untouched.
+
+	/** Which panel is focused, as an index into the current group's graphs. */
+	function focused() {
+		const editors = window.editors ?? [window.graph];
+		const i = editors.indexOf(window.graph);
+		return i < 0 ? 0 : Math.min(i, (doc.group?.graphs.length ?? 1) - 1);
+	}
+
 	/**
-	 * Turn the current group's single graph into two, the second a copy of the
-	 * first **with the node ids preserved**.
-	 *
-	 * The shared id is the whole point of a pair: the same id in both graphs
-	 * means the same element, so the difference between them can be read off
-	 * without annotating anything. You start with everything paired and break
-	 * pairs as you edit the second one — which is how a transformation gets
-	 * authored.
+	 * Insert an empty graph beside the focused one. `offset` is 0 for before and
+	 * 1 for after.
 	 */
-	function splitInTwo() {
+	function addGraph(offset = 1) {
 		collect();
 		const current = doc.group;
-		if (!current || current.graphs.length !== 1) return false;
-		current.graphs.push(JSON.parse(JSON.stringify(current.graphs[0])));
+		if (!current) return false;
+		current.graphs.splice(focused() + offset, 0, { nodes: [], edges: [] });
 		show(doc.cursor);
 		return true;
 	}
 
-	/** Drop back to a single graph, discarding the others in this group. */
-	function mergeToOne() {
+	/**
+	 * Insert a copy of the focused graph after it, **with the node ids
+	 * preserved**.
+	 *
+	 * The shared id is the whole point of a pair: the same id in both graphs
+	 * means the same element, so the difference between them can be read off
+	 * without annotating anything. You start with everything paired and break
+	 * pairs as you edit the copy — which is how a transformation gets authored,
+	 * and it is why this is a separate command from adding an empty graph
+	 * rather than a variant of it.
+	 */
+	function duplicateGraph() {
 		collect();
 		const current = doc.group;
-		if (!current || current.graphs.length < 2) return false;
-		current.graphs = [current.graphs[0]];
+		if (!current) return false;
+		const i = focused();
+		current.graphs.splice(i + 1, 0, JSON.parse(JSON.stringify(current.graphs[i])));
 		show(doc.cursor);
+		return true;
+	}
+
+	/**
+	 * Remove the focused graph. **The last graph of a group takes the group with
+	 * it**, because a group with no graphs is not a thing a file can hold, and
+	 * leaving an empty one behind would mean paging through blanks.
+	 *
+	 * The whole document cannot be emptied this way: the last graph of the last
+	 * group is refused, and there is `New` for that, which asks first.
+	 */
+	function removeGraph() {
+		collect();
+		const current = doc.group;
+		if (!current) return false;
+		if (current.graphs.length > 1) {
+			current.graphs.splice(focused(), 1);
+			show(doc.cursor);
+			return true;
+		}
+		if (doc.groups.length === 1) return false;
+		doc.groups.splice(doc.cursor, 1);
+		show(Math.min(doc.cursor, doc.groups.length - 1));
 		return true;
 	}
 
@@ -357,7 +406,8 @@
 
 	window.doc = Object.assign(doc, {
 		parse, load, show, collect, serialize, isFlat, isCollection, setMeta,
-		splitInTwo, mergeToOne, addGroup, goTo, goToGroup, reset,
+		focused, addGraph, duplicateGraph, removeGraph,
+		addGroup, goTo, goToGroup, reset,
 	});
 
 	// One group holding whatever the page started with, so `doc` is never empty.

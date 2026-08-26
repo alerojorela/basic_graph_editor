@@ -1266,7 +1266,7 @@ class GraphEditor {
 // `new GraphEditor(...)` by hand for panel B. It works, which is the evidence
 // that the class was multi-instance all along; what was missing was the editor
 // admitting it.
-const MAX_PANELS = 2;
+const MAX_PANELS = 3;
 
 // Which canvases actually exist. The constant sets the ceiling; the page
 // decides what is really there.

@@ -137,13 +137,21 @@ its panel. `MAX_PANELS` in `js/base.js` is the ceiling — how many panels this
 page *could* show — and the group says how many it wants. Whatever does not fit
 is still written back on save, and the bar says so.
 
-The **Document** menu holds the shape commands:
+The **Document** menu holds the shape commands. Everything in the first group
+acts **on the focused panel**, which is the rule the rest of the editor already
+follows:
 
 | | |
 |---|---|
-| Split into two | Copy the current graph into a second panel, **keeping the node ids**. The same id in both graphs means the same element, so you start with everything paired and break pairs as you edit. |
-| Merge to one | Drop back to a single graph, discarding the others in this group. |
+| Add graph before · after | Insert an empty graph beside the focused one. |
+| Duplicate graph | Insert a copy of it, **keeping the node ids**. The same id in two graphs means the same element, so you start with everything paired and break pairs as you edit — which is how a transformation gets authored, and why this is its own command and not a variant of adding. |
+| Remove graph | Take it out; the last graph of a group takes the group with it. Always asks, empty or not: with three panels open, which one has the focus is not obvious enough to act on silently. |
 | Add group · Previous · Next | Move through the collection. |
+
+A group may end up holding more graphs than there are panels. That is allowed
+rather than refused — the editor has to be able to author the files it can read —
+and the group bar says how many are on screen and that the rest are written back
+untouched.
 
 ### Samples
 

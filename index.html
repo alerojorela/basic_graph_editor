@@ -69,14 +69,6 @@
         <button class="menu-option" data-layout="cola">Cola free</button>
         <button class="menu-option" data-layout="cola-down">Cola ↓</button>
         <button class="menu-option" data-layout="cola-right">Cola →</button>
-        <!--
-        <div class="menu-separator"></div>
-        <div class="menu-group-label">Dagre</div>
-        <button class="menu-option" data-layout="dagre-vertical">Dagre ↓</button>
-        <button class="menu-option" data-layout="dagre-horizontal">Dagre →</button>
-        <button class="menu-option" data-layout="dagre-compact">Dagre compact</button>
-        <button class="menu-option" data-layout="dagre-wide">Dagre wide</button>
-        <button class="menu-option" data-layout="dagre-inverted">Dagre ↑</button>
         <div class="menu-separator"></div>
         <div class="menu-group-label">Graphviz</div>
         <button class="menu-option" data-layout="gv-dot">Graphviz dot</button>
@@ -85,6 +77,17 @@
         <button class="menu-option" data-layout="gv-sfdp">Graphviz sfdp</button>
         <button class="menu-option" data-layout="gv-twopi">Graphviz twopi</button>
         <button class="menu-option" data-layout="gv-circo">Graphviz circo</button>
+        <!-- Dagre stays commented out: its <script> is too, so these buttons
+             would have nothing to lay out with. The code in js/layout.js
+             remains, so uncommenting both brings it back. -->
+        <!--
+        <div class="menu-separator"></div>
+        <div class="menu-group-label">Dagre</div>
+        <button class="menu-option" data-layout="dagre-vertical">Dagre ↓</button>
+        <button class="menu-option" data-layout="dagre-horizontal">Dagre →</button>
+        <button class="menu-option" data-layout="dagre-compact">Dagre compact</button>
+        <button class="menu-option" data-layout="dagre-wide">Dagre wide</button>
+        <button class="menu-option" data-layout="dagre-inverted">Dagre ↑</button>
         -->
       </div>
     </div>
@@ -211,10 +214,22 @@
   <script src="js/search.js"></script>
   <!-- custom modules -->
   <script src="custom/ollama.js"></script>
+  <!-- Layout engines, loaded from unpkg. Versions are pinned and checked with
+       Subresource Integrity: an unpinned URL resolves to whatever npm calls
+       "latest" today, so the licences documented in the README would be a
+       coincidence rather than a fact. Hashes are the ones unpkg publishes at
+       /<pkg>/?meta. Without these the editor still runs; only Layout goes
+       quiet. Offline copies live in OFFLINE/vendor (not in the repository). -->
   <!-- <script src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script> -->
-  <script src="https://unpkg.com/elkjs/lib/elk.bundled.js"></script>
-  <script src="https://unpkg.com/webcola/WebCola/cola.js"></script>
-  <script src="https://unpkg.com/@viz-js/viz@3.24.0/dist/viz-global.js"></script>
+  <script src="https://unpkg.com/elkjs@0.12.0/lib/elk.bundled.js"
+          integrity="sha256-EiLkT5U853Rq8jgB5yNwj45vQ2uLN3pqX8dVLzSjB7M="
+          crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/webcola@3.4.0/WebCola/cola.js"
+          integrity="sha256-YPVX2G/DBouF6A9291I4vfZi4K+YpyiLA1FyuZrHfMk="
+          crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@viz-js/viz@3.29.0/dist/viz-global.js"
+          integrity="sha256-2UQFxDHCP2dOdA8EJRQjHlWdYP/8k9xVeyL6/Clfu8A="
+          crossorigin="anonymous"></script>
 
 
   <script>

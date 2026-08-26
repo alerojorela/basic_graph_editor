@@ -223,24 +223,39 @@ constituency one.
 
 ## Third-party code
 
-Nothing is bundled: the layout engines are loaded from unpkg at runtime, and the
-editor works without them — only the **Layout** menu goes quiet. Licences below
-are the `license` field each package publishes on npm, checked 2026-08-26.
+Nothing is bundled. The layout engines are loaded from unpkg at runtime, and the
+editor works without them: only the **Layout** menu goes quiet. Versions are
+pinned in the URL and checked with Subresource Integrity, because an unpinned
+unpkg URL resolves to whatever npm calls `latest` that minute, which would make
+the table below true only by coincidence.
 
 | | | |
 |---|---|---|
 | [elkjs](https://github.com/kieler/elkjs) 0.12.0 | ELK layouts (`elk-*`) | **EPL-2.0 OR GPL-3.0-or-later** |
 | [WebCola](https://github.com/tgdwyer/WebCola) 3.4.0 | Cola layouts (`cola*`) | MIT |
-| [@viz-js/viz](https://github.com/mdaines/viz-js) 3.24.0 | Graphviz layouts (`gv-*`) | MIT — it embeds Graphviz itself, which is **EPL-1.0** |
-| [dagre](https://github.com/dagrejs/dagre) 0.8.5 | Dagre layouts (`dagre-*`) | MIT — the `<script>` is commented out in `index.html`; the code in `js/layout.js` stays |
+| [@viz-js/viz](https://github.com/mdaines/viz-js) 3.29.0 | Graphviz layouts (`gv-*`) | MIT, and see below |
+| [dagre](https://github.com/dagrejs/dagre) 0.7.4 | Dagre layouts (`dagre-*`) | MIT — the `<script>` is commented out in `index.html`; the code in `js/layout.js` stays |
 
-**elkjs is the one to look at before redistributing**, because EPL is a weak
-copyleft and the alternative on that dual licence is the GPL: linking to it from
-a page is fine, and shipping a modified elkjs is not the same thing. The others
-are permissive.
+Licences are the `license` field each package publishes on npm, and the licence
+files the packages ship, both read on 2026-08-26.
 
-`img/pinned-octocat.svg` is GitHub's Octocat, used as the link to the repository.
-GitHub's marks are theirs and their [logo
+Two of them repay a second look:
+
+- **elkjs** is the one to check before redistributing, because EPL is a weak
+  copyleft and the other half of that dual licence is the GPL. Linking to it
+  from a page distributes nothing; shipping a copy, modified or not, is a
+  different act with real obligations. Note that the package ships the EPL-2.0
+  text alone: the GPL alternative comes from the secondary-licence mechanism of
+  EPL-2.0 itself (its Exhibit A), declared in `package.json`, so there is no GPL
+  file to look for.
+- **@viz-js/viz** is an MIT wrapper around a WebAssembly build, and what is
+  inside it matters more than the wrapper. Its `lib/provenance.json` — a build
+  attestation, not a claim — names the ingredients: **Graphviz 15.1.1**, which
+  is **EPL-2.0** at that tag (14.x and earlier were EPL-1.0, so the version
+  decides the licence here), and **expat 2.8.1**, which is MIT.
+
+`img/pinned-octocat.svg` is GitHub's Octocat, used as the link to the
+repository. GitHub's marks are theirs and their [logo
 policy](https://github.com/logos) governs reuse; swap the file if that is a
 problem for your fork.
 
@@ -258,3 +273,9 @@ docker run -d --name ollama_API --restart always \
   -v ~/.IAmodels:/root/.ollama -p 11434:11434 --gpus all \
   -e OLLAMA_ORIGINS='*' ollama/ollama
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE). Copyright (c) 2026 Alejandro Rojo Gualix.
+Keep the notice and you may do as you like with it. The third-party layout
+engines are not covered by it; see [Third-party code](#third-party-code).

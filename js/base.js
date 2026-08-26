@@ -152,6 +152,18 @@ class GraphEditor {
 	 * never what anyone wants here; that is what the last guard is for.
 	 */
 	resizeCanvas() {
+		// **A panel that is off gets no buffer.** Its box measures zero, and the
+		// fallback below — meant for a canvas with no sized parent, which is how
+		// this editor started — then handed it a full window: three panels
+		// showing one graph were holding 14.6 MB of pixels, 9.7 of them for two
+		// canvases nobody could see. It costs 1×1 to keep the element valid, and
+		// the next `show()` measures it properly when it comes back.
+		if (this.canvas.offsetParent === null
+		    && getComputedStyle(this.canvas).display === 'none') {
+			this.canvas.width = this.canvas.height = 1;
+			return;
+		}
+
 		let width, height;
 		if (this.container) {
 			width  = this.container.clientWidth;

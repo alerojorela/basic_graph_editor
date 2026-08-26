@@ -256,6 +256,22 @@ body.has-groups #panels { bottom: 32px; }
    depends on. */
 #groupNote.warn { opacity: 1; color: var(--type3-color); }
 
+/* The graph's own name, when the file gives it one. Top right, because the
+   search box anchors to the top left of the same panel. */
+.panelTitle {
+  position: fixed;
+  z-index: 40;
+  padding: 2px 8px;
+  background: var(--ui-bg);
+  border: 1px solid var(--ui-border);
+  border-radius: 3px;
+  color: var(--ui-text);
+  font-size: 0.8em;
+  opacity: 0.75;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 /* Which panel has the focus. Inset so it does not shift the layout. */
 #panels canvas.is-active {
   outline: 2px solid var(--type1-color);

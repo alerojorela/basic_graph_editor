@@ -7,61 +7,60 @@
 // the rest — and if the editor is the document, "the rest" lives nowhere and
 // disappears the first time you save.
 //
-// So there is now a layer above the editors:
+// ── The shape ───────────────────────────────────────────────────────────────
 //
-//     document = [ group, group, … ]          what the file holds
-//     group    = { …metadata, graphs: [ … ] }
-//     panels   = the graphs of the current group, up to MAX_PANELS
+//     document = { …metadata, graphs: content }
 //
-// The editors become **views** onto `doc.groups[doc.cursor].graphs[i]`.
+//     content  = graph                          one graph
+//              | [ element, element, … ]        a collection
 //
-// ── The two accepted shapes ─────────────────────────────────────────────────
+//     element  = graph                          one graph, one panel
+//              | { …metadata, graphs: [ … ] }   several, side by side
 //
-//     { nodes, edges }                  one graph. The format this editor has
-//                                       always written, and every old file.
-//     [ { …, graphs: [ … ] }, … ]       a collection of groups. The format the
-//                                       transformation fork already writes.
+//     graph    = { …metadata, nodes: [ … ], edges: [ … ] }
 //
-// **And nothing else, on purpose.** A bare `[ {nodes,edges}, {nodes,edges} ]`
-// is refused rather than guessed at, because it cannot be read without
-// guessing: two graphs meant to be compared, or two unrelated graphs that
-// happen to share a file? Choosing wrong in silence either pairs things that do
-// not belong together or splits a pair into two documents. Nobody has written
-// that file yet, so refusing costs nothing today and saves an ambiguity
-// forever.
+// **Every level is an object with its own metadata and the list below it**, and
+// each is known by its own keys — `nodes` for a graph, `graphs` for anything
+// that holds graphs — never by how many brackets it sits under. A file edited by
+// hand cannot be misread, and no level is a bare array, so any of them can gain
+// a field later without breaking what is already written.
 //
-// Note what does the telling: **each shape is known by its own keys**, `nodes`
-// for a graph and `graphs` for a group, not by how many brackets it sits under.
-// A format that explains itself by its content cannot be misread by someone
-// editing it in a text editor.
+// Two levels of container and no more, on purpose: the interface has exactly two
+// dimensions, panels side by side and groups you page through. A third level
+// would have nowhere to be shown, and depth you cannot display is depth you lose
+// on save. An element inside an element is refused, and said so.
 //
-// ── What is written back ────────────────────────────────────────────────────
+// ── What is read, and what is written ───────────────────────────────────────
 //
-// The shape you have is the shape that is written. One group holding one graph
-// with no metadata goes out as `{nodes, edges}`; anything richer goes out as
-// the array. So opening an old file, moving a node and saving gives back an old
-// file — **nobody finds their file converted for having touched it.**
+// Read: this shape, plus two older ones that must keep opening — a bare
+// `{nodes, edges}`, which is every file this editor wrote before today, and a
+// bare `[ {…, graphs:[…]}, … ]`, which is what the transformation fork writes.
+//
+// Written: **this shape and nothing else**, in the shortest form that loses
+// nothing. The output is a function of the content and not of what you happened
+// to open, so the same document always gives the same text. An old file opened
+// and saved comes back converted, which is the price of having one format
+// instead of three.
 //
 // And whatever this editor does not show, it still writes: a group's
-// `description`, `commentary` and timestamps, the per-graph `validated` flag,
-// and any graph beyond the last panel. The rule throughout is that **you never
-// lose data you could not display**.
+// description and timestamps, a graph's `validated` flag, the document's own
+// metadata, and any graph past the last panel. **The rule is that you never lose
+// data you could not display**, so metadata is kept by exclusion — everything
+// that is not `graphs`, `nodes` or `edges` — and not by a list of the six names
+// somebody thought of.
 
 (function () {
 	'use strict';
 
-	/** Fields this editor does not show but must hand back untouched. */
-	const KEPT = ['id', 'name', 'description', 'commentary', 'createdAt', 'updatedAt'];
-
 	const doc = {
 		/** @type {Array<{graphs: Array<object>}>} */
 		groups: [],
+		/** The document's own metadata: everything in the file besides `graphs`. */
+		meta: {},
 		/** Which group the panels are showing. */
 		cursor: 0,
 		/** Name of the file this came from, reused when saving. */
 		filename: 'graph.json',
-		/** True when the file we read was a bare `{nodes, edges}`. */
-		wasFlat: true,
 		/**
 		 * How many panels the current group is actually using.
 		 *
@@ -78,33 +77,81 @@
 	};
 
 
+	// ── Telling the three things apart ────────────────────────────────────────
+
+	const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+	const isGraph  = value => isObject(value) && Array.isArray(value.nodes);
+	const isHolder = value => isObject(value) && value.graphs !== undefined;
+
+	/** Everything that is not the list this level holds. */
+	function meta(object, ...own) {
+		const out = {};
+		for (const [key, value] of Object.entries(object)) {
+			if (!own.includes(key)) out[key] = value;
+		}
+		return out;
+	}
+
+	function hasMeta(object, ...own) { return Object.keys(meta(object, ...own)).length > 0; }
+
+
 	// ── Reading ───────────────────────────────────────────────────────────────
+
+	/** One element of a collection, normalised into a group. */
+	function group(element, index) {
+		const where = `Entry ${index + 1} of this file`;
+
+		if (isGraph(element) && isHolder(element)) {
+			throw new Error(`${where} has both "nodes" and "graphs", so there is no telling ` +
+			                `whether it is one graph or several.`);
+		}
+		if (isGraph(element)) return { graphs: [element] };
+
+		if (isHolder(element)) {
+			const graphs = element.graphs;
+			if (!Array.isArray(graphs)) {
+				throw new Error(`${where} has a "graphs" that is not a list.`);
+			}
+			const stray = graphs.findIndex(g => !isGraph(g));
+			if (stray !== -1) {
+				throw new Error(isHolder(graphs[stray])
+					? `${where} holds another group inside it. Graphs go two levels deep at ` +
+					  `most — a collection of groups, and a group of graphs — because there ` +
+					  `is nowhere to show a third.`
+					: `${where}, graph ${stray + 1} has no "nodes".`);
+			}
+			return element;
+		}
+
+		throw new Error(Array.isArray(element)
+			? `${where} is a bare list. A group of graphs is written ` +
+			  `{"graphs": [ … ]}, with room for its name.`
+			: `${where} is neither a graph nor a group: it has no "nodes" and no "graphs".`);
+	}
 
 	/**
 	 * Turn parsed JSON into groups. Throws, with a readable reason, on anything
-	 * that is neither of the two shapes.
+	 * that is none of the shapes.
 	 */
 	function parse(data) {
-		if (data && typeof data === 'object' && !Array.isArray(data) && data.nodes) {
-			doc.wasFlat = true;
+		// Every file this editor wrote before the document layer existed.
+		if (isGraph(data) && !isHolder(data)) {
+			doc.meta = {};
 			return [{ graphs: [data] }];
 		}
+		// What the transformation fork writes: the collection without its wrapper.
 		if (Array.isArray(data)) {
-			const stray = data.findIndex(item => !item || !Array.isArray(item.graphs));
-			if (stray !== -1) {
-				const item = data[stray];
-				throw new Error(
-					item && item.nodes
-						? `Entry ${stray + 1} of this file is a bare graph, not a group. ` +
-						  `An array of graphs is ambiguous — are they two versions of one ` +
-						  `thing, or two unrelated graphs? Wrap each one as ` +
-						  `{"graphs": [ … ]} to say which.`
-						: `Entry ${stray + 1} of this file has no "graphs" key, so it is not a group.`);
-			}
-			doc.wasFlat = false;
-			return data;
+			doc.meta = {};
+			return data.map(group);
 		}
-		throw new Error('Unrecognised file: expected {nodes, edges} or an array of groups.');
+		if (isHolder(data)) {
+			doc.meta = meta(data, 'graphs');
+			const content = data.graphs;
+			if (isGraph(content)) return [{ graphs: [content] }];
+			if (Array.isArray(content)) return content.map(group);
+			throw new Error('This file\'s "graphs" is neither a graph nor a list of them.');
+		}
+		throw new Error('Unrecognised file: expected {graphs: …}.');
 	}
 
 	/** Load parsed JSON into the document and show its first group. */
@@ -128,16 +175,11 @@
 	 */
 	function show(index) {
 		const editors = window.editors ?? [window.graph];
-		const group   = doc.groups[index];
-		if (!group) return;
+		const shown   = doc.groups[index];
+		if (!shown) return;
 		doc.cursor = index;
 
-		const graphs = group.graphs;
-		if (graphs.length > editors.length) {
-			console.warn(
-				`This group holds ${graphs.length} graphs and there are ${editors.length} ` +
-				`panel(s). The rest are not shown, and are written back untouched on save.`);
-		}
+		const graphs = shown.graphs;
 		// **How many panels there are is the document's business.** MAX_PANELS
 		// is a ceiling — how many this page could hold — and the group says how
 		// many it wants. Open a file with one graph and you get one panel, even
@@ -172,54 +214,64 @@
 	 */
 	function collect() {
 		const editors = window.editors ?? [window.graph];
-		const group   = doc.group;
-		if (!group) return;
-		const n = Math.min(group.graphs.length, editors.length);
+		const current = doc.group;
+		if (!current) return;
+		const n = Math.min(current.graphs.length, editors.length);
 		for (let i = 0; i < n; i++) {
-			// Per-graph fields this editor does not show survive the round trip.
-			const kept = group.graphs[i].validated;
-			group.graphs[i] = editors[i].toJSON();
-			if (kept != null) group.graphs[i].validated = kept;
+			// A graph's own fields — its name, the fork's `validated` — survive
+			// the round trip, and by exclusion, so a field nobody here has heard
+			// of survives too.
+			current.graphs[i] = {
+				...meta(current.graphs[i], 'nodes', 'edges'),
+				...editors[i].toJSON(),
+			};
 		}
 	}
 
 
 	// ── Writing ───────────────────────────────────────────────────────────────
 
-	/** True when the document is one group, one graph, and carries no metadata. */
+	/** True when the whole document is one graph carrying nothing else. */
 	function isFlat() {
-		if (doc.groups.length !== 1) return false;
-		const group = doc.groups[0];
-		if (!group || group.graphs.length !== 1) return false;
-		return !KEPT.some(k => group[k] != null) && group.graphs[0].validated == null;
+		if (doc.groups.length !== 1 || hasMeta(doc.meta)) return false;
+		const only = doc.groups[0];
+		return only.graphs.length === 1 && !hasMeta(only, 'graphs');
 	}
 
 	/**
 	 * Whether this document is more than a lone graph, and so whether the group
 	 * bar has anything to say.
 	 *
-	 * **The data decides the interface.** Open a file this editor has always
-	 * written and the page is the page it always was; open a collection and the
-	 * controls for moving through it appear, because now there is somewhere to
-	 * move to. Nobody chooses a mode: the file already said which one it is.
+	 * **The data decides the interface.** Open a file with one graph in it and
+	 * the page is the page it always was; open a collection and the controls for
+	 * moving through it appear, because now there is somewhere to move to.
+	 * Nobody chooses a mode: the file already said which one it is.
 	 */
-	function isCollection() { return doc.groups.length > 1 || !isFlat(); }
+	function isCollection() { return !isFlat(); }
+
+	/**
+	 * The document as it should be written: **the shortest form that loses
+	 * nothing**, which is a function of the content and not of what was opened.
+	 * Two files with the same content give the same text.
+	 */
+	function serialize() {
+		collect();
+		const elements = doc.groups.map(g =>
+			(g.graphs.length === 1 && !hasMeta(g, 'graphs')) ? g.graphs[0] : g);
+		const content = (elements.length === 1 && isGraph(elements[0]))
+			? elements[0] : elements;
+		return { ...doc.meta, graphs: content };
+	}
 
 	/**
 	 * Set a metadata field on the current group — `name`, `description`,
-	 * `commentary`. Writing one is what turns a lone graph into a document
-	 * worth keeping as a collection, so `isCollection()` follows.
+	 * `commentary`. Writing one is what turns a lone graph into a document worth
+	 * keeping as a collection, so `isCollection()` follows.
 	 */
 	function setMeta(field, value) {
-		const group = doc.group;
-		if (!group) return;
-		if (value) group[field] = value; else delete group[field];
-	}
-
-	/** The document as it should be written: the shape you have. */
-	function serialize() {
-		collect();
-		return isFlat() ? doc.groups[0].graphs[0] : doc.groups;
+		const current = doc.group;
+		if (!current) return;
+		if (value) current[field] = value; else delete current[field];
 	}
 
 
@@ -237,9 +289,9 @@
 	 */
 	function splitInTwo() {
 		collect();
-		const group = doc.group;
-		if (!group || group.graphs.length !== 1) return false;
-		group.graphs.push(JSON.parse(JSON.stringify(group.graphs[0])));
+		const current = doc.group;
+		if (!current || current.graphs.length !== 1) return false;
+		current.graphs.push(JSON.parse(JSON.stringify(current.graphs[0])));
 		show(doc.cursor);
 		return true;
 	}
@@ -247,9 +299,9 @@
 	/** Drop back to a single graph, discarding the others in this group. */
 	function mergeToOne() {
 		collect();
-		const group = doc.group;
-		if (!group || group.graphs.length < 2) return false;
-		group.graphs = [group.graphs[0]];
+		const current = doc.group;
+		if (!current || current.graphs.length < 2) return false;
+		current.graphs = [current.graphs[0]];
 		show(doc.cursor);
 		return true;
 	}
@@ -276,11 +328,11 @@
 
 	function goToGroup(delta) { return goTo(doc.cursor + delta); }
 
-	/** Start over: one group, one empty graph, flat on save. */
+	/** Start over: one group, one empty graph, and no metadata anywhere. */
 	function reset() {
 		doc.groups   = [{ graphs: [{ nodes: [], edges: [] }] }];
+		doc.meta     = {};
 		doc.cursor   = 0;
-		doc.wasFlat  = true;
 		doc.filename = 'graph.json';
 		show(0);
 	}

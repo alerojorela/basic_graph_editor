@@ -1374,7 +1374,11 @@ function loadDocument(e) {
 			window.doc.load(JSON.parse(reader.result), file.name);
 		} catch (err) {
 			// Said out loud rather than guessed at: see the header of document.js.
-			alert(`Could not open ${file.name}:\n\n${err.message}`);
+			// And with the one thing the reader cannot work out from here: a file
+			// this version does not understand may simply be newer than it.
+			alert(`Could not open ${file.name}\n\n${err.message}\n\n`
+			    + `If this file was written by a newer version of the editor, `
+			    + `download the latest one.`);
 		}
 	};
 	reader.readAsText(file);

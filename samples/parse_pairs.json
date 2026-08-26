@@ -1,2100 +1,2108 @@
-[
-  {
-    "id": 1,
-    "name": "La casa grande tiene ventanas azules.",
-    "description": "spaCy dependencies · Stanza constituents (AnCora)",
-    "graphs": [
-      {
-        "nodes": [
-          {
-            "id": "t0",
-            "x": 0,
-            "y": 200,
-            "label": "La",
-            "type": 0,
-            "text": "La",
-            "lemma": "el",
-            "pos": "DET",
-            "props": {
-              "dep": "det",
-              "Definite": "Def",
-              "Gender": "Fem",
-              "Number": "Sing",
-              "PronType": "Art"
-            }
-          },
-          {
-            "id": "t1",
-            "x": 150,
-            "y": 100,
-            "label": "casa",
-            "type": 0,
-            "text": "casa",
-            "lemma": "casa",
-            "pos": "NOUN",
-            "props": {
-              "dep": "nsubj",
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
-          },
-          {
-            "id": "t2",
-            "x": 300,
-            "y": 200,
-            "label": "grande",
-            "type": 0,
-            "text": "grande",
-            "lemma": "grande",
-            "pos": "ADJ",
-            "props": {
-              "dep": "amod",
-              "Number": "Sing"
-            }
-          },
-          {
-            "id": "t3",
-            "x": 450,
-            "y": 0,
-            "label": "tiene",
-            "type": 0,
-            "text": "tiene",
-            "lemma": "tener",
-            "pos": "VERB",
-            "props": {
-              "dep": "ROOT",
-              "Mood": "Ind",
-              "Number": "Sing",
-              "Person": "3",
-              "Tense": "Pres",
-              "VerbForm": "Fin"
-            }
-          },
-          {
-            "id": "t4",
-            "x": 600,
-            "y": 100,
-            "label": "ventanas",
-            "type": 0,
-            "text": "ventanas",
-            "lemma": "ventana",
-            "pos": "NOUN",
-            "props": {
-              "dep": "obj",
-              "Gender": "Fem",
-              "Number": "Plur"
-            }
-          },
-          {
-            "id": "t5",
-            "x": 750,
-            "y": 200,
-            "label": "azules",
-            "type": 0,
-            "text": "azules",
-            "lemma": "azul",
-            "pos": "ADJ",
-            "props": {
-              "dep": "amod",
-              "Number": "Plur"
-            }
-          },
-          {
-            "id": "t6",
-            "x": 900,
-            "y": 100,
-            "label": ".",
-            "type": 0,
-            "text": ".",
-            "lemma": ".",
-            "pos": "PUNCT",
-            "props": {
-              "dep": "punct",
-              "PunctType": "Peri"
-            }
-          }
-        ],
-        "edges": [
-          {
-            "from": "t1",
-            "to": "t0",
-            "label": "det",
-            "type": 0
-          },
-          {
-            "from": "t3",
-            "to": "t1",
-            "label": "nsubj",
-            "type": 0
-          },
-          {
-            "from": "t1",
-            "to": "t2",
-            "label": "amod",
-            "type": 0
-          },
-          {
-            "from": "t3",
-            "to": "t4",
-            "label": "obj",
-            "type": 0
-          },
-          {
-            "from": "t4",
-            "to": "t5",
-            "label": "amod",
-            "type": 0
-          },
-          {
-            "from": "t3",
-            "to": "t6",
-            "label": "punct",
-            "type": 0
-          }
-        ]
-      },
-      {
-        "nodes": [
-          {
-            "id": "c0",
-            "x": 534.4,
-            "y": 0,
-            "label": "ROOT",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c1",
-            "x": 534.4,
-            "y": 100,
-            "label": "sentence",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c2",
-            "x": 112.5,
-            "y": 200,
-            "label": "sn",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c3",
-            "x": 0,
-            "y": 300,
-            "label": "spec",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t0",
-            "x": 0,
-            "y": 400,
-            "label": "La",
-            "type": 0,
-            "text": "La",
-            "pos": "DET",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c4",
-            "x": 225,
-            "y": 300,
-            "label": "grup.nom",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t1",
-            "x": 150,
-            "y": 400,
-            "label": "casa",
-            "type": 0,
-            "text": "casa",
-            "pos": "NOUN",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c5",
-            "x": 300,
-            "y": 400,
-            "label": "s.a",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c6",
-            "x": 300,
-            "y": 500,
-            "label": "grup.a",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t2",
-            "x": 300,
-            "y": 600,
-            "label": "grande",
-            "type": 0,
-            "text": "grande",
-            "pos": "ADJ",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c7",
-            "x": 450,
-            "y": 200,
-            "label": "grup.verb",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t3",
-            "x": 450,
-            "y": 300,
-            "label": "tiene",
-            "type": 0,
-            "text": "tiene",
-            "pos": "VERB",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c8",
-            "x": 675,
-            "y": 200,
-            "label": "sn",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c9",
-            "x": 675,
-            "y": 300,
-            "label": "grup.nom",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t4",
-            "x": 600,
-            "y": 400,
-            "label": "ventanas",
-            "type": 0,
-            "text": "ventanas",
-            "pos": "NOUN",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c10",
-            "x": 750,
-            "y": 400,
-            "label": "s.a",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c11",
-            "x": 750,
-            "y": 500,
-            "label": "grup.a",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t5",
-            "x": 750,
-            "y": 600,
-            "label": "azules",
-            "type": 0,
-            "text": "azules",
-            "pos": "ADJ",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "t6",
-            "x": 900,
-            "y": 200,
-            "label": ".",
-            "type": 0,
-            "text": ".",
-            "pos": "PUNCT",
-            "props": {
-              "clase": "cat"
-            }
-          }
-        ],
-        "edges": [
-          {
-            "from": "c3",
-            "to": "t0",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c2",
-            "to": "c3",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c4",
-            "to": "t1",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c6",
-            "to": "t2",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c5",
-            "to": "c6",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c4",
-            "to": "c5",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c2",
-            "to": "c4",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c2",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c7",
-            "to": "t3",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c7",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c9",
-            "to": "t4",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c11",
-            "to": "t5",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c10",
-            "to": "c11",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c9",
-            "to": "c10",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c8",
-            "to": "c9",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c8",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "t6",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c0",
-            "to": "c1",
-            "label": "",
-            "type": 0
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Los niños que juegan en el parque están cansados.",
-    "description": "spaCy dependencies · Stanza constituents (AnCora)",
-    "graphs": [
-      {
-        "nodes": [
-          {
-            "id": "t0",
-            "x": 0,
-            "y": 200,
-            "label": "Los",
-            "type": 0,
-            "text": "Los",
-            "lemma": "el",
-            "pos": "DET",
-            "props": {
-              "dep": "det",
-              "Definite": "Def",
-              "Gender": "Masc",
-              "Number": "Plur",
-              "PronType": "Art"
-            }
-          },
-          {
-            "id": "t1",
-            "x": 150,
-            "y": 100,
-            "label": "niños",
-            "type": 0,
-            "text": "niños",
-            "lemma": "niño",
-            "pos": "NOUN",
-            "props": {
-              "dep": "nsubj",
-              "Gender": "Masc",
-              "Number": "Plur"
-            }
-          },
-          {
-            "id": "t2",
-            "x": 300,
-            "y": 300,
-            "label": "que",
-            "type": 0,
-            "text": "que",
-            "lemma": "que",
-            "pos": "PRON",
-            "props": {
-              "dep": "nsubj",
-              "PronType": "Int,Rel"
-            }
-          },
-          {
-            "id": "t3",
-            "x": 450,
-            "y": 200,
-            "label": "juegan",
-            "type": 0,
-            "text": "juegan",
-            "lemma": "jugar",
-            "pos": "VERB",
-            "props": {
-              "dep": "acl",
-              "Mood": "Ind",
-              "Number": "Plur",
-              "Person": "3",
-              "Tense": "Pres",
-              "VerbForm": "Fin"
-            }
-          },
-          {
-            "id": "t4",
-            "x": 600,
-            "y": 400,
-            "label": "en",
-            "type": 0,
-            "text": "en",
-            "lemma": "en",
-            "pos": "ADP",
-            "props": {
-              "dep": "case"
-            }
-          },
-          {
-            "id": "t5",
-            "x": 750,
-            "y": 400,
-            "label": "el",
-            "type": 0,
-            "text": "el",
-            "lemma": "el",
-            "pos": "DET",
-            "props": {
-              "dep": "det",
-              "Definite": "Def",
-              "Gender": "Masc",
-              "Number": "Sing",
-              "PronType": "Art"
-            }
-          },
-          {
-            "id": "t6",
-            "x": 900,
-            "y": 300,
-            "label": "parque",
-            "type": 0,
-            "text": "parque",
-            "lemma": "parque",
-            "pos": "NOUN",
-            "props": {
-              "dep": "obl",
-              "Gender": "Masc",
-              "Number": "Sing"
-            }
-          },
-          {
-            "id": "t7",
-            "x": 1050,
-            "y": 100,
-            "label": "están",
-            "type": 0,
-            "text": "están",
-            "lemma": "estar",
-            "pos": "AUX",
-            "props": {
-              "dep": "cop",
-              "Mood": "Ind",
-              "Number": "Plur",
-              "Person": "3",
-              "Tense": "Pres",
-              "VerbForm": "Fin"
-            }
-          },
-          {
-            "id": "t8",
-            "x": 1200,
-            "y": 0,
-            "label": "cansados",
-            "type": 0,
-            "text": "cansados",
-            "lemma": "cansado",
-            "pos": "ADJ",
-            "props": {
-              "dep": "ROOT",
-              "Gender": "Masc",
-              "Number": "Plur",
-              "VerbForm": "Part"
-            }
-          },
-          {
-            "id": "t9",
-            "x": 1350,
-            "y": 100,
-            "label": ".",
-            "type": 0,
-            "text": ".",
-            "lemma": ".",
-            "pos": "PUNCT",
-            "props": {
-              "dep": "punct",
-              "PunctType": "Peri"
-            }
-          }
-        ],
-        "edges": [
-          {
-            "from": "t1",
-            "to": "t0",
-            "label": "det",
-            "type": 0
-          },
-          {
-            "from": "t8",
-            "to": "t1",
-            "label": "nsubj",
-            "type": 0
-          },
-          {
-            "from": "t3",
-            "to": "t2",
-            "label": "nsubj",
-            "type": 0
-          },
-          {
-            "from": "t1",
-            "to": "t3",
-            "label": "acl",
-            "type": 0
-          },
-          {
-            "from": "t6",
-            "to": "t4",
-            "label": "case",
-            "type": 0
-          },
-          {
-            "from": "t6",
-            "to": "t5",
-            "label": "det",
-            "type": 0
-          },
-          {
-            "from": "t3",
-            "to": "t6",
-            "label": "obl",
-            "type": 0
-          },
-          {
-            "from": "t8",
-            "to": "t7",
-            "label": "cop",
-            "type": 0
-          },
-          {
-            "from": "t8",
-            "to": "t9",
-            "label": "punct",
-            "type": 0
-          }
-        ]
-      },
-      {
-        "nodes": [
-          {
-            "id": "c0",
-            "x": 939.9,
-            "y": 0,
-            "label": "ROOT",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c1",
-            "x": 939.9,
-            "y": 100,
-            "label": "sentence",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c2",
-            "x": 159.4,
-            "y": 200,
-            "label": "sn",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c3",
-            "x": 0,
-            "y": 300,
-            "label": "spec",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t0",
-            "x": 0,
-            "y": 400,
-            "label": "Los",
-            "type": 0,
-            "text": "Los",
-            "pos": "DET",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c4",
-            "x": 318.8,
-            "y": 300,
-            "label": "grup.nom",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t1",
-            "x": 150,
-            "y": 400,
-            "label": "niños",
-            "type": 0,
-            "text": "niños",
-            "pos": "NOUN",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c5",
-            "x": 487.5,
-            "y": 400,
-            "label": "S",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c6",
-            "x": 300,
-            "y": 500,
-            "label": "relatiu",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "t2",
-            "x": 300,
-            "y": 600,
-            "label": "que",
-            "type": 0,
-            "text": "que",
-            "pos": "PRON",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c7",
-            "x": 450,
-            "y": 500,
-            "label": "grup.verb",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t3",
-            "x": 450,
-            "y": 600,
-            "label": "juegan",
-            "type": 0,
-            "text": "juegan",
-            "pos": "VERB",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c8",
-            "x": 712.5,
-            "y": 500,
-            "label": "sp",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c9",
-            "x": 600,
-            "y": 600,
-            "label": "prep",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t4",
-            "x": 600,
-            "y": 700,
-            "label": "en",
-            "type": 0,
-            "text": "en",
-            "pos": "ADP",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c10",
-            "x": 825,
-            "y": 600,
-            "label": "sn",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c11",
-            "x": 750,
-            "y": 700,
-            "label": "spec",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t5",
-            "x": 750,
-            "y": 800,
-            "label": "el",
-            "type": 0,
-            "text": "el",
-            "pos": "DET",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c12",
-            "x": 900,
-            "y": 700,
-            "label": "grup.nom",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t6",
-            "x": 900,
-            "y": 800,
-            "label": "parque",
-            "type": 0,
-            "text": "parque",
-            "pos": "NOUN",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c13",
-            "x": 1050,
-            "y": 200,
-            "label": "grup.verb",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t7",
-            "x": 1050,
-            "y": 300,
-            "label": "están",
-            "type": 0,
-            "text": "están",
-            "pos": "AUX",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c14",
-            "x": 1200,
-            "y": 200,
-            "label": "S",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c15",
-            "x": 1200,
-            "y": 300,
-            "label": "participi",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t8",
-            "x": 1200,
-            "y": 400,
-            "label": "cansados",
-            "type": 0,
-            "text": "cansados",
-            "pos": "ADJ",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "t9",
-            "x": 1350,
-            "y": 200,
-            "label": ".",
-            "type": 0,
-            "text": ".",
-            "pos": "PUNCT",
-            "props": {
-              "clase": "cat"
-            }
-          }
-        ],
-        "edges": [
-          {
-            "from": "c3",
-            "to": "t0",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c2",
-            "to": "c3",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c4",
-            "to": "t1",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c6",
-            "to": "t2",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c5",
-            "to": "c6",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c7",
-            "to": "t3",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c5",
-            "to": "c7",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c9",
-            "to": "t4",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c8",
-            "to": "c9",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c11",
-            "to": "t5",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c10",
-            "to": "c11",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c12",
-            "to": "t6",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c10",
-            "to": "c12",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c8",
-            "to": "c10",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c5",
-            "to": "c8",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c4",
-            "to": "c5",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c2",
-            "to": "c4",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c2",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c13",
-            "to": "t7",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c13",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c15",
-            "to": "t8",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c14",
-            "to": "c15",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c14",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "t9",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c0",
-            "to": "c1",
-            "label": "",
-            "type": 0
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "name": "Juan acaba de llegar a casa.",
-    "description": "spaCy dependencies · Stanza constituents (AnCora)",
-    "graphs": [
-      {
-        "nodes": [
-          {
-            "id": "t0",
-            "x": 0,
-            "y": 100,
-            "label": "Juan",
-            "type": 0,
-            "text": "Juan",
-            "lemma": "Juan",
-            "pos": "PROPN",
-            "props": {
-              "dep": "nsubj"
-            }
-          },
-          {
-            "id": "t1",
-            "x": 150,
-            "y": 0,
-            "label": "acaba",
-            "type": 0,
-            "text": "acaba",
-            "lemma": "acabar",
-            "pos": "VERB",
-            "props": {
-              "dep": "ROOT",
-              "Mood": "Ind",
-              "Number": "Sing",
-              "Person": "3",
-              "Tense": "Pres",
-              "VerbForm": "Fin"
-            }
-          },
-          {
-            "id": "t2",
-            "x": 300,
-            "y": 200,
-            "label": "de",
-            "type": 0,
-            "text": "de",
-            "lemma": "de",
-            "pos": "ADP",
-            "props": {
-              "dep": "mark"
-            }
-          },
-          {
-            "id": "t3",
-            "x": 450,
-            "y": 100,
-            "label": "llegar",
-            "type": 0,
-            "text": "llegar",
-            "lemma": "llegar",
-            "pos": "VERB",
-            "props": {
-              "dep": "xcomp",
-              "VerbForm": "Inf"
-            }
-          },
-          {
-            "id": "t4",
-            "x": 600,
-            "y": 200,
-            "label": "a",
-            "type": 0,
-            "text": "a",
-            "lemma": "a",
-            "pos": "ADP",
-            "props": {
-              "dep": "case"
-            }
-          },
-          {
-            "id": "t5",
-            "x": 750,
-            "y": 100,
-            "label": "casa",
-            "type": 0,
-            "text": "casa",
-            "lemma": "casa",
-            "pos": "NOUN",
-            "props": {
-              "dep": "obl",
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
-          },
-          {
-            "id": "t6",
-            "x": 900,
-            "y": 100,
-            "label": ".",
-            "type": 0,
-            "text": ".",
-            "lemma": ".",
-            "pos": "PUNCT",
-            "props": {
-              "dep": "punct",
-              "PunctType": "Peri"
-            }
-          }
-        ],
-        "edges": [
-          {
-            "from": "t1",
-            "to": "t0",
-            "label": "nsubj",
-            "type": 0
-          },
-          {
-            "from": "t3",
-            "to": "t2",
-            "label": "mark",
-            "type": 0
-          },
-          {
-            "from": "t1",
-            "to": "t3",
-            "label": "xcomp",
-            "type": 0
-          },
-          {
-            "from": "t5",
-            "to": "t4",
-            "label": "case",
-            "type": 0
-          },
-          {
-            "from": "t1",
-            "to": "t5",
-            "label": "obl",
-            "type": 0
-          },
-          {
-            "from": "t1",
-            "to": "t6",
-            "label": "punct",
-            "type": 0
-          }
-        ]
-      },
-      {
-        "nodes": [
-          {
-            "id": "c0",
-            "x": 468.8,
-            "y": 0,
-            "label": "ROOT",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c1",
-            "x": 468.8,
-            "y": 100,
-            "label": "sentence",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c2",
-            "x": 0,
-            "y": 200,
-            "label": "sn",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c3",
-            "x": 0,
-            "y": 300,
-            "label": "grup.nom",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t0",
-            "x": 0,
-            "y": 400,
-            "label": "Juan",
-            "type": 0,
-            "text": "Juan",
-            "pos": "PROPN",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c4",
-            "x": 300,
-            "y": 200,
-            "label": "grup.verb",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t1",
-            "x": 150,
-            "y": 300,
-            "label": "acaba",
-            "type": 0,
-            "text": "acaba",
-            "pos": "VERB",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "t2",
-            "x": 300,
-            "y": 300,
-            "label": "de",
-            "type": 2,
-            "text": "de",
-            "pos": "ADP",
-            "props": {
-              "clase": "marca"
-            }
-          },
-          {
-            "id": "c5",
-            "x": 450,
-            "y": 300,
-            "label": "infinitiu",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t3",
-            "x": 450,
-            "y": 400,
-            "label": "llegar",
-            "type": 0,
-            "text": "llegar",
-            "pos": "VERB",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c6",
-            "x": 675,
-            "y": 200,
-            "label": "sp",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c7",
-            "x": 600,
-            "y": 300,
-            "label": "prep",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t4",
-            "x": 600,
-            "y": 400,
-            "label": "a",
-            "type": 0,
-            "text": "a",
-            "pos": "ADP",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c8",
-            "x": 750,
-            "y": 300,
-            "label": "sn",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c9",
-            "x": 750,
-            "y": 400,
-            "label": "grup.nom",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t5",
-            "x": 750,
-            "y": 500,
-            "label": "casa",
-            "type": 0,
-            "text": "casa",
-            "pos": "NOUN",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "t6",
-            "x": 900,
-            "y": 200,
-            "label": ".",
-            "type": 0,
-            "text": ".",
-            "pos": "PUNCT",
-            "props": {
-              "clase": "cat"
-            }
-          }
-        ],
-        "edges": [
-          {
-            "from": "c3",
-            "to": "t0",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c2",
-            "to": "c3",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c2",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c4",
-            "to": "t1",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c4",
-            "to": "t2",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c5",
-            "to": "t3",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c4",
-            "to": "c5",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c4",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c7",
-            "to": "t4",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c6",
-            "to": "c7",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c9",
-            "to": "t5",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c8",
-            "to": "c9",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c6",
-            "to": "c8",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c6",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "t6",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c0",
-            "to": "c1",
-            "label": "",
-            "type": 0
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "name": "Vi a un hombre con un telescopio.",
-    "description": "spaCy dependencies · Stanza constituents (AnCora)",
-    "graphs": [
-      {
-        "nodes": [
-          {
-            "id": "t0",
-            "x": 0,
-            "y": 0,
-            "label": "Vi",
-            "type": 0,
-            "text": "Vi",
-            "lemma": "ver",
-            "pos": "VERB",
-            "props": {
-              "dep": "ROOT",
-              "Mood": "Ind",
-              "Number": "Sing",
-              "Person": "1",
-              "Tense": "Past",
-              "VerbForm": "Fin"
-            }
-          },
-          {
-            "id": "t1",
-            "x": 150,
-            "y": 200,
-            "label": "a",
-            "type": 0,
-            "text": "a",
-            "lemma": "a",
-            "pos": "ADP",
-            "props": {
-              "dep": "case"
-            }
-          },
-          {
-            "id": "t2",
-            "x": 300,
-            "y": 200,
-            "label": "un",
-            "type": 0,
-            "text": "un",
-            "lemma": "uno",
-            "pos": "DET",
-            "props": {
-              "dep": "det",
-              "Definite": "Ind",
-              "Gender": "Masc",
-              "Number": "Sing",
-              "PronType": "Art"
-            }
-          },
-          {
-            "id": "t3",
-            "x": 450,
-            "y": 100,
-            "label": "hombre",
-            "type": 0,
-            "text": "hombre",
-            "lemma": "hombre",
-            "pos": "NOUN",
-            "props": {
-              "dep": "obj",
-              "Gender": "Masc",
-              "Number": "Sing"
-            }
-          },
-          {
-            "id": "t4",
-            "x": 600,
-            "y": 200,
-            "label": "con",
-            "type": 0,
-            "text": "con",
-            "lemma": "con",
-            "pos": "ADP",
-            "props": {
-              "dep": "case"
-            }
-          },
-          {
-            "id": "t5",
-            "x": 750,
-            "y": 200,
-            "label": "un",
-            "type": 0,
-            "text": "un",
-            "lemma": "uno",
-            "pos": "DET",
-            "props": {
-              "dep": "det",
-              "Definite": "Ind",
-              "Gender": "Masc",
-              "Number": "Sing",
-              "PronType": "Art"
-            }
-          },
-          {
-            "id": "t6",
-            "x": 900,
-            "y": 100,
-            "label": "telescopio",
-            "type": 0,
-            "text": "telescopio",
-            "lemma": "telescopio",
-            "pos": "NOUN",
-            "props": {
-              "dep": "obl",
-              "Gender": "Masc",
-              "Number": "Sing"
-            }
-          },
-          {
-            "id": "t7",
-            "x": 1050,
-            "y": 100,
-            "label": ".",
-            "type": 0,
-            "text": ".",
-            "lemma": ".",
-            "pos": "PUNCT",
-            "props": {
-              "dep": "punct",
-              "PunctType": "Peri"
-            }
-          }
-        ],
-        "edges": [
-          {
-            "from": "t3",
-            "to": "t1",
-            "label": "case",
-            "type": 0
-          },
-          {
-            "from": "t3",
-            "to": "t2",
-            "label": "det",
-            "type": 0
-          },
-          {
-            "from": "t0",
-            "to": "t3",
-            "label": "obj",
-            "type": 0
-          },
-          {
-            "from": "t6",
-            "to": "t4",
-            "label": "case",
-            "type": 0
-          },
-          {
-            "from": "t6",
-            "to": "t5",
-            "label": "det",
-            "type": 0
-          },
-          {
-            "from": "t0",
-            "to": "t6",
-            "label": "obl",
-            "type": 0
-          },
-          {
-            "from": "t0",
-            "to": "t7",
-            "label": "punct",
-            "type": 0
-          }
-        ]
-      },
-      {
-        "nodes": [
-          {
-            "id": "c0",
-            "x": 506.2,
-            "y": 0,
-            "label": "ROOT",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c1",
-            "x": 506.2,
-            "y": 100,
-            "label": "sentence",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c2",
-            "x": 0,
-            "y": 200,
-            "label": "grup.verb",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t0",
-            "x": 0,
-            "y": 300,
-            "label": "Vi",
-            "type": 0,
-            "text": "Vi",
-            "pos": "VERB",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c3",
-            "x": 262.5,
-            "y": 200,
-            "label": "sp",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c4",
-            "x": 150,
-            "y": 300,
-            "label": "prep",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t1",
-            "x": 150,
-            "y": 400,
-            "label": "a",
-            "type": 0,
-            "text": "a",
-            "pos": "ADP",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c5",
-            "x": 375,
-            "y": 300,
-            "label": "sn",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c6",
-            "x": 300,
-            "y": 400,
-            "label": "spec",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t2",
-            "x": 300,
-            "y": 500,
-            "label": "un",
-            "type": 0,
-            "text": "un",
-            "pos": "DET",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c7",
-            "x": 450,
-            "y": 400,
-            "label": "grup.nom",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t3",
-            "x": 450,
-            "y": 500,
-            "label": "hombre",
-            "type": 0,
-            "text": "hombre",
-            "pos": "NOUN",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c8",
-            "x": 712.5,
-            "y": 200,
-            "label": "sp",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c9",
-            "x": 600,
-            "y": 300,
-            "label": "prep",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t4",
-            "x": 600,
-            "y": 400,
-            "label": "con",
-            "type": 0,
-            "text": "con",
-            "pos": "ADP",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c10",
-            "x": 825,
-            "y": 300,
-            "label": "sn",
-            "type": 1,
-            "props": {
-              "clase": "frase"
-            }
-          },
-          {
-            "id": "c11",
-            "x": 750,
-            "y": 400,
-            "label": "spec",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t5",
-            "x": 750,
-            "y": 500,
-            "label": "un",
-            "type": 0,
-            "text": "un",
-            "pos": "DET",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "c12",
-            "x": 900,
-            "y": 400,
-            "label": "grup.nom",
-            "type": 1,
-            "props": {
-              "clase": "grupo"
-            }
-          },
-          {
-            "id": "t6",
-            "x": 900,
-            "y": 500,
-            "label": "telescopio",
-            "type": 0,
-            "text": "telescopio",
-            "pos": "NOUN",
-            "props": {
-              "clase": "cat"
-            }
-          },
-          {
-            "id": "t7",
-            "x": 1050,
-            "y": 200,
-            "label": ".",
-            "type": 0,
-            "text": ".",
-            "pos": "PUNCT",
-            "props": {
-              "clase": "cat"
-            }
-          }
-        ],
-        "edges": [
-          {
-            "from": "c2",
-            "to": "t0",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c2",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c4",
-            "to": "t1",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c3",
-            "to": "c4",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c6",
-            "to": "t2",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c5",
-            "to": "c6",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c7",
-            "to": "t3",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c5",
-            "to": "c7",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c3",
-            "to": "c5",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c3",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c9",
-            "to": "t4",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c8",
-            "to": "c9",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c11",
-            "to": "t5",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c10",
-            "to": "c11",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c12",
-            "to": "t6",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c10",
-            "to": "c12",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c8",
-            "to": "c10",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "c8",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c1",
-            "to": "t7",
-            "label": "",
-            "type": 0
-          },
-          {
-            "from": "c0",
-            "to": "c1",
-            "label": "",
-            "type": 0
-          }
-        ]
-      }
-    ]
-  }
-]
+{
+  "name": "Two analyses of one sentence",
+  "description": "spaCy dependencies · Stanza constituents (AnCora)",
+  "graphs": [
+    {
+      "id": 1,
+      "name": "La casa grande tiene ventanas azules.",
+      "graphs": [
+        {
+          "name": "dependencies",
+          "nodes": [
+            {
+              "id": "t0",
+              "x": 0,
+              "y": 200,
+              "label": "La",
+              "type": 0,
+              "text": "La",
+              "lemma": "el",
+              "pos": "DET",
+              "props": {
+                "dep": "det",
+                "Definite": "Def",
+                "Gender": "Fem",
+                "Number": "Sing",
+                "PronType": "Art"
+              }
+            },
+            {
+              "id": "t1",
+              "x": 150,
+              "y": 100,
+              "label": "casa",
+              "type": 0,
+              "text": "casa",
+              "lemma": "casa",
+              "pos": "NOUN",
+              "props": {
+                "dep": "nsubj",
+                "Gender": "Fem",
+                "Number": "Sing"
+              }
+            },
+            {
+              "id": "t2",
+              "x": 300,
+              "y": 200,
+              "label": "grande",
+              "type": 0,
+              "text": "grande",
+              "lemma": "grande",
+              "pos": "ADJ",
+              "props": {
+                "dep": "amod",
+                "Number": "Sing"
+              }
+            },
+            {
+              "id": "t3",
+              "x": 450,
+              "y": 0,
+              "label": "tiene",
+              "type": 0,
+              "text": "tiene",
+              "lemma": "tener",
+              "pos": "VERB",
+              "props": {
+                "dep": "ROOT",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "3",
+                "Tense": "Pres",
+                "VerbForm": "Fin"
+              }
+            },
+            {
+              "id": "t4",
+              "x": 600,
+              "y": 100,
+              "label": "ventanas",
+              "type": 0,
+              "text": "ventanas",
+              "lemma": "ventana",
+              "pos": "NOUN",
+              "props": {
+                "dep": "obj",
+                "Gender": "Fem",
+                "Number": "Plur"
+              }
+            },
+            {
+              "id": "t5",
+              "x": 750,
+              "y": 200,
+              "label": "azules",
+              "type": 0,
+              "text": "azules",
+              "lemma": "azul",
+              "pos": "ADJ",
+              "props": {
+                "dep": "amod",
+                "Number": "Plur"
+              }
+            },
+            {
+              "id": "t6",
+              "x": 900,
+              "y": 100,
+              "label": ".",
+              "type": 0,
+              "text": ".",
+              "lemma": ".",
+              "pos": "PUNCT",
+              "props": {
+                "dep": "punct",
+                "PunctType": "Peri"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "t1",
+              "to": "t0",
+              "label": "det",
+              "type": 0
+            },
+            {
+              "from": "t3",
+              "to": "t1",
+              "label": "nsubj",
+              "type": 0
+            },
+            {
+              "from": "t1",
+              "to": "t2",
+              "label": "amod",
+              "type": 0
+            },
+            {
+              "from": "t3",
+              "to": "t4",
+              "label": "obj",
+              "type": 0
+            },
+            {
+              "from": "t4",
+              "to": "t5",
+              "label": "amod",
+              "type": 0
+            },
+            {
+              "from": "t3",
+              "to": "t6",
+              "label": "punct",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "name": "constituents",
+          "nodes": [
+            {
+              "id": "c0",
+              "x": 534.4,
+              "y": 0,
+              "label": "ROOT",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c1",
+              "x": 534.4,
+              "y": 100,
+              "label": "sentence",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c2",
+              "x": 112.5,
+              "y": 200,
+              "label": "sn",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c3",
+              "x": 0,
+              "y": 300,
+              "label": "spec",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t0",
+              "x": 0,
+              "y": 400,
+              "label": "La",
+              "type": 0,
+              "text": "La",
+              "pos": "DET",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c4",
+              "x": 225,
+              "y": 300,
+              "label": "grup.nom",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t1",
+              "x": 150,
+              "y": 400,
+              "label": "casa",
+              "type": 0,
+              "text": "casa",
+              "pos": "NOUN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c5",
+              "x": 300,
+              "y": 400,
+              "label": "s.a",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c6",
+              "x": 300,
+              "y": 500,
+              "label": "grup.a",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t2",
+              "x": 300,
+              "y": 600,
+              "label": "grande",
+              "type": 0,
+              "text": "grande",
+              "pos": "ADJ",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c7",
+              "x": 450,
+              "y": 200,
+              "label": "grup.verb",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t3",
+              "x": 450,
+              "y": 300,
+              "label": "tiene",
+              "type": 0,
+              "text": "tiene",
+              "pos": "VERB",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c8",
+              "x": 675,
+              "y": 200,
+              "label": "sn",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c9",
+              "x": 675,
+              "y": 300,
+              "label": "grup.nom",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t4",
+              "x": 600,
+              "y": 400,
+              "label": "ventanas",
+              "type": 0,
+              "text": "ventanas",
+              "pos": "NOUN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c10",
+              "x": 750,
+              "y": 400,
+              "label": "s.a",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c11",
+              "x": 750,
+              "y": 500,
+              "label": "grup.a",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t5",
+              "x": 750,
+              "y": 600,
+              "label": "azules",
+              "type": 0,
+              "text": "azules",
+              "pos": "ADJ",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "t6",
+              "x": 900,
+              "y": 200,
+              "label": ".",
+              "type": 0,
+              "text": ".",
+              "pos": "PUNCT",
+              "props": {
+                "clase": "cat"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "c3",
+              "to": "t0",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c2",
+              "to": "c3",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c4",
+              "to": "t1",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c6",
+              "to": "t2",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c5",
+              "to": "c6",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c4",
+              "to": "c5",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c2",
+              "to": "c4",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c2",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c7",
+              "to": "t3",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c7",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c9",
+              "to": "t4",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c11",
+              "to": "t5",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c10",
+              "to": "c11",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c9",
+              "to": "c10",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c8",
+              "to": "c9",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c8",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "t6",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c0",
+              "to": "c1",
+              "label": "",
+              "type": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Los niños que juegan en el parque están cansados.",
+      "graphs": [
+        {
+          "name": "dependencies",
+          "nodes": [
+            {
+              "id": "t0",
+              "x": 0,
+              "y": 200,
+              "label": "Los",
+              "type": 0,
+              "text": "Los",
+              "lemma": "el",
+              "pos": "DET",
+              "props": {
+                "dep": "det",
+                "Definite": "Def",
+                "Gender": "Masc",
+                "Number": "Plur",
+                "PronType": "Art"
+              }
+            },
+            {
+              "id": "t1",
+              "x": 150,
+              "y": 100,
+              "label": "niños",
+              "type": 0,
+              "text": "niños",
+              "lemma": "niño",
+              "pos": "NOUN",
+              "props": {
+                "dep": "nsubj",
+                "Gender": "Masc",
+                "Number": "Plur"
+              }
+            },
+            {
+              "id": "t2",
+              "x": 300,
+              "y": 300,
+              "label": "que",
+              "type": 0,
+              "text": "que",
+              "lemma": "que",
+              "pos": "PRON",
+              "props": {
+                "dep": "nsubj",
+                "PronType": "Int,Rel"
+              }
+            },
+            {
+              "id": "t3",
+              "x": 450,
+              "y": 200,
+              "label": "juegan",
+              "type": 0,
+              "text": "juegan",
+              "lemma": "jugar",
+              "pos": "VERB",
+              "props": {
+                "dep": "acl",
+                "Mood": "Ind",
+                "Number": "Plur",
+                "Person": "3",
+                "Tense": "Pres",
+                "VerbForm": "Fin"
+              }
+            },
+            {
+              "id": "t4",
+              "x": 600,
+              "y": 400,
+              "label": "en",
+              "type": 0,
+              "text": "en",
+              "lemma": "en",
+              "pos": "ADP",
+              "props": {
+                "dep": "case"
+              }
+            },
+            {
+              "id": "t5",
+              "x": 750,
+              "y": 400,
+              "label": "el",
+              "type": 0,
+              "text": "el",
+              "lemma": "el",
+              "pos": "DET",
+              "props": {
+                "dep": "det",
+                "Definite": "Def",
+                "Gender": "Masc",
+                "Number": "Sing",
+                "PronType": "Art"
+              }
+            },
+            {
+              "id": "t6",
+              "x": 900,
+              "y": 300,
+              "label": "parque",
+              "type": 0,
+              "text": "parque",
+              "lemma": "parque",
+              "pos": "NOUN",
+              "props": {
+                "dep": "obl",
+                "Gender": "Masc",
+                "Number": "Sing"
+              }
+            },
+            {
+              "id": "t7",
+              "x": 1050,
+              "y": 100,
+              "label": "están",
+              "type": 0,
+              "text": "están",
+              "lemma": "estar",
+              "pos": "AUX",
+              "props": {
+                "dep": "cop",
+                "Mood": "Ind",
+                "Number": "Plur",
+                "Person": "3",
+                "Tense": "Pres",
+                "VerbForm": "Fin"
+              }
+            },
+            {
+              "id": "t8",
+              "x": 1200,
+              "y": 0,
+              "label": "cansados",
+              "type": 0,
+              "text": "cansados",
+              "lemma": "cansado",
+              "pos": "ADJ",
+              "props": {
+                "dep": "ROOT",
+                "Gender": "Masc",
+                "Number": "Plur",
+                "VerbForm": "Part"
+              }
+            },
+            {
+              "id": "t9",
+              "x": 1350,
+              "y": 100,
+              "label": ".",
+              "type": 0,
+              "text": ".",
+              "lemma": ".",
+              "pos": "PUNCT",
+              "props": {
+                "dep": "punct",
+                "PunctType": "Peri"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "t1",
+              "to": "t0",
+              "label": "det",
+              "type": 0
+            },
+            {
+              "from": "t8",
+              "to": "t1",
+              "label": "nsubj",
+              "type": 0
+            },
+            {
+              "from": "t3",
+              "to": "t2",
+              "label": "nsubj",
+              "type": 0
+            },
+            {
+              "from": "t1",
+              "to": "t3",
+              "label": "acl",
+              "type": 0
+            },
+            {
+              "from": "t6",
+              "to": "t4",
+              "label": "case",
+              "type": 0
+            },
+            {
+              "from": "t6",
+              "to": "t5",
+              "label": "det",
+              "type": 0
+            },
+            {
+              "from": "t3",
+              "to": "t6",
+              "label": "obl",
+              "type": 0
+            },
+            {
+              "from": "t8",
+              "to": "t7",
+              "label": "cop",
+              "type": 0
+            },
+            {
+              "from": "t8",
+              "to": "t9",
+              "label": "punct",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "name": "constituents",
+          "nodes": [
+            {
+              "id": "c0",
+              "x": 939.9,
+              "y": 0,
+              "label": "ROOT",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c1",
+              "x": 939.9,
+              "y": 100,
+              "label": "sentence",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c2",
+              "x": 159.4,
+              "y": 200,
+              "label": "sn",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c3",
+              "x": 0,
+              "y": 300,
+              "label": "spec",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t0",
+              "x": 0,
+              "y": 400,
+              "label": "Los",
+              "type": 0,
+              "text": "Los",
+              "pos": "DET",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c4",
+              "x": 318.8,
+              "y": 300,
+              "label": "grup.nom",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t1",
+              "x": 150,
+              "y": 400,
+              "label": "niños",
+              "type": 0,
+              "text": "niños",
+              "pos": "NOUN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c5",
+              "x": 487.5,
+              "y": 400,
+              "label": "S",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c6",
+              "x": 300,
+              "y": 500,
+              "label": "relatiu",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "t2",
+              "x": 300,
+              "y": 600,
+              "label": "que",
+              "type": 0,
+              "text": "que",
+              "pos": "PRON",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c7",
+              "x": 450,
+              "y": 500,
+              "label": "grup.verb",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t3",
+              "x": 450,
+              "y": 600,
+              "label": "juegan",
+              "type": 0,
+              "text": "juegan",
+              "pos": "VERB",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c8",
+              "x": 712.5,
+              "y": 500,
+              "label": "sp",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c9",
+              "x": 600,
+              "y": 600,
+              "label": "prep",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t4",
+              "x": 600,
+              "y": 700,
+              "label": "en",
+              "type": 0,
+              "text": "en",
+              "pos": "ADP",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c10",
+              "x": 825,
+              "y": 600,
+              "label": "sn",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c11",
+              "x": 750,
+              "y": 700,
+              "label": "spec",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t5",
+              "x": 750,
+              "y": 800,
+              "label": "el",
+              "type": 0,
+              "text": "el",
+              "pos": "DET",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c12",
+              "x": 900,
+              "y": 700,
+              "label": "grup.nom",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t6",
+              "x": 900,
+              "y": 800,
+              "label": "parque",
+              "type": 0,
+              "text": "parque",
+              "pos": "NOUN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c13",
+              "x": 1050,
+              "y": 200,
+              "label": "grup.verb",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t7",
+              "x": 1050,
+              "y": 300,
+              "label": "están",
+              "type": 0,
+              "text": "están",
+              "pos": "AUX",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c14",
+              "x": 1200,
+              "y": 200,
+              "label": "S",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c15",
+              "x": 1200,
+              "y": 300,
+              "label": "participi",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t8",
+              "x": 1200,
+              "y": 400,
+              "label": "cansados",
+              "type": 0,
+              "text": "cansados",
+              "pos": "ADJ",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "t9",
+              "x": 1350,
+              "y": 200,
+              "label": ".",
+              "type": 0,
+              "text": ".",
+              "pos": "PUNCT",
+              "props": {
+                "clase": "cat"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "c3",
+              "to": "t0",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c2",
+              "to": "c3",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c4",
+              "to": "t1",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c6",
+              "to": "t2",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c5",
+              "to": "c6",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c7",
+              "to": "t3",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c5",
+              "to": "c7",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c9",
+              "to": "t4",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c8",
+              "to": "c9",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c11",
+              "to": "t5",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c10",
+              "to": "c11",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c12",
+              "to": "t6",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c10",
+              "to": "c12",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c8",
+              "to": "c10",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c5",
+              "to": "c8",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c4",
+              "to": "c5",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c2",
+              "to": "c4",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c2",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c13",
+              "to": "t7",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c13",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c15",
+              "to": "t8",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c14",
+              "to": "c15",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c14",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "t9",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c0",
+              "to": "c1",
+              "label": "",
+              "type": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Juan acaba de llegar a casa.",
+      "graphs": [
+        {
+          "name": "dependencies",
+          "nodes": [
+            {
+              "id": "t0",
+              "x": 0,
+              "y": 100,
+              "label": "Juan",
+              "type": 0,
+              "text": "Juan",
+              "lemma": "Juan",
+              "pos": "PROPN",
+              "props": {
+                "dep": "nsubj"
+              }
+            },
+            {
+              "id": "t1",
+              "x": 150,
+              "y": 0,
+              "label": "acaba",
+              "type": 0,
+              "text": "acaba",
+              "lemma": "acabar",
+              "pos": "VERB",
+              "props": {
+                "dep": "ROOT",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "3",
+                "Tense": "Pres",
+                "VerbForm": "Fin"
+              }
+            },
+            {
+              "id": "t2",
+              "x": 300,
+              "y": 200,
+              "label": "de",
+              "type": 0,
+              "text": "de",
+              "lemma": "de",
+              "pos": "ADP",
+              "props": {
+                "dep": "mark"
+              }
+            },
+            {
+              "id": "t3",
+              "x": 450,
+              "y": 100,
+              "label": "llegar",
+              "type": 0,
+              "text": "llegar",
+              "lemma": "llegar",
+              "pos": "VERB",
+              "props": {
+                "dep": "xcomp",
+                "VerbForm": "Inf"
+              }
+            },
+            {
+              "id": "t4",
+              "x": 600,
+              "y": 200,
+              "label": "a",
+              "type": 0,
+              "text": "a",
+              "lemma": "a",
+              "pos": "ADP",
+              "props": {
+                "dep": "case"
+              }
+            },
+            {
+              "id": "t5",
+              "x": 750,
+              "y": 100,
+              "label": "casa",
+              "type": 0,
+              "text": "casa",
+              "lemma": "casa",
+              "pos": "NOUN",
+              "props": {
+                "dep": "obl",
+                "Gender": "Fem",
+                "Number": "Sing"
+              }
+            },
+            {
+              "id": "t6",
+              "x": 900,
+              "y": 100,
+              "label": ".",
+              "type": 0,
+              "text": ".",
+              "lemma": ".",
+              "pos": "PUNCT",
+              "props": {
+                "dep": "punct",
+                "PunctType": "Peri"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "t1",
+              "to": "t0",
+              "label": "nsubj",
+              "type": 0
+            },
+            {
+              "from": "t3",
+              "to": "t2",
+              "label": "mark",
+              "type": 0
+            },
+            {
+              "from": "t1",
+              "to": "t3",
+              "label": "xcomp",
+              "type": 0
+            },
+            {
+              "from": "t5",
+              "to": "t4",
+              "label": "case",
+              "type": 0
+            },
+            {
+              "from": "t1",
+              "to": "t5",
+              "label": "obl",
+              "type": 0
+            },
+            {
+              "from": "t1",
+              "to": "t6",
+              "label": "punct",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "name": "constituents",
+          "nodes": [
+            {
+              "id": "c0",
+              "x": 468.8,
+              "y": 0,
+              "label": "ROOT",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c1",
+              "x": 468.8,
+              "y": 100,
+              "label": "sentence",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c2",
+              "x": 0,
+              "y": 200,
+              "label": "sn",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c3",
+              "x": 0,
+              "y": 300,
+              "label": "grup.nom",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t0",
+              "x": 0,
+              "y": 400,
+              "label": "Juan",
+              "type": 0,
+              "text": "Juan",
+              "pos": "PROPN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c4",
+              "x": 300,
+              "y": 200,
+              "label": "grup.verb",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t1",
+              "x": 150,
+              "y": 300,
+              "label": "acaba",
+              "type": 0,
+              "text": "acaba",
+              "pos": "VERB",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "t2",
+              "x": 300,
+              "y": 300,
+              "label": "de",
+              "type": 2,
+              "text": "de",
+              "pos": "ADP",
+              "props": {
+                "clase": "marca"
+              }
+            },
+            {
+              "id": "c5",
+              "x": 450,
+              "y": 300,
+              "label": "infinitiu",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t3",
+              "x": 450,
+              "y": 400,
+              "label": "llegar",
+              "type": 0,
+              "text": "llegar",
+              "pos": "VERB",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c6",
+              "x": 675,
+              "y": 200,
+              "label": "sp",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c7",
+              "x": 600,
+              "y": 300,
+              "label": "prep",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t4",
+              "x": 600,
+              "y": 400,
+              "label": "a",
+              "type": 0,
+              "text": "a",
+              "pos": "ADP",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c8",
+              "x": 750,
+              "y": 300,
+              "label": "sn",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c9",
+              "x": 750,
+              "y": 400,
+              "label": "grup.nom",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t5",
+              "x": 750,
+              "y": 500,
+              "label": "casa",
+              "type": 0,
+              "text": "casa",
+              "pos": "NOUN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "t6",
+              "x": 900,
+              "y": 200,
+              "label": ".",
+              "type": 0,
+              "text": ".",
+              "pos": "PUNCT",
+              "props": {
+                "clase": "cat"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "c3",
+              "to": "t0",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c2",
+              "to": "c3",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c2",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c4",
+              "to": "t1",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c4",
+              "to": "t2",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c5",
+              "to": "t3",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c4",
+              "to": "c5",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c4",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c7",
+              "to": "t4",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c6",
+              "to": "c7",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c9",
+              "to": "t5",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c8",
+              "to": "c9",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c6",
+              "to": "c8",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c6",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "t6",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c0",
+              "to": "c1",
+              "label": "",
+              "type": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Vi a un hombre con un telescopio.",
+      "graphs": [
+        {
+          "name": "dependencies",
+          "nodes": [
+            {
+              "id": "t0",
+              "x": 0,
+              "y": 0,
+              "label": "Vi",
+              "type": 0,
+              "text": "Vi",
+              "lemma": "ver",
+              "pos": "VERB",
+              "props": {
+                "dep": "ROOT",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "1",
+                "Tense": "Past",
+                "VerbForm": "Fin"
+              }
+            },
+            {
+              "id": "t1",
+              "x": 150,
+              "y": 200,
+              "label": "a",
+              "type": 0,
+              "text": "a",
+              "lemma": "a",
+              "pos": "ADP",
+              "props": {
+                "dep": "case"
+              }
+            },
+            {
+              "id": "t2",
+              "x": 300,
+              "y": 200,
+              "label": "un",
+              "type": 0,
+              "text": "un",
+              "lemma": "uno",
+              "pos": "DET",
+              "props": {
+                "dep": "det",
+                "Definite": "Ind",
+                "Gender": "Masc",
+                "Number": "Sing",
+                "PronType": "Art"
+              }
+            },
+            {
+              "id": "t3",
+              "x": 450,
+              "y": 100,
+              "label": "hombre",
+              "type": 0,
+              "text": "hombre",
+              "lemma": "hombre",
+              "pos": "NOUN",
+              "props": {
+                "dep": "obj",
+                "Gender": "Masc",
+                "Number": "Sing"
+              }
+            },
+            {
+              "id": "t4",
+              "x": 600,
+              "y": 200,
+              "label": "con",
+              "type": 0,
+              "text": "con",
+              "lemma": "con",
+              "pos": "ADP",
+              "props": {
+                "dep": "case"
+              }
+            },
+            {
+              "id": "t5",
+              "x": 750,
+              "y": 200,
+              "label": "un",
+              "type": 0,
+              "text": "un",
+              "lemma": "uno",
+              "pos": "DET",
+              "props": {
+                "dep": "det",
+                "Definite": "Ind",
+                "Gender": "Masc",
+                "Number": "Sing",
+                "PronType": "Art"
+              }
+            },
+            {
+              "id": "t6",
+              "x": 900,
+              "y": 100,
+              "label": "telescopio",
+              "type": 0,
+              "text": "telescopio",
+              "lemma": "telescopio",
+              "pos": "NOUN",
+              "props": {
+                "dep": "obl",
+                "Gender": "Masc",
+                "Number": "Sing"
+              }
+            },
+            {
+              "id": "t7",
+              "x": 1050,
+              "y": 100,
+              "label": ".",
+              "type": 0,
+              "text": ".",
+              "lemma": ".",
+              "pos": "PUNCT",
+              "props": {
+                "dep": "punct",
+                "PunctType": "Peri"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "t3",
+              "to": "t1",
+              "label": "case",
+              "type": 0
+            },
+            {
+              "from": "t3",
+              "to": "t2",
+              "label": "det",
+              "type": 0
+            },
+            {
+              "from": "t0",
+              "to": "t3",
+              "label": "obj",
+              "type": 0
+            },
+            {
+              "from": "t6",
+              "to": "t4",
+              "label": "case",
+              "type": 0
+            },
+            {
+              "from": "t6",
+              "to": "t5",
+              "label": "det",
+              "type": 0
+            },
+            {
+              "from": "t0",
+              "to": "t6",
+              "label": "obl",
+              "type": 0
+            },
+            {
+              "from": "t0",
+              "to": "t7",
+              "label": "punct",
+              "type": 0
+            }
+          ]
+        },
+        {
+          "name": "constituents",
+          "nodes": [
+            {
+              "id": "c0",
+              "x": 506.2,
+              "y": 0,
+              "label": "ROOT",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c1",
+              "x": 506.2,
+              "y": 100,
+              "label": "sentence",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c2",
+              "x": 0,
+              "y": 200,
+              "label": "grup.verb",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t0",
+              "x": 0,
+              "y": 300,
+              "label": "Vi",
+              "type": 0,
+              "text": "Vi",
+              "pos": "VERB",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c3",
+              "x": 262.5,
+              "y": 200,
+              "label": "sp",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c4",
+              "x": 150,
+              "y": 300,
+              "label": "prep",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t1",
+              "x": 150,
+              "y": 400,
+              "label": "a",
+              "type": 0,
+              "text": "a",
+              "pos": "ADP",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c5",
+              "x": 375,
+              "y": 300,
+              "label": "sn",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c6",
+              "x": 300,
+              "y": 400,
+              "label": "spec",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t2",
+              "x": 300,
+              "y": 500,
+              "label": "un",
+              "type": 0,
+              "text": "un",
+              "pos": "DET",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c7",
+              "x": 450,
+              "y": 400,
+              "label": "grup.nom",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t3",
+              "x": 450,
+              "y": 500,
+              "label": "hombre",
+              "type": 0,
+              "text": "hombre",
+              "pos": "NOUN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c8",
+              "x": 712.5,
+              "y": 200,
+              "label": "sp",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c9",
+              "x": 600,
+              "y": 300,
+              "label": "prep",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t4",
+              "x": 600,
+              "y": 400,
+              "label": "con",
+              "type": 0,
+              "text": "con",
+              "pos": "ADP",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c10",
+              "x": 825,
+              "y": 300,
+              "label": "sn",
+              "type": 1,
+              "props": {
+                "clase": "frase"
+              }
+            },
+            {
+              "id": "c11",
+              "x": 750,
+              "y": 400,
+              "label": "spec",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t5",
+              "x": 750,
+              "y": 500,
+              "label": "un",
+              "type": 0,
+              "text": "un",
+              "pos": "DET",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "c12",
+              "x": 900,
+              "y": 400,
+              "label": "grup.nom",
+              "type": 1,
+              "props": {
+                "clase": "grupo"
+              }
+            },
+            {
+              "id": "t6",
+              "x": 900,
+              "y": 500,
+              "label": "telescopio",
+              "type": 0,
+              "text": "telescopio",
+              "pos": "NOUN",
+              "props": {
+                "clase": "cat"
+              }
+            },
+            {
+              "id": "t7",
+              "x": 1050,
+              "y": 200,
+              "label": ".",
+              "type": 0,
+              "text": ".",
+              "pos": "PUNCT",
+              "props": {
+                "clase": "cat"
+              }
+            }
+          ],
+          "edges": [
+            {
+              "from": "c2",
+              "to": "t0",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c2",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c4",
+              "to": "t1",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c3",
+              "to": "c4",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c6",
+              "to": "t2",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c5",
+              "to": "c6",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c7",
+              "to": "t3",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c5",
+              "to": "c7",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c3",
+              "to": "c5",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c3",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c9",
+              "to": "t4",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c8",
+              "to": "c9",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c11",
+              "to": "t5",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c10",
+              "to": "c11",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c12",
+              "to": "t6",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c10",
+              "to": "c12",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c8",
+              "to": "c10",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "c8",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c1",
+              "to": "t7",
+              "label": "",
+              "type": 0
+            },
+            {
+              "from": "c0",
+              "to": "c1",
+              "label": "",
+              "type": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

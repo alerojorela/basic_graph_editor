@@ -253,7 +253,35 @@
       return `${i + 1} / ${total}` + (name ? ` · ${name}` : '');
     }
 
+    // A graph may carry its own name — «English», «dependencies» — and if the
+    // page did not show it, the field would be metadata nobody can see. It hangs
+    // off the top **right** of its panel: the search box already hangs off the
+    // top left.
+    const _titles = window.editors.map(() => {
+      const element = document.createElement('div');
+      element.className = 'panelTitle';
+      document.body.appendChild(element);
+      return element;
+    });
+
+    function renderPanelTitles() {
+      _titles.forEach((element, i) => {
+        const graph = window.doc.group?.graphs[i];
+        const name  = (i < window.doc.visible && graph && graph.name) || '';
+        element.textContent   = name;
+        element.style.display = name ? 'block' : 'none';
+        if (!name) return;
+        const box = window.editors[i].canvas.getBoundingClientRect();
+        element.style.left = `${Math.round(box.right - element.offsetWidth - 10)}px`;
+        element.style.top  = `${Math.round(box.top + 8)}px`;
+      });
+    }
+    if (typeof ResizeObserver === 'function') {
+      new ResizeObserver(renderPanelTitles).observe(document.getElementById('panels'));
+    }
+
     function renderGroupBar(doc) {
+      renderPanelTitles();
       // The bar appears with the collection and leaves with it. An old file
       // opens the page it has always opened.
       const shown = doc.isCollection();

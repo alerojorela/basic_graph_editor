@@ -49,12 +49,24 @@ const EDGE_TYPES = [
 	{ color: () => cssVar('--type6-color'), dash: [4, 2]          }, // 5 — short dash
 ];
 
+// **Everything below goes on every editor, not on `window.graph`.**
+//
+// This module used to write straight onto `window.graph`, which was the editor
+// back when there was one. With two panels that means panel A gets the six edge
+// types and the shape renderer and panel B keeps base.js's plain three and its
+// circles — so in the second panel Ctrl+F3 and Shift+F3 set `shapeType` and
+// `colorType` on the node and **nothing changes on screen**, because the only
+// code that reads them is a `drawNodeShape` that panel never received. It is
+// the same mistake nodeHistory.js and propertiesEditor.js already made, and it
+// is invisible until a second instance exists.
+const _editors = () => window.editors ?? [window.graph];
+
 // Replace the TYPES array used by drawArrow() in base.js.
-window.graph.TYPES = EDGE_TYPES;
+_editors().forEach(editor => { editor.TYPES = EDGE_TYPES; });
 
 // Override getEdgeType hook (declared in base.js) to apply category-based edge styles.
 // Priority: category style from config > edge.type set by F3 > 0 (default).
-window.graph.getEdgeType = function (edge) {
+const _getEdgeType = function (edge) {
 	if (!edge.category) return null; // no category → fall back to edge.type
 	const catStyle = window.categoryStyles?.edge?.[edge.category];
 	return catStyle != null && catStyle.typeIndex != null ? catStyle.typeIndex : null;
@@ -89,8 +101,8 @@ function _roundedRectPath(ctx, cx, cy, w, h, r) {
 }
 
 // ─── Override drawNodeShape ───────────────────────────────────────────────────
-// Replace the default circle renderer on the main graph instance.
-window.graph.drawNodeShape = function (ctx, n, isSelected) {
+// Replace the default circle renderer on every editor.
+const _drawNodeShape = function (ctx, n, isSelected) {
 	const baseType = n.type ?? 0;
 	const catStyle = n.category ? window.categoryStyles?.node?.[n.category] : null;
 
@@ -150,6 +162,11 @@ window.graph.drawNodeShape = function (ctx, n, isSelected) {
 	ctx.stroke();
 	ctx.shadowBlur = 0;
 };
+
+_editors().forEach(editor => {
+	editor.getEdgeType   = _getEdgeType;
+	editor.drawNodeShape = _drawNodeShape;
+});
 
 // ─── Independent shape / colour cycling ──────────────────────────────────────
 // Ctrl+F3  → cycle shape only  (sets n.shapeType)

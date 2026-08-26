@@ -1,6 +1,10 @@
 .gitignore
 OFFLINE/
 
+# Working notes and tool settings: local, and full of absolute paths.
+TODO.md
+.claude/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

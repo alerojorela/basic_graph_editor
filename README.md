@@ -2,7 +2,14 @@
 
 A lightweight, client-side directed graph editor built with vanilla JS and Canvas. No build step, no framework.
 
-![Graph Editor](capture.png)
+![Two panels: a dependency parse beside its constituency tree, with the layout menu open](capture_grammars.png)
+
+*Two graphs of one sentence side by side. Each panel says what it holds, and the
+node clicked in the right one is being edited in the properties drawer.*
+
+![The Tokyo metro, 216 stations, with the search box open on a station name](capture_tokyo_underground.png)
+
+*The same editor on a 216-node graph, in the light theme, searching by label.*
 
 ## Interactions
 
@@ -154,9 +161,11 @@ distinction. Hence «La casa grande…» in 19 nodes and «The big house…» in
 English tree is flatter because its training corpus annotates less, not because
 the sentence is simpler.
 
-Every pair sample says in its `tools` which models produced it, by exact name,
-and its node positions come from Layout → Arrange (ELK tree). Both are generated
-by `preparando/linguistics/syntax/py/graph_pair_CLAUDE.py` in the portfolio.
+Every pair sample says in its `tools` which models produced it, by exact name.
+They are generated outside this repository, by a script that runs spaCy and
+Stanza and then asks the editor itself for the positions, through Layout →
+Arrange — a hand-made grid is fine for a dependency tree and unreadable for a
+constituency one.
 
 ## Theming
 

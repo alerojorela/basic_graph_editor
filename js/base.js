@@ -232,7 +232,9 @@ class GraphEditor {
 
 	redraw() {
 		this.reset();
-		const mode = window.activeLayout ?? 'elk-mrtree';
+		// config.js documents defaultLayout as a customisation knob, so it has
+		// to be read somewhere: it was not, and setting it did nothing at all.
+		const mode = window.activeLayout ?? window.defaultLayout ?? 'elk-mrtree';
 		applyLayout(this.nodes, this.edges, mode);
 		this.centerGraph();
 	}

@@ -322,7 +322,7 @@
       const g = sampleLayout('parallel');
       window.graph.nodes = g.nodes;
       window.graph.edges = g.edges;
-      applyLayout(window.graph.nodes, window.graph.edges, window.activeLayout);
+      _runLayout(window.activeLayout);   // same guard as the Layout menu
     });
 
     // ── Document menu and group bar ───────────────────────────────────────

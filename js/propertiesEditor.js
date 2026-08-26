@@ -461,15 +461,22 @@ var arrayExclusiveWidget = 'select';
 	}
 
 	// ── hook into base.js ─────────────────────────────────────────────────────
+	// Every editor and not just `window.graph`: with one panel those are the
+	// same object and this is what it always was, and with more than one each
+	// panel gets its own hooks instead of only whichever had the focus at load.
+	// This one **assigns** rather than chains because it is the first link;
+	// nodeHistory.js loads after and chains onto what it finds here.
 	window.addEventListener('load', () => {
-		window.graph.onSelectionChange       = onSelection;
-		window.graph.doubleclickFunction     = (node) => _showPopup(node, 'node');
-		window.graph.doubleclickEdgeFunction = (edge) => _showPopup(edge, 'edge');
-		window.graph.onPostDraw              = _repositionPopup;
-
-		// Populate right-click context menu from the node category enum.
 		const cats = nodeSchema?.category?.enum ?? nodeSchema?.category?.items?.enum ?? null;
-		if (cats?.length) window.graph.nodeContextOptions = cats;
+		(window.editors ?? [window.graph]).forEach(editor => {
+			editor.onSelectionChange       = onSelection;
+			editor.doubleclickFunction     = (node) => _showPopup(node, 'node');
+			editor.doubleclickEdgeFunction = (edge) => _showPopup(edge, 'edge');
+			editor.onPostDraw              = _repositionPopup;
+
+			// Populate right-click context menu from the node category enum.
+			if (cats?.length) editor.nodeContextOptions = cats;
+		});
 	});
 
 	// ── F6: expand + focus first editable field ───────────────────────────────

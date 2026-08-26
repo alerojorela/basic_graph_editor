@@ -86,6 +86,19 @@ class GraphEditor {
 		this.panStart = { x: 0, y: 0 };
 		this._lastMiddleClickTime = 0;
 
+		// ── Embedding and read-only ───────────────────────────────────────────
+		// Element the canvas should size itself to. Null → the canvas's own
+		// parent, or the window when that parent is <body>. See resizeCanvas().
+		this.container = null;
+		// Whole-graph read-only. This is NOT `node.lock` / `edge.lock`, which
+		// pin one element each: this freezes the graph as a whole, so a panel
+		// can show a source that must not be edited while its twin is edited.
+		// **Off by default and nothing in this repository turns it on**: the
+		// machinery is here so an embedder does not have to bolt it on from
+		// outside, which is what the transformation fork had to do — capturing
+		// mousedown, contextmenu, dblclick and keydown before they arrived.
+		this.readOnly = false;
+
 		// ── Hooks (external modules assign these) ─────────────────────────────
 		// Called whenever selected node/edge changes.
 		this.onSelectionChange       = null;
@@ -115,9 +128,43 @@ class GraphEditor {
 
 	// ── Viewport ──────────────────────────────────────────────────────────────
 
+	/**
+	 * Size the canvas to whatever holds it.
+	 *
+	 * This used to be `window.innerWidth/innerHeight` flat out, which said, in
+	 * effect, that this editor **is** the page. It works while there is one of
+	 * them and nothing else on screen, and it is the single reason the editor
+	 * could not be embedded: the transformation fork had to monkey-patch this
+	 * method from outside just to fit the editor into one half of a split view.
+	 *
+	 * Resolution order, most explicit first:
+	 *   1. `this.container`, if an embedder set one. Say what you mean.
+	 *   2. The canvas's parent, when it is not `<body>` — an embedder that
+	 *      wrapped the canvas in a panel gets the panel's size for free.
+	 *   3. The window, which is what a full-page editor wants and what every
+	 *      existing page gets, unchanged: the canvas hangs off `<body>` there,
+	 *      so rule 2 does not fire.
+	 */
 	resizeCanvas() {
-		this.canvas.width  = window.innerWidth;
-		this.canvas.height = window.innerHeight;
+		const box = this.container
+			?? (this.canvas.parentElement !== document.body ? this.canvas.parentElement : null);
+		this.canvas.width  = box ? box.clientWidth  : window.innerWidth;
+		this.canvas.height = box ? box.clientHeight : window.innerHeight;
+	}
+
+	/**
+	 * Bring one node to the middle of the viewport, keeping the current zoom.
+	 *
+	 * `centerGraph()` frames everything; this frames one thing, which is what a
+	 * second panel needs in order to follow the first, and what a search result
+	 * or a history jump wants too. Nothing in this repository calls it yet.
+	 */
+	centerOn(nodeId) {
+		const node = this.nodes.find(n => n.id === nodeId);
+		if (!node) return;
+		this.offsetX = this.canvas.width  / 2 - node.x * this.scale;
+		this.offsetY = this.canvas.height / 2 - node.y * this.scale;
+		this.draw();
 	}
 
 	reset() {
@@ -746,6 +793,11 @@ class GraphEditor {
 		}
 
 		if (e.button === 2) { // right button
+			// Read-only stops here, not earlier: panning with the middle button
+			// and selecting with the left one stay alive, because looking at a
+			// frozen graph and picking things out of it is the point of freezing
+			// it. What is blocked is everything that changes it.
+			if (this.readOnly) return;
 			if (e.ctrlKey) {
 				e.preventDefault();
 				const wx = (e.offsetX - this.offsetX) / this.scale;
@@ -949,6 +1001,7 @@ class GraphEditor {
 	}
 
 	_handleDblClick(e) {
+		if (this.readOnly) return;
 		const x = (e.offsetX - this.offsetX) / this.scale;
 		const y = (e.offsetY - this.offsetY) / this.scale;
 
@@ -1013,6 +1066,10 @@ class GraphEditor {
 	_handleKeyDown(e) {
 		const tag = e.target.tagName;
 		if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+		// Every binding below this line writes: undo, redo, paste, rename,
+		// cycle type, lock, delete. Copy is the exception and it is let through,
+		// since taking a copy out of a frozen graph harms nothing.
+		if (this.readOnly && !(e.ctrlKey && e.code === 'KeyC')) return;
 
 		// ── Undo / Redo / Copy / Paste ────────────────────────────────────────
 		if (e.ctrlKey && !e.shiftKey && e.code === 'KeyZ') { e.preventDefault(); this.undo(); return; }
@@ -1139,18 +1196,78 @@ class GraphEditor {
 }
 
 
-// ── Main instance ─────────────────────────────────────────────────────────────
+// ── Panels ────────────────────────────────────────────────────────────────────
+//
+// How many editors this page may hold. **One, and one is the whole of what
+// changes at this value**: a single instance, `window.graph` pointing at it and
+// never moving, and not one extra listener bound. Raise it and the editor can
+// show several graphs side by side.
+//
+// Two things have to agree for a second panel to appear, and that is on purpose:
+// this constant sets the ceiling, and the page decides what actually exists by
+// putting `<canvas id="canvas2">` in the HTML. The editor does not build its own
+// layout — where the panels sit, and how wide, is the page's business and not
+// this file's.
+//
+// Why the ceiling exists at all: the transformation fork
+// (`graph_lab/transformation/`) already runs two of these, and it had to reach
+// in from outside to do it — reusing `window.graph` as its panel A and calling
+// `new GraphEditor(...)` by hand for panel B. It works, which is the evidence
+// that the class was multi-instance all along; what was missing was the editor
+// admitting it.
+const PANEL_COUNT = 1;
 
-const graph = new GraphEditor(canvas);
+/** Every live editor, in panel order. `editors[0]` is the historical one. */
+const editors = [];
+for (let i = 0; i < PANEL_COUNT; i++) {
+	const element = i === 0 ? canvas : document.getElementById(`canvas${i + 1}`);
+	if (!element) {
+		console.warn(`PANEL_COUNT is ${PANEL_COUNT} but there is no <canvas id="canvas${i + 1}">.`);
+		break;
+	}
+	editors.push(new GraphEditor(element));
+}
+window.editors = editors;
+
+const graph = editors[0];
+
+// **`window.graph` means "the editor with the focus", not "the editor".**
+//
+// With one panel there is no difference and it never gets reassigned. With more
+// than one, this is what lets propertiesEditor.js, nodeHistory.js, search.js and
+// the rest keep working untouched: between them they read `window.graph` some
+// fifty times, and rather than thread an editor argument through all of it, the
+// global follows the click. The properties panel edits what you just clicked,
+// the search searches where you are looking.
 window.graph = graph;
+
+function setActiveEditor(editor) {
+	if (!editor || editor === window.graph) return;
+	window.graph = editor;
+	editors.forEach(e => e.canvas.classList.toggle('is-active', e === editor));
+	if (typeof window.onActiveEditorChange === 'function') window.onActiveEditorChange(editor);
+}
+window.setActiveEditor = setActiveEditor;
+
+// Only worth binding when there is something to switch between. A single-panel
+// page ends up with exactly the listeners it had before this block existed.
+if (editors.length > 1) {
+	// mousedown and not click: it fires before the editor's own handlers, so by
+	// the time they run the global already points at the right panel.
+	editors.forEach(e => e.canvas.addEventListener('mousedown', () => setActiveEditor(e), true));
+}
 
 
 // ── Function aliases for index.html and config.js ────────────────────────────
 // index.html button handlers and config.js hot-reload call these by name.
 // All other modules access the instance directly via window.graph.
-function draw()        { graph.draw(); }
-function redraw()      { graph.redraw(); }
-function newGraph()    { graph.newGraph(); }
-function saveGraph()   { graph.saveGraph(); }
-function loadGraph(e)  { graph.loadGraph(e); }
-function isEmptyGraph(){ return graph.isEmptyGraph(); }
+//
+// These go through `window.graph` and not through the `graph` const so that
+// Save, Load and New act on the focused panel once there is more than one. With
+// PANEL_COUNT = 1 the two are the same object and nothing changes.
+function draw()        { window.graph.draw(); }
+function redraw()      { window.graph.redraw(); }
+function newGraph()    { window.graph.newGraph(); }
+function saveGraph()   { window.graph.saveGraph(); }
+function loadGraph(e)  { window.graph.loadGraph(e); }
+function isEmptyGraph(){ return window.graph.isEmptyGraph(); }

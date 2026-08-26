@@ -9,60 +9,81 @@
 	'use strict';
 
 	const MAX = 50;
-	const _hist = [];  // node references in visit order
-	let _idx = -1;     // pointer into _hist
 	let _navigating = false; // suppresses recording during programmatic jumps
 
-	// Remove nodes that no longer exist in the live graph.
-	function _clean() {
-		for (let i = _hist.length - 1; i >= 0; i--) {
-			if (!window.graph.nodes.includes(_hist[i])) _hist.splice(i, 1);
-		}
-		_idx = Math.min(_idx, _hist.length - 1);
+	// One history per editor, and not one shared by all of them.
+	//
+	// It used to be a single module-level array, which is right while there is
+	// one editor and quietly destructive as soon as there are two: `_clean()`
+	// drops every entry that is not in the current graph, so clicking into the
+	// other panel would delete the first panel's history on the way past. Each
+	// editor keeps its own trail, and switching panels changes which trail you
+	// are walking, which is what anyone would expect.
+	const _trails = new WeakMap();   // GraphEditor → { hist: [], idx: -1 }
+
+	function _trail(editor) {
+		let t = _trails.get(editor);
+		if (!t) { t = { hist: [], idx: -1 }; _trails.set(editor, t); }
+		return t;
 	}
 
-	function _push(node) {
-		if (_navigating || !node) return;
-		// Discard any "forward" entries when a new node is visited
-		if (_idx < _hist.length - 1) _hist.splice(_idx + 1);
-		// Don't record consecutive visits to the same node
-		if (_hist[_hist.length - 1] !== node) {
-			_hist.push(node);
-			if (_hist.length > MAX) _hist.shift();
+	// Remove nodes that no longer exist in that editor's graph.
+	function _clean(editor) {
+		const t = _trail(editor);
+		for (let i = t.hist.length - 1; i >= 0; i--) {
+			if (!editor.nodes.includes(t.hist[i])) t.hist.splice(i, 1);
 		}
-		_idx = _hist.length - 1;
+		t.idx = Math.min(t.idx, t.hist.length - 1);
+	}
+
+	function _push(editor, node) {
+		if (_navigating || !node) return;
+		const t = _trail(editor);
+		// Discard any "forward" entries when a new node is visited
+		if (t.idx < t.hist.length - 1) t.hist.splice(t.idx + 1);
+		// Don't record consecutive visits to the same node
+		if (t.hist[t.hist.length - 1] !== node) {
+			t.hist.push(node);
+			if (t.hist.length > MAX) t.hist.shift();
+		}
+		t.idx = t.hist.length - 1;
 	}
 
 	function _go(delta) {
-		_clean();
-		const newIdx = _idx + delta;
-		if (newIdx < 0 || newIdx >= _hist.length) return;
-		_idx = newIdx;
+		const g = window.graph;
+		_clean(g);
+		const t = _trail(g);
+		const newIdx = t.idx + delta;
+		if (newIdx < 0 || newIdx >= t.hist.length) return;
+		t.idx = newIdx;
 
 		_navigating = true;
-		const n  = _hist[_idx];
-		const g  = window.graph;
+		const n = t.hist[t.idx];
 
 		g.selectedNode = n;
 		g.selectedEdge = null;
 
-		// Pan so the node is centred in the viewport
-		g.offsetX = g.canvas.width  / 2 - n.x * g.scale;
-		g.offsetY = g.canvas.height / 2 - n.y * g.scale;
+		// Pan so the node is centred in the viewport. base.js grew `centerOn()`
+		// for exactly this, and it also calls draw().
+		g.centerOn(n.id);
 
 		if (typeof g.onSelectionChange === 'function') g.onSelectionChange(g.selectedNode, g.selectedEdge);
-		g.draw();
 
 		_navigating = false;
 	}
 
-	// Chain onto whichever onSelectionChange is already set (propertiesEditor.js).
+	// Chain onto whichever onSelectionChange is already set (propertiesEditor.js),
+	// **on every editor and not only on the one that had the focus at load**.
+	// With a single panel `window.editors` holds exactly one and this is what it
+	// always was.
 	window.addEventListener('load', () => {
-		const _prev = window.graph.onSelectionChange;
-		window.graph.onSelectionChange = (node, edge) => {
-			if (typeof _prev === 'function') _prev(node, edge);
-			if (node) _push(node);
-		};
+		(window.editors ?? [window.graph]).forEach(editor => {
+			const _prev = editor.onSelectionChange;
+			editor.onSelectionChange = (node, edge) => {
+				if (typeof _prev === 'function') _prev(node, edge);
+				if (node) _push(editor, node);
+			};
+		});
 	});
 
 	window.addEventListener('keydown', (e) => {

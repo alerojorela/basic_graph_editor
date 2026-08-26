@@ -217,6 +217,10 @@
 			editor.resizeCanvas();
 			editor.centerGraph();
 		});
+		// A new group starts at its first panel: keeping the scroll from the last
+		// one would open a pipeline in the middle of itself.
+		const row = document.getElementById('panels');
+		if (row) row.scrollLeft = 0;
 		if (typeof window.onDocumentChange === 'function') window.onDocumentChange(doc);
 	}
 

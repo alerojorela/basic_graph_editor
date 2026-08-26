@@ -1,3 +1,12 @@
+/* Lo que no depende del tema va antes que los temas y fuera de los dos: metido
+   en `:root.light`, en el oscuro no existía, y `flex: 1 0 var(--panel-min-width)`
+   quedaba inválida entera. Los paneles volvían a medirse por su tamaño
+   intrínseco y salían de 1576 y 789 píxeles en vez de a medias. */
+:root {
+  /* Narrower than this a graph is not readable, so the panel row scrolls. */
+  --panel-min-width: 320px;
+}
+
 :root.light {
   /* Fondo general */
   --bg-color: #f0f0f0;
@@ -177,6 +186,13 @@ canvas {
   position: fixed;
   inset: 0;
   display: flex;
+  /* The row scrolls rather than squeezing. Below --panel-min-width a panel
+     stops being a graph you can read, and a pipeline of transformations is
+     compared between *adjacent* panels, so a long row that scrolls is still a
+     comparison — step 12 beside step 13 is all anyone needs at once. */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
 }
 
 /* With one panel the properties drawer floats over the canvas, which is how
@@ -194,9 +210,17 @@ body:not(.panels-1) #panels { right: 240px; }
 body:not(.panels-1) #panels { top: 30px; }
 body:not(.panels-1):has(#propertiesPanel.prop-collapsed) #panels { right: 30px; }
 
+/* Grow to share the width when there is room, and never shrink past the
+   minimum: one rule does both. Two panels split the window; twenty sit at
+   their minimum and the row scrolls. */
 #panels canvas {
-  flex: 1 1 0;
-  min-width: 0;      /* without this the canvas's intrinsic 300px sets a floor */
+  flex: 1 0 var(--panel-min-width);
+  /* **Y esto no sobra.** El mínimo automático de un elemento flexible es el de
+     su contenido, y el contenido de un lienzo es su búfer: sin esta línea, un
+     panel con un búfer de 1700 píxeles se niega a medir menos de 1700, y dos
+     paneles salían de 1576 y 789 en vez de a medias. Estaba en la regla
+     original con su aviso, lo quité al reescribirla y volvió a mordernos. */
+  min-width: 0;
   height: 100%;
 }
 

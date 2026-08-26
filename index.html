@@ -106,17 +106,14 @@
   </div>
 
 
-  <!-- Panels. The page offers four canvases and base.js takes as many as
-       MAX_PANELS says, turning the rest off; the document then decides how many
-       of those are in use, one per graph in the current group. So raising the
-       ceiling is one number in js/base.js and nothing here, and with one panel
+  <!-- Panels. This box is the page's; what goes in it is base.js's, which fills
+       it with as many canvases as MAX_PANELS asks for — writing them out by hand
+       would be a second place to keep in step. The document then decides how
+       many are in use, one per graph in the current group, and with one panel
        #panels covers the viewport exactly, so #canvas measures as it always
        did. -->
   <div id="panels">
     <canvas id="canvas"></canvas>
-    <canvas id="canvas2"></canvas>
-    <canvas id="canvas3"></canvas>
-    <canvas id="canvas4"></canvas>
   </div>
 
   <!-- Group bar. Not there at all unless the file holds more than a lone
@@ -174,6 +171,7 @@
         <dt>Ctrl+F</dt><dd>Open search panel</dd>
         <dt>Ctrl + right-click</dt><dd>Insert subgraph from indented text</dd>
         <dt>F6</dt><dd>Focus properties panel</dd>
+        <dt>Ctrl+← / Ctrl+→</dt><dd>Focus the previous / next panel, scrolling to it</dd>
       </dl>
       <div id="helpCloseRow"><button id="helpClose">Close</button></div>
     </div>
@@ -307,6 +305,7 @@
     });
 
     function renderPanelTitles() {
+      const row = _panelBox.getBoundingClientRect();
       _titles.forEach((element, i) => {
         const graph = window.doc.group?.graphs[i];
         const name  = (i < window.doc.visible && graph && graph.name) || '';
@@ -314,13 +313,27 @@
         element.style.display = name ? 'block' : 'none';
         if (!name) return;
         const box = window.editors[i].canvas.getBoundingClientRect();
-        element.style.left = `${Math.round(box.right - element.offsetWidth - 10)}px`;
+        // A title belongs to its panel: when the panel has scrolled out of the
+        // row, so does it, or it would sit over somebody else's graph.
+        if (box.right <= row.left || box.left >= row.right) {
+          element.style.display = 'none';
+          return;
+        }
+        const right = Math.min(box.right, row.right);
+        element.style.left = `${Math.round(right - element.offsetWidth - 10)}px`;
         element.style.top  = `${Math.round(box.top + 8)}px`;
       });
     }
+    const _panelBox = document.getElementById('panels');
     if (typeof ResizeObserver === 'function') {
-      new ResizeObserver(renderPanelTitles).observe(document.getElementById('panels'));
+      new ResizeObserver(renderPanelTitles).observe(_panelBox);
     }
+    // The titles are fixed-position and the search box anchors to a canvas, so
+    // both are wrong the moment the row scrolls under them.
+    _panelBox.addEventListener('scroll', () => {
+      renderPanelTitles();
+      if (typeof window.reanchorSearch === 'function') window.reanchorSearch();
+    }, { passive: true });
 
     function renderGroupBar(doc) {
       renderPanelTitles();

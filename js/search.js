@@ -264,6 +264,11 @@
 		_panel.style.borderLeft = box.left > 0 ? '1px solid var(--ui-border)' : 'none';
 	}
 
+	// The panel row scrolls, and a box anchored to a canvas has to follow it.
+	window.reanchorSearch = () => {
+		if (_panel.style.display !== 'none') _anchorToActivePanel();
+	};
+
 	function _open() {
 		_anchorToActivePanel();
 		_panel.style.display = 'flex';

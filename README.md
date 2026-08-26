@@ -148,6 +148,22 @@ follows:
 | Remove graph | Take it out; the last graph of a group takes the group with it. Always asks, empty or not: with three panels open, which one has the focus is not obvious enough to act on silently. |
 | Add group · Previous · Next | Move through the collection. |
 
+### A long row
+
+`MAX_PANELS` in `js/base.js` is 50, and the page builds the canvases itself, so
+raising or lowering it is that one number. Panels share the width until they
+would fall below `--panel-min-width` (320 px in `styles.css`); past that the row
+**scrolls** instead of squeezing. **Ctrl+←** and **Ctrl+→** move the focus one
+panel along and bring it into view — Alt+← / Alt+→ remain the node history's.
+
+A long row is still a comparison because a pipeline is read **between adjacent
+panels**: step 12 beside step 13 is all anyone needs at once, and that stays
+true however long the chain is.
+
+The cost is linear and worth knowing: a canvas holds `width × height × 4` bytes,
+so thirty 320 px panels are about 29 MB of buffers, and a hundred would be near
+100 MB. Panels the current group does not use hold nothing at all.
+
 A group may end up holding more graphs than there are panels. That is allowed
 rather than refused — the editor has to be able to author the files it can read —
 and the group bar says how many are on screen and that the rest are written back

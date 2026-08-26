@@ -1266,11 +1266,12 @@ class GraphEditor {
 // instance, `window.graph` pointing at it and never moving, and not one extra
 // listener bound. Raise it and the editor can show several graphs side by side.
 //
-// Two things have to agree for a second panel to appear, and that is on purpose:
-// this constant sets the ceiling, and the page decides what actually exists by
-// putting `<canvas id="canvas2">` in the HTML. The editor does not build its own
-// layout — where the panels sit, and how wide, is the page's business and not
-// this file's.
+// The page owns the layout: `#panels` is its box, and the stylesheet decides how
+// wide a panel may get and how narrow before the row starts scrolling. What the
+// editor does is fill that box with as many canvases as this number asks for,
+// because writing fifty `<canvas>` tags by hand to raise a ceiling is a second
+// place to keep in step and it will drift. A page that prefers to name its own
+// canvases still can: `#canvas2`, `#canvas3` and so on are used when present.
 //
 // Why the ceiling exists at all: the transformation fork
 // (`graph_lab/transformation/`) already runs two of these, and it had to reach
@@ -1278,15 +1279,26 @@ class GraphEditor {
 // `new GraphEditor(...)` by hand for panel B. It works, which is the evidence
 // that the class was multi-instance all along; what was missing was the editor
 // admitting it.
-const MAX_PANELS = 3;
+// Fifty because a pipeline of transformations is compared **between adjacent
+// panels**, and that stays readable however long the chain is: you never need
+// step 1 beside step 40, only n beside n+1. The row scrolls once the panels
+// reach their minimum width, and Ctrl+← / Ctrl+→ walk it.
+const MAX_PANELS = 50;
 
 // Which canvases actually exist. The constant sets the ceiling; the page
 // decides what is really there.
 const panelCanvases = [];
+const panelHost = document.getElementById('panels');
 for (let i = 0; i < MAX_PANELS; i++) {
-	const element = i === 0 ? canvas : document.getElementById(`canvas${i + 1}`);
+	let element = i === 0 ? canvas : document.getElementById(`canvas${i + 1}`);
+	if (!element && panelHost) {
+		element = document.createElement('canvas');
+		element.id = `canvas${i + 1}`;
+		panelHost.appendChild(element);
+	}
 	if (!element) {
-		console.warn(`MAX_PANELS is ${MAX_PANELS} but there is no <canvas id="canvas${i + 1}">.`);
+		console.warn(`MAX_PANELS is ${MAX_PANELS} but there is no <canvas id="canvas${i + 1}">`
+		           + ` and no <div id="panels"> to put one in.`);
 		break;
 	}
 	panelCanvases.push(element);
@@ -1342,12 +1354,52 @@ const graph = editors[0];
 // the search searches where you are looking.
 window.graph = graph;
 
+/**
+ * Bring a panel into view without moving anything else.
+ *
+ * `scrollIntoView` would do it and would also scroll every ancestor that
+ * happens to be scrollable, which on a page that embeds this editor means the
+ * host page jumping. This touches one property of one element.
+ */
+function scrollPanelIntoView(element) {
+	if (!panelHost || panelHost.scrollWidth <= panelHost.clientWidth) return;
+	const left = element.offsetLeft;
+	const right = left + element.offsetWidth;
+	if (left < panelHost.scrollLeft) panelHost.scrollLeft = left;
+	else if (right > panelHost.scrollLeft + panelHost.clientWidth) {
+		panelHost.scrollLeft = right - panelHost.clientWidth;
+	}
+}
+
 function setActiveEditor(editor) {
 	if (!editor || editor === window.graph) return;
 	window.graph = editor;
 	editors.forEach(e => e.canvas.classList.toggle('is-active', e === editor));
+	scrollPanelIntoView(editor.canvas);
 	if (typeof window.onActiveEditorChange === 'function') window.onActiveEditorChange(editor);
 }
+window.scrollPanelIntoView = scrollPanelIntoView;
+
+/**
+ * Walk the chain: Ctrl+← and Ctrl+→ move the focus one panel along and scroll
+ * it into view. With a fifty-step pipeline the mouse is not the way to get from
+ * step 12 to step 13, and adjacent panels are the whole point of a long row.
+ *
+ * Alt+← / Alt+→ are the node history's, and stay so.
+ */
+window.addEventListener('keydown', e => {
+	if (!e.ctrlKey || e.altKey || e.shiftKey) return;
+	if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+	const tag = e.target.tagName;
+	if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+	const visible = window.doc ? window.doc.visible : editors.length;
+	if (visible < 2) return;
+	const here = editors.indexOf(window.graph);
+	const next = here + (e.key === 'ArrowRight' ? 1 : -1);
+	if (next < 0 || next >= visible) return;
+	e.preventDefault();
+	setActiveEditor(editors[next]);
+});
 window.setActiveEditor = setActiveEditor;
 
 // Only worth binding when there is something to switch between. A single-panel

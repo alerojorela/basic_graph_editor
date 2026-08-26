@@ -1076,6 +1076,18 @@ class GraphEditor {
 	}
 
 	_handleKeyDown(e) {
+		// **Only the focused editor answers the keyboard.**
+		//
+		// This handler is bound to `window` and not to the canvas, because a
+		// graph editor's keys have to work while the pointer sits anywhere on
+		// the page. With one editor that is fine; with two there are two
+		// listeners on the same window and **both** of them answered every
+		// keystroke, so Ctrl+Z undid in both panels at once, and F2 renamed in
+		// both if both had a selection.
+		//
+		// The undo stacks were already per editor. What was wrong was the
+		// delivery, not the data. With PANEL_COUNT = 1 this is always true.
+		if (window.graph && window.graph !== this) return;
 		const tag = e.target.tagName;
 		if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
 		// Every binding below this line writes: undo, redo, paste, rename,

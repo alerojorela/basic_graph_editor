@@ -92,34 +92,43 @@
   <div id="helpModal" style="display:none">
     <div id="helpBox">
       <div id="helpTitle">Keyboard shortcuts</div>
-      <dl id="helpList">
+      <div class="helpGroup">Nodes and edges</div>
+      <dl class="helpList">
         <dt>Right-click → drag</dt><dd>Create node and edge (release on existing node or empty space)</dd>
         <dt>Right-click (on node, no drag)</dt><dd>Context menu: create connected node of the chosen category</dd>
-        <dt>Ctrl + right-click</dt><dd>Insert subgraph from indented text</dd>
         <dt>Left click</dt><dd>Select node or edge</dd>
         <dt>Ctrl + click (node)</dt><dd>Add / remove from multi-selection</dd>
         <dt>Ctrl + double-click (node)</dt><dd>Select entire connected component</dd>
         <dt>Ctrl + click (edge)</dt><dd>Reverse edge direction</dd>
-        <dt>Drag on empty space</dt><dd>Area selection (rubber-band)</dd>
         <dt>Drag selected node</dt><dd>Move all multi-selected nodes</dd>
-        <dt>Middle button + drag</dt><dd>Pan view</dd>
-        <dt>Middle double-click</dt><dd>Center graph</dd>
-        <dt>Mouse wheel</dt><dd>Zoom viewport</dd>
-        <dt>Ctrl + mouse wheel</dt><dd>Scale node positions about cursor (spread / compress layout)</dd>
         <dt>F2</dt><dd>Rename node or edge (or all selected)</dd>
         <dt>F3</dt><dd>Cycle category — or type/colour if no category schema</dd>
         <dt>Ctrl+F3</dt><dd>Cycle node shape (node only)</dd>
         <dt>Shift+F3</dt><dd>Cycle node colour (node only)</dd>
         <dt>F4</dt><dd>Toggle lock</dd>
-        <dt>F6</dt><dd>Focus properties panel</dd>
         <dt>Del / Delete</dt><dd>Delete selection (if not locked)</dd>
-        <dt>Alt + ← / →</dt><dd>Node visit history</dd>
-        <dt>Ctrl+Z</dt><dd>Undo (up to 6 steps)</dd>
-        <dt>Ctrl+Y / Ctrl+Shift+Z</dt><dd>Redo</dd>
         <dt>Ctrl+C</dt><dd>Copy selected nodes (+ internal edges)</dd>
         <dt>Ctrl+V</dt><dd>Paste (offset +30px)</dd>
-        <dt>Ctrl+F</dt><dd>Open search panel</dd>
+        <dt>Alt + ← / →</dt><dd>Node visit history</dd>
         <dt>F12</dt><dd>Ollama query for selected node</dd>
+      </dl>
+
+      <div class="helpGroup">View</div>
+      <dl class="helpList">
+        <dt>Middle button + drag</dt><dd>Pan view</dd>
+        <dt>Middle double-click</dt><dd>Center graph</dd>
+        <dt>Mouse wheel</dt><dd>Zoom viewport</dd>
+        <dt>Ctrl + mouse wheel</dt><dd>Scale node positions about cursor (spread / compress layout)</dd>
+        <dt>Drag on empty space</dt><dd>Area selection (rubber-band)</dd>
+      </dl>
+
+      <div class="helpGroup">Document</div>
+      <dl class="helpList">
+        <dt>Ctrl+Z</dt><dd>Undo (up to 6 steps)</dd>
+        <dt>Ctrl+Y / Ctrl+Shift+Z</dt><dd>Redo</dd>
+        <dt>Ctrl+F</dt><dd>Open search panel</dd>
+        <dt>Ctrl + right-click</dt><dd>Insert subgraph from indented text</dd>
+        <dt>F6</dt><dd>Focus properties panel</dd>
       </dl>
       <div id="helpCloseRow"><button id="helpClose">Close</button></div>
     </div>

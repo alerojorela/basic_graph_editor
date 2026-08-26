@@ -187,6 +187,11 @@ canvas {
    collapses. base.js watches #panels with a ResizeObserver, so the canvases
    re-measure on their own when this width changes. */
 body.panels-2 #panels { right: 240px; }
+/* And below the menu bar. With one panel the canvas runs under it on purpose:
+   the drawing surface is larger than what you see. With two, the active panel's
+   outline is a border you are meant to read, and its top edge was disappearing
+   behind the bar — an outline missing one side looks like a bug, not a hint. */
+body.panels-2 #panels { top: 30px; }
 body.panels-2:has(#propertiesPanel.prop-collapsed) #panels { right: 30px; }
 
 #panels canvas {
@@ -272,12 +277,28 @@ button:active {
   font-size: 1em;
 }
 
-#helpList {
+/* The list is grouped: what acts on nodes and edges, what only moves the view,
+   and what acts on the document. Thirty-odd shortcuts in one column read as a
+   wall; split by what they touch, you can find the one you half-remember. */
+.helpList {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 5px 14px;
-  margin: 0;
+  margin: 0 0 14px;
   font-size: 0.83em;
+}
+
+.helpList:last-of-type { margin-bottom: 0; }
+
+.helpGroup {
+  margin: 0 0 6px;
+  font-size: 0.78em;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--type1-color);
+  border-bottom: 1px solid var(--ui-border);
+  padding-bottom: 3px;
 }
 
 #helpList dt {

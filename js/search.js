@@ -235,12 +235,43 @@
 
 	// ── Open / close / toggle advanced ───────────────────────────────────────
 
+	/**
+	 * Put the panel on the top edge of the graph it is about to search.
+	 *
+	 * The search reads `window.graph`, so it has always searched the focused
+	 * editor — correctly, and invisibly. With two panels that is not enough:
+	 * a box pinned to the top-left of the window while the results come from
+	 * the panel on the right is a box that lies about its own scope. Sitting it
+	 * on the panel it searches makes the position say it, with no label needed.
+	 *
+	 * With a single panel the canvas starts at the left edge of the window, so
+	 * this lands exactly where the stylesheet used to put it.
+	 */
+	function _anchorToActivePanel() {
+		const canvas = window.graph?.canvas;
+		if (!canvas) return;
+		const box = canvas.getBoundingClientRect();
+		_panel.style.left = `${Math.round(box.left)}px`;
+		_panel.style.top  = `${Math.round(box.top)}px`;
+		// Rounded on the outer side only, so it reads as hanging off that panel.
+		_panel.style.borderLeft = box.left > 0 ? '1px solid var(--ui-border)' : 'none';
+	}
+
 	function _open() {
+		_anchorToActivePanel();
 		_panel.style.display = 'flex';
 		_input.focus();
 		_input.select();
 		if (_input.value.trim()) _doSearch();
 	}
+
+	// Follow the focus: clicking into the other panel while the box is open
+	// moves it there, because that is the graph the next Enter will search.
+	const _prevActiveHook = window.onActiveEditorChange;
+	window.onActiveEditorChange = (editor) => {
+		if (typeof _prevActiveHook === 'function') _prevActiveHook(editor);
+		if (_panel.style.display !== 'none') { _anchorToActivePanel(); _doSearch(); }
+	};
 
 	function _close() {
 		_panel.style.display = 'none';

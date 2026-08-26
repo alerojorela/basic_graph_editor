@@ -168,6 +168,45 @@ canvas {
 }
 
 
+/* ── Panels ─────────────────────────────────────────────────────────────────
+   The container the canvases measure themselves against. Fixed to the whole
+   viewport, so with a single panel the canvas gets exactly the size it got when
+   base.js read window.innerWidth directly. The menubar floats over it, as it
+   always has. */
+#panels {
+  position: fixed;
+  inset: 0;
+  display: flex;
+}
+
+/* With one panel the properties drawer floats over the canvas, which is how
+   this editor has always worked: the drawing surface is larger than what you
+   see and you pan to it. With two it is not the same thing, because the right
+   panel would lose a fixed slice of itself and never get it back, so there, and
+   only there, the panels stop where the drawer starts — and follow it when it
+   collapses. base.js watches #panels with a ResizeObserver, so the canvases
+   re-measure on their own when this width changes. */
+body.panels-2 #panels { right: 240px; }
+body.panels-2:has(#propertiesPanel.prop-collapsed) #panels { right: 30px; }
+
+#panels canvas {
+  flex: 1 1 0;
+  min-width: 0;      /* without this the canvas's intrinsic 300px sets a floor */
+  height: 100%;
+}
+
+/* Off unless base.js says it built a second editor. */
+#canvas2 { display: none; }
+body.panels-2 #canvas2 { display: block; }
+body.panels-2 #canvas2 { border-left: 1px solid var(--ui-border); }
+
+/* Which panel has the focus. Inset so it does not shift the layout. */
+#panels canvas.is-active {
+  outline: 2px solid var(--type1-color);
+  outline-offset: -2px;
+}
+
+
 button,
 input[type="file"] {
   background: var(--ui-bg);

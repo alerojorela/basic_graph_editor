@@ -78,7 +78,15 @@
   </div>
 
 
-  <canvas id="canvas"></canvas>
+  <!-- Panels. The second canvas is inert until base.js's PANEL_COUNT is raised:
+       it is `display: none` unless <body> carries the .panels-2 class, which
+       base.js adds only when it actually built a second editor. With one panel
+       #panels covers the viewport exactly, so #canvas measures as it always
+       did. -->
+  <div id="panels">
+    <canvas id="canvas"></canvas>
+    <canvas id="canvas2"></canvas>
+  </div>
 
   <!-- Help modal -->
   <div id="helpModal" style="display:none">

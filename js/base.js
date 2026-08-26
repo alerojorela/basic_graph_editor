@@ -139,17 +139,29 @@ class GraphEditor {
 	 *
 	 * Resolution order, most explicit first:
 	 *   1. `this.container`, if an embedder set one. Say what you mean.
-	 *   2. The canvas's parent, when it is not `<body>` — an embedder that
-	 *      wrapped the canvas in a panel gets the panel's size for free.
+	 *   2. The canvas's **own** CSS box, when the canvas is not a direct child
+	 *      of `<body>` — someone who put it inside a layout meant the layout to
+	 *      decide. Its own box and not its parent's: two panels share a parent,
+	 *      so measuring the parent gives them both the full width and they end
+	 *      up drawing on top of each other.
 	 *   3. The window, which is what a full-page editor wants and what every
-	 *      existing page gets, unchanged: the canvas hangs off `<body>` there,
-	 *      so rule 2 does not fire.
+	 *      page written against the old editor gets, unchanged: the canvas hangs
+	 *      off `<body>` there, so rule 2 does not fire.
+	 *
+	 * A canvas with no CSS size falls back to its intrinsic 300×150, which is
+	 * never what anyone wants here; that is what the last guard is for.
 	 */
 	resizeCanvas() {
-		const box = this.container
-			?? (this.canvas.parentElement !== document.body ? this.canvas.parentElement : null);
-		this.canvas.width  = box ? box.clientWidth  : window.innerWidth;
-		this.canvas.height = box ? box.clientHeight : window.innerHeight;
+		let width, height;
+		if (this.container) {
+			width  = this.container.clientWidth;
+			height = this.container.clientHeight;
+		} else if (this.canvas.parentElement && this.canvas.parentElement !== document.body) {
+			width  = this.canvas.clientWidth;
+			height = this.canvas.clientHeight;
+		}
+		this.canvas.width  = width  || window.innerWidth;
+		this.canvas.height = height || window.innerHeight;
 	}
 
 	/**
@@ -1217,17 +1229,48 @@ class GraphEditor {
 // admitting it.
 const PANEL_COUNT = 1;
 
-/** Every live editor, in panel order. `editors[0]` is the historical one. */
-const editors = [];
+// Which canvases actually exist. The constant sets the ceiling; the page
+// decides what is really there.
+const panelCanvases = [];
 for (let i = 0; i < PANEL_COUNT; i++) {
 	const element = i === 0 ? canvas : document.getElementById(`canvas${i + 1}`);
 	if (!element) {
 		console.warn(`PANEL_COUNT is ${PANEL_COUNT} but there is no <canvas id="canvas${i + 1}">.`);
 		break;
 	}
-	editors.push(new GraphEditor(element));
+	panelCanvases.push(element);
 }
+
+// **This class goes on before a single editor is built, and the order is the
+// whole point.** The stylesheet hides #canvas2 until it appears, so with it set
+// afterwards every editor measured itself against a layout with one visible
+// panel and they all came out full width, drawing on top of each other. The
+// constructor calls resizeCanvas(), so the layout has to be final by then.
+document.body.classList.add(`panels-${panelCanvases.length}`);
+
+/** Every live editor, in panel order. `editors[0]` is the historical one. */
+const editors = panelCanvases.map(element => new GraphEditor(element));
 window.editors = editors;
+
+// A canvas that measures itself against a box has to watch that box, and the
+// window's `resize` event is not enough for it: the panels also change width
+// when the properties drawer collapses, when a late stylesheet lands, or when
+// whoever embeds this decides to drag a splitter. None of those resize the
+// window, and until something asks again the canvas keeps a buffer that no
+// longer matches its box — which is the difference between a crisp drawing and
+// a stretched one.
+if (typeof ResizeObserver === 'function') {
+	const watcher = new ResizeObserver(() => {
+		editors.forEach(e => { e.resizeCanvas(); e.draw(); });
+	});
+	const box = document.getElementById('panels');
+	if (box) watcher.observe(box); else editors.forEach(e => watcher.observe(e.canvas));
+} else {
+	// Old browser: at least catch the layout settling after load.
+	window.addEventListener('load', () => {
+		editors.forEach(e => { e.resizeCanvas(); e.draw(); });
+	});
+}
 
 const graph = editors[0];
 
@@ -1252,6 +1295,11 @@ window.setActiveEditor = setActiveEditor;
 // Only worth binding when there is something to switch between. A single-panel
 // page ends up with exactly the listeners it had before this block existed.
 if (editors.length > 1) {
+	// The first panel starts focused, and it has to be said out loud: the guard
+	// in setActiveEditor() returns early when the editor is already the active
+	// one, so calling it here would paint nothing and the page would open with
+	// no panel marked.
+	editors[0].canvas.classList.add('is-active');
 	// mousedown and not click: it fires before the editor's own handlers, so by
 	// the time they run the global already points at the right panel.
 	editors.forEach(e => e.canvas.addEventListener('mousedown', () => setActiveEditor(e), true));

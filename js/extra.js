@@ -389,7 +389,35 @@ function _buildSubgraphModal() {
 
 // ── Live preview ─────────────────────────────────────────────────────────────
 
+/**
+ * Make the preview canvas's drawing buffer match the box it is shown in.
+ *
+ * A `<canvas>` has two sizes, and they are not the same thing: the box the CSS
+ * gives it, and the pixel buffer it draws into. `styles.css` sets the box to
+ * 220×200, nothing ever set the buffer, and a canvas with no `width`/`height`
+ * attribute defaults to **300×150**. The browser then stretches that buffer to
+ * fill the box, so the preview came out squashed sideways and pulled upwards:
+ * every circle an oval.
+ *
+ * The main editor never hit this because `resizeCanvas()` sets its buffer on
+ * every resize. The preview is built with `interactive: false`, which skips
+ * that call — deliberately, since it must not follow the window — so its buffer
+ * stayed at the default forever.
+ *
+ * Called on every preview update rather than once at build time, because when
+ * the modal is created it is still hidden and `clientWidth` reads 0.
+ */
+function _fitPreviewCanvas() {
+	if (!_previewGraph) return;
+	const c = _previewGraph.canvas;
+	if (!c.clientWidth || !c.clientHeight) return;   // still hidden
+	if (c.width === c.clientWidth && c.height === c.clientHeight) return;
+	c.width  = c.clientWidth;
+	c.height = c.clientHeight;
+}
+
 function _updatePreview() {
+	_fitPreviewCanvas();
 	const mode = document.getElementById('subgraphMode').value;
 	const text = document.getElementById('subgraphInput').value;
 	const hint = document.getElementById('subgraphHint');

@@ -1299,8 +1299,14 @@ for (let i = 0; i < MAX_PANELS; i++) {
 		panelHost.appendChild(element);
 	}
 	if (!element) {
-		console.warn(`MAX_PANELS is ${MAX_PANELS} but there is no <canvas id="canvas${i + 1}">`
-		           + ` and no <div id="panels"> to put one in.`);
+		// Nothing to build in and no further canvas in the markup. One canvas is a
+		// perfectly good page — every fork of this editor is single-panel — so this
+		// only complains when the page clearly meant to have several and ran out
+		// halfway, which is a mistake worth hearing about.
+		if (i > 1) {
+			console.warn(`MAX_PANELS is ${MAX_PANELS} but there is no <canvas id="canvas${i + 1}">`
+			           + ` and no <div id="panels"> to put one in.`);
+		}
 		break;
 	}
 	// Hidden from the start, all but the first. Until the document layer says

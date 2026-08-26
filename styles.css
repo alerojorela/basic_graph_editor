@@ -272,8 +272,15 @@ body.has-groups #panels { bottom: 32px; }
   white-space: nowrap;
 }
 
-/* Which panel has the focus. Inset so it does not shift the layout. */
-#panels canvas.is-active {
+/* Which panel has the focus. Inset so it does not shift the layout.
+   **Only when there is another panel to have it instead.** With one panel the
+   outline says nothing, and it does not even draw properly: the lone canvas
+   runs under the menu bar and past the right edge on purpose, so two of its
+   four sides fall outside the viewport and what you see is an L. The class is
+   still set — base.js does not care how many panels there are — and the
+   stylesheet is where the answer belongs, because it is the one that knows the
+   canvas is bigger than its window. */
+body:not(.panels-1) #panels canvas.is-active {
   outline: 2px solid var(--type1-color);
   outline-offset: -2px;
 }

@@ -1355,33 +1355,115 @@ if (editors.length > 1) {
 // Save and Load go through the document layer, which knows the file may hold
 // more than the panels are showing. `saveGraph()` and `loadGraph()` stay as
 // they were, one graph in and out, and document.js is built on top of them.
-function saveDocument() {
-	const data = window.doc.serialize();
-	const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+// ── Opening and saving ───────────────────────────────────────────────────────
+//
+// **An `<input type="file">` cannot say where to open.** The browser decides,
+// and what it decides is the last folder any page used, which is how you end up
+// hunting for the same directory every time. The File System Access API can:
+// given an `id`, Chromium-family browsers remember the last folder used under
+// that name, kept apart from every other page's — so you find your files once
+// and after that the dialog opens where you left it. Saving through the same id
+// lands in the same place instead of in Downloads.
+//
+// **Firefox has none of this**, and there is nothing a page can do about it
+// there: the fallback below is exactly the behaviour this editor always had, an
+// `<input>` for opening and a download for saving. Everything is feature-
+// detected, so a browser that removes or blocks the API falls back too rather
+// than breaking. For the common case there is also File → Samples, which needs
+// no dialog at all and therefore works the same everywhere.
+const FILE_PICKER = {
+	id: 'basicGraphEditor',
+	types: [{ description: 'Graph document', accept: { 'application/json': ['.json'] } }],
+};
+
+/** The file we opened, when the browser gave us a handle to it. */
+let _fileHandle = null;
+
+function _readDocument(text, filename) {
+	try {
+		window.doc.load(JSON.parse(text), filename);
+	} catch (err) {
+		// Said out loud rather than guessed at: see the header of document.js.
+		// And with the one thing the reader cannot work out from here: a file
+		// this version does not understand may simply be newer than it.
+		alert(`Could not open ${filename}\n\n${err.message}\n\n`
+		    + `If this file was written by a newer version of the editor, `
+		    + `download the latest one.`);
+	}
+}
+
+async function openDocument() {
+	if (!window.showOpenFilePicker) { document.getElementById('loadInput').click(); return; }
+	let handle;
+	try {
+		[handle] = await window.showOpenFilePicker({ ...FILE_PICKER, multiple: false });
+	} catch (err) {
+		return;   // the dialog was dismissed, which is not an error
+	}
+	const file = await handle.getFile();
+	_fileHandle = handle;
+	_readDocument(await file.text(), file.name);
+}
+
+/** The fallback path, and what every browser did before this existed. */
+function loadDocument(e) {
+	const file = e.target.files[0];
+	if (!file) return;
+	_fileHandle = null;
+	const reader = new FileReader();
+	reader.onload = () => _readDocument(reader.result, file.name);
+	reader.readAsText(file);
+}
+
+/** Open one of the files that ship with the editor. No dialog anywhere. */
+async function loadSample(path) {
+	try {
+		const response = await fetch(path);
+		if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+		_fileHandle = null;
+		_readDocument(await response.text(), path.split('/').pop());
+	} catch (err) {
+		alert(`Could not read ${path}\n\n${err.message}`);
+	}
+}
+
+/**
+ * Save. With a handle from opening, straight back to that file; without one, a
+ * dialog that starts where you last saved. `askWhere` forces the dialog, which
+ * is what Save as… is for.
+ */
+async function saveDocument(askWhere) {
+	const text = JSON.stringify(window.doc.serialize(), null, 2);
+
+	if (window.showSaveFilePicker) {
+		let handle = askWhere ? null : _fileHandle;
+		// A handle survives a reload; the permission that came with it may not.
+		if (handle && await handle.queryPermission({ mode: 'readwrite' }) !== 'granted') {
+			if (await handle.requestPermission({ mode: 'readwrite' }) !== 'granted') handle = null;
+		}
+		if (!handle) {
+			try {
+				handle = await window.showSaveFilePicker({
+					...FILE_PICKER, suggestedName: window.doc.filename });
+			} catch (err) {
+				return;   // dismissed
+			}
+		}
+		const writable = await handle.createWritable();
+		await writable.write(text);
+		await writable.close();
+		_fileHandle = handle;
+		window.doc.filename = handle.name;
+		editors.forEach(e => { e.dirty = false; });
+		return;
+	}
+
+	const blob = new Blob([text], { type: 'application/json' });
 	const a = document.createElement('a');
 	a.href     = URL.createObjectURL(blob);
 	a.download = window.doc.filename;
 	a.click();
 	editors.forEach(e => { e.dirty = false; });
-}
-
-function loadDocument(e) {
-	const file = e.target.files[0];
-	if (!file) return;
-	const reader = new FileReader();
-	reader.onload = () => {
-		try {
-			window.doc.load(JSON.parse(reader.result), file.name);
-		} catch (err) {
-			// Said out loud rather than guessed at: see the header of document.js.
-			// And with the one thing the reader cannot work out from here: a file
-			// this version does not understand may simply be newer than it.
-			alert(`Could not open ${file.name}\n\n${err.message}\n\n`
-			    + `If this file was written by a newer version of the editor, `
-			    + `download the latest one.`);
-		}
-	};
-	reader.readAsText(file);
 }
 
 function draw()        { window.graph.draw(); }

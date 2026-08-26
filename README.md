@@ -65,7 +65,25 @@ Optional modules are independent — any can be removed without breaking the cor
 
 ## Save / load
 
-Graphs are saved as JSON (nodes + edges with all properties). All processing is local; no server required.
+Graphs are saved as JSON (nodes + edges with all properties). All processing is
+local; no server required.
+
+**Where the dialog opens.** An `<input type="file">` cannot say, so the browser
+picks the last folder any page used and you go hunting for yours every time.
+Where the File System Access API exists — Chrome, Edge, Brave and the rest of
+the Chromium family — File → Load… and Save go through it with an `id`, and the
+browser then remembers the last folder *for this editor*, kept apart from every
+other page. Save writes back to the file you opened; **Save as…** always asks.
+
+Firefox has no such API and nothing on a page can change that there: it falls
+back to the `<input>` and to a download, which is exactly what this editor
+always did. Everything is feature-detected, so a browser that blocks the API
+falls back rather than breaking. The API also needs a served page — on `file://`
+there is only the fallback.
+
+**File → Samples** sidesteps the dialog altogether and therefore works the same
+everywhere. The list comes from [`samples/index.json`](samples/index.json); add a
+sample by adding a line there.
 
 ## Documents: more than one graph in a file
 
@@ -125,7 +143,7 @@ The **Document** menu holds the shape commands:
 | | |
 |---|---|
 | `sample.json`, `*_underground.json`, `*_metro.json` | One graph. |
-| `legacy_one_graph.json` | The same, in the pre-document `{nodes, edges}` format, kept so the older reading stays exercised. |
+| `sample_legacy.json` | The same, in the pre-document `{nodes, edges}` format, kept so the older reading stays exercised. |
 | `parse_pairs_ES.json`, `parse_pairs_EN.json` | One sentence, two analyses: spaCy dependencies and Stanza constituents. The tokens share ids; the phrase nodes exist only in the second. The two files hold the same four sentences, so the three pair samples can be read against each other. |
 | `translation_pairs.json` | One sentence and its translation: English in the first panel, Spanish in the second. Paired words share an id even when the order changes (`big` / `grande`); what one language says and the other leaves out has no pair and is drawn in red. |
 

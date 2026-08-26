@@ -251,8 +251,15 @@
 		const canvas = window.graph?.canvas;
 		if (!canvas) return;
 		const box = canvas.getBoundingClientRect();
+		// **The canvas top is not always the top of what you can see.** With one
+		// panel the drawing surface runs under the menu bar on purpose — you pan
+		// to the part above — so anchoring to it put the search box's first rows
+		// behind the bar. With two panels the stylesheet already pushes #panels
+		// below the bar and this changes nothing.
+		const bar = document.getElementById('menubar');
+		const floor = bar ? bar.getBoundingClientRect().bottom : 0;
 		_panel.style.left = `${Math.round(box.left)}px`;
-		_panel.style.top  = `${Math.round(box.top)}px`;
+		_panel.style.top  = `${Math.round(Math.max(box.top, floor))}px`;
 		// Rounded on the outer side only, so it reads as hanging off that panel.
 		_panel.style.borderLeft = box.left > 0 ? '1px solid var(--ui-border)' : 'none';
 	}

@@ -19,9 +19,18 @@
       <div class="menu-dropdown">
         <button class="menu-action" id="menuNew">New</button>
         <button class="menu-action" id="menuSave">Save</button>
+        <button class="menu-action" id="menuSaveAs">Save as…</button>
         <button class="menu-action" id="menuLoad">Load…</button>
         <div class="menu-separator"></div>
         <button class="menu-action" id="menuExample">Example</button>
+        <!-- The files that ship with the editor, listed in samples/index.json.
+             Filled in at load; the group stays hidden when the manifest is not
+             reachable, which is the case on file://. -->
+        <div id="sampleGroup" style="display:none">
+          <div class="menu-separator"></div>
+          <div class="menu-group-label">Samples</div>
+          <div id="sampleList"></div>
+        </div>
       </div>
     </div>
 
@@ -221,13 +230,39 @@
     document.getElementById('menuSave').addEventListener('click', () => {
       _closeAll(); saveDocument();
     });
-    document.getElementById('menuLoad').addEventListener('click', () => {
-      _closeAll(); document.getElementById('loadInput').click();
+    document.getElementById('menuSaveAs').addEventListener('click', () => {
+      _closeAll(); saveDocument(true);
     });
-    document.getElementById('loadInput').onchange = e => {
+    document.getElementById('menuLoad').addEventListener('click', () => {
+      _closeAll();
+      // Asked here and not in the input's onchange, because with a file picker
+      // there may be no input involved at all.
       if (window.graph.dirty && !confirm('Are you sure you want to discard the current graph?')) return;
-      loadDocument(e);
-    };
+      openDocument();
+    });
+    document.getElementById('loadInput').onchange = e => loadDocument(e);
+
+    // ── Samples ───────────────────────────────────────────────────────────
+    // Two clicks and no dialog, which is the part that works in every browser.
+    fetch('samples/index.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(samples => {
+        const list = document.getElementById('sampleList');
+        samples.forEach(sample => {
+          const button = document.createElement('button');
+          button.className   = 'menu-option';
+          button.textContent = sample.name || sample.file;
+          button.title       = sample.file;
+          button.addEventListener('click', () => {
+            _closeAll();
+            if (window.graph.dirty && !confirm('Are you sure you want to discard the current graph?')) return;
+            loadSample(`samples/${sample.file}`);
+          });
+          list.appendChild(button);
+        });
+        document.getElementById('sampleGroup').style.display = '';
+      })
+      .catch(() => { /* no manifest: the group stays hidden */ });
     document.getElementById('menuExample').addEventListener('click', () => {
       _closeAll();
       if (window.graph.dirty && !confirm('Are you sure you want to discard the current graph?')) return;

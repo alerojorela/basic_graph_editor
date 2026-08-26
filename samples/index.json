@@ -1,0 +1,10 @@
+[
+  { "file": "sample.json",             "name": "Seven nodes" },
+  { "file": "parse_pairs_ES.json",     "name": "Two analyses · ES" },
+  { "file": "parse_pairs_EN.json",     "name": "Two analyses · EN" },
+  { "file": "translation_pairs.json",  "name": "English ↔ Spanish" },
+  { "file": "madrid_metro.json",       "name": "Madrid metro" },
+  { "file": "london_underground.json", "name": "London underground" },
+  { "file": "tokyo_metro.json",        "name": "Tokyo metro" },
+  { "file": "sample_legacy.json",   "name": "Legacy format" }
+]

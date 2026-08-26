@@ -79,13 +79,10 @@ function patternToGraph(expression) {
 
 	function addEdge(a, b) {
 		edges.add({ from: a, to: b });
-		return;
-		edges.add({ from: a, to: b, type: 0 });
-		edges.add(JSON.stringify([a, b]));
 	}
 
 	function visit(expr, depth = 0) {
-		// Caso base: nodo simple
+		// Base case: a plain node
 		if (!Array.isArray(expr)) {
 			nodes.add(expr);
 			return {

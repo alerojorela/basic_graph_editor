@@ -217,6 +217,10 @@ function applyElkLayout(nodes, edges, mode = 'layered') {
 // Async: initialises the Wasm module once, then runs synchronously per call.
 
 let _vizInstance = null;
+// Graphviz layouts run one at a time. renderString() is synchronous, but
+// Viz.instance() is not, and a second click landing inside that await had both
+// calls sharing — and discarding — the same instance underneath each other.
+let _vizChain = Promise.resolve();
 
 /** Convert native graph to a DOT language string. */
 function _toDot(nodes, edges) {
@@ -273,17 +277,29 @@ async function applyGraphvizLayout(nodes, edges, engine = 'dot') {
         console.error('Graphviz (Viz) not loaded — add @viz-js/viz CDN script');
         return;
     }
-    try {
-        if (!_vizInstance) _vizInstance = await Viz.instance();
-        const plain = _vizInstance.renderString(_toDot(nodes, edges), {
-            format: 'plain',
-            engine,
-        });
-        _applyPlainPositions(plain, nodes);
-        window.graph.centerGraph();
-    } catch (err) {
-        console.error('Graphviz layout failed:', err);
-    }
+    const dot = _toDot(nodes, edges);
+    _vizChain = _vizChain.then(async () => {
+        // Two attempts, and the instance is thrown away between them. A render
+        // that fails leaves the WebAssembly heap corrupted, and the damage
+        // accumulates: measured on the 242-node Madrid metro, two failed
+        // renders still let the next one through and the third poisoned the
+        // instance for good, so every later layout failed whichever engine
+        // asked. A fresh instance always recovered, four aborts later included,
+        // so caching a dead one is what turned one bad graph into a bad session.
+        for (let attempt = 0; attempt < 2; attempt++) {
+            try {
+                if (!_vizInstance) _vizInstance = await Viz.instance();
+                const plain = _vizInstance.renderString(dot, { format: 'plain', engine });
+                _applyPlainPositions(plain, nodes);
+                window.graph.centerGraph();
+                return;
+            } catch (err) {
+                _vizInstance = null;   // never reuse it after a failure
+                if (attempt > 0) console.error(`Graphviz ${engine} layout failed:`, err);
+            }
+        }
+    });
+    return _vizChain;
 }
 
 

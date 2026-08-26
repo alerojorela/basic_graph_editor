@@ -74,7 +74,11 @@
         <button class="menu-option" data-layout="gv-dot">Graphviz dot</button>
         <button class="menu-option" data-layout="gv-neato">Graphviz neato</button>
         <button class="menu-option" data-layout="gv-fdp">Graphviz fdp</button>
-        <button class="menu-option" data-layout="gv-sfdp">Graphviz sfdp</button>
+        <!-- sfdp is left out: it aborts inside the WebAssembly build on any
+             graph of size (measured on 216, 242 and 266-node samples, every
+             time), and a failed render damages the shared instance. The engine
+             is still reachable through applyLayout('gv-sfdp') for anyone who
+             wants to retry it on a future viz release. -->
         <button class="menu-option" data-layout="gv-twopi">Graphviz twopi</button>
         <button class="menu-option" data-layout="gv-circo">Graphviz circo</button>
         <!-- Dagre stays commented out: its <script> is too, so these buttons
@@ -292,7 +296,20 @@
         });
         document.getElementById('sampleGroup').style.display = '';
       })
-      .catch(() => { /* no manifest: the group stays hidden */ });
+      .catch(() => {
+        // Opened straight from disk, fetch() cannot read a neighbouring file:
+        // same-origin policy treats every file:// path as its own origin. Say
+        // so, because a Samples menu that simply is not there reads as a bug.
+        if (location.protocol !== 'file:') return;   // no manifest: stay hidden
+        const note = document.createElement('div');
+        note.className   = 'menu-group-label';
+        note.textContent = 'Samples need a local server';
+        note.title       = 'The browser will not let a page opened from disk '
+                         + 'read samples/index.json. Serve the folder over '
+                         + 'http, or open a sample with Load.';
+        document.getElementById('sampleList').appendChild(note);
+        document.getElementById('sampleGroup').style.display = '';
+      });
     document.getElementById('menuExample').addEventListener('click', () => {
       _closeAll();
       if (window.graph.dirty && !confirm('Are you sure you want to discard the current graph?')) return;

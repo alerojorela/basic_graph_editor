@@ -1301,6 +1301,14 @@ for (let i = 0; i < MAX_PANELS; i++) {
 		           + ` and no <div id="panels"> to put one in.`);
 		break;
 	}
+	// Hidden from the start, all but the first. Until the document layer says
+	// how many graphs there are, a visible canvas is a promise the page cannot
+	// keep: fifty of them were being laid out at once, five fitting the row, and
+	// the editor opened showing five empty graphs before collapsing to one. The
+	// wait is not a rendering delay either — doc initialises on window `load`,
+	// which waits for 3.7 MB of layout engines to come down from unpkg, so the
+	// flash lasted 0.6 s here and would last longer on a slower line.
+	if (i > 0) element.style.display = 'none';
 	panelCanvases.push(element);
 }
 
@@ -1309,7 +1317,9 @@ for (let i = 0; i < MAX_PANELS; i++) {
 // afterwards every editor measured itself against a layout with one visible
 // panel and they all came out full width, drawing on top of each other. The
 // constructor calls resizeCanvas(), so the layout has to be final by then.
-document.body.classList.add(`panels-${panelCanvases.length}`);
+// It starts at one to match the canvases above, which start hidden; the
+// document layer sets the real number as soon as it knows it.
+document.body.classList.add('panels-1');
 
 // The canvases the page offers but this build did not take. The stylesheet used
 // to hide them by name, one rule per canvas; here the number is known, so the

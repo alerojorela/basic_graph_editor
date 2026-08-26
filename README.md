@@ -93,6 +93,10 @@ straight edges anyway, so they lose nothing.
 `sfdp` is not offered: it aborts inside the WebAssembly build on any graph of
 size.
 
+The two engines that are slow enough to notice say so in the menu, and their
+title gives the figure. The rest are under 300 ms and marking them would say
+nothing.
+
 **Layouts freeze the page while they run** — every engine, since they all work
 on the main thread. Above 100 nodes a `Processing…` overlay goes up first, and
 while a layout is running further requests are ignored: the clicks nobody could

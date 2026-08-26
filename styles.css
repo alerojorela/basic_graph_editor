@@ -153,6 +153,20 @@ body {
 .menu-option           { padding-left: 36px; position: relative; }
 .menu-option.active::before { content: '✓'; position: absolute; left: 16px; }
 
+/* Only the two engines measured slow carry this: ELK stress at 7.3 s and
+   Graphviz circo at 3.4 s on a 250-node graph, against under 300 ms for the
+   rest. Marking everything would say nothing. The figures are in the title. */
+.menu-option[data-cost] { padding-right: 52px; }
+.menu-option[data-cost]::after {
+  content: attr(data-cost);
+  position: absolute;
+  right: 14px;
+  font-size: 0.72em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
 .menu-group-label {
   padding: 5px 16px 2px;
   font-size: 0.72em;

@@ -239,6 +239,39 @@ function _toDot(nodes, edges) {
 /**
  * Parse the graphviz "plain" output format and apply positions to nodes.
  * Graphviz y=0 is at the bottom; we flip so y=0 is at the top.
+ *
+ * TODO: read the edge lines too and draw dot's Bézier curves.
+ *
+ * Only the `node` lines are read here. The `edge` lines carry what Graphviz
+ * decided about the arcs themselves:
+ *
+ *     edge <tail> <head> <n> x1 y1 x2 y2 ... xn yn [label xl yl] style color
+ *
+ * Those n points — always 3k+1 of them — are the control polygon of a
+ * piecewise cubic Bézier: Graphviz routed the edge around the obstacles in its
+ * way, and we throw the routing away and draw the chord instead.
+ *
+ * How much that costs was measured on the 242-node Madrid metro sample, taking
+ * the largest distance from any control point to the straight line between the
+ * endpoints:
+ *
+ *     dot     13 % of edges curved, 155 px average deviation, 863 px worst
+ *     neato    0 %, never more than 4 px
+ *     fdp      1 %, never more than 5 px
+ *     twopi    0 %, never more than 3 px
+ *
+ * So this matters for `dot` and for nothing else: the other engines hand back
+ * four nearly collinear points per edge, which is a straight line, which is
+ * what gets drawn. It is also why dot leaves 37 edges crossing through an
+ * unrelated node where cola leaves none.
+ *
+ * Doing it is not just a matter of parsing. The canvas only knows moveTo and
+ * lineTo, so drawEdge() would need a bezierCurveTo chain; the arrowhead angle
+ * comes off the chord today and would have to come off the last segment; edge
+ * hit-testing would have to follow the curve. And the awkward part is not the
+ * drawing: a spline is layout state, not graph state, so the moment a node is
+ * dragged the stored curve is a lie, and something has to decide whether to
+ * recompute it or drop it.
  */
 function _applyPlainPositions(plain, nodes) {
     const nodeMap = new Map(nodes.map(n => [String(n.id), n]));

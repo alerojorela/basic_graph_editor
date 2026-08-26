@@ -62,7 +62,8 @@
         <div class="menu-group-label">ELK</div>
         <button class="menu-option" data-layout="elk-layered">ELK ↓ layered</button>
         <button class="menu-option" data-layout="elk-horizontal">ELK → layered</button>
-        <button class="menu-option" data-layout="elk-stress">ELK stress</button>
+        <button class="menu-option" data-layout="elk-stress" data-cost="slow"
+                title="Around 7 s on a 250-node graph. Fast below 100.">ELK stress</button>
         <button class="menu-option active" data-layout="elk-mrtree">ELK tree</button>
         <div class="menu-separator"></div>
         <div class="menu-group-label">WebCola</div>
@@ -80,7 +81,8 @@
              is still reachable through applyLayout('gv-sfdp') for anyone who
              wants to retry it on a future viz release. -->
         <button class="menu-option" data-layout="gv-twopi">Graphviz twopi</button>
-        <button class="menu-option" data-layout="gv-circo">Graphviz circo</button>
+        <button class="menu-option" data-layout="gv-circo" data-cost="slow"
+                title="Around 3.5 s on a 250-node graph. Fast below 100.">Graphviz circo</button>
         <!-- Dagre stays commented out: its <script> is too, so these buttons
              would have nothing to lay out with. The code in js/layout.js
              remains, so uncommenting both brings it back. -->

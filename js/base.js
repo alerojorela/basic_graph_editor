@@ -651,7 +651,16 @@ class GraphEditor {
 		this.draw();
 	}
 
-	saveGraph() {
+	/**
+	 * This graph as plain `{nodes, edges}`, with defaults left out.
+	 *
+	 * Split out of `saveGraph()` so that turning a graph into data and writing
+	 * a file stop being the same act. They were, and it is why this editor
+	 * could only ever hold one graph: the only way to serialise was to
+	 * download. document.js needs the first half without the second, because a
+	 * file may now carry several of these.
+	 */
+	toJSON() {
 		const NODE_DEF = { type: 0, lock: false, tooltip: '', text: '', description: '', notes: '', links: '' };
 		const EDGE_DEF = { type: 0, lock: false, label: '' };
 
@@ -665,13 +674,35 @@ class GraphEditor {
 			return out;
 		}
 
-		const data = {
+		return {
 			nodes: this.nodes.map(n => _strip({ ...n }, NODE_DEF)),
 			edges: this.edges.map(e => {
 				const { from, to, ...rest } = e;
 				return _strip({ ...rest, from: from.id, to: to.id }, EDGE_DEF);
 			}),
 		};
+	}
+
+	/**
+	 * Fill this graph from plain `{nodes, edges}`. The other half of toJSON().
+	 *
+	 * Edges arrive holding node **ids** and end up holding node **objects**,
+	 * which is what everything else here expects. An edge whose endpoints are
+	 * not in the file is dropped rather than left dangling.
+	 */
+	fromJSON(data) {
+		this.nodes = (data?.nodes ?? []).map(n => ({ x: 0, y: 0, label: '', type: 0, lock: false, ...n }));
+		this.edges = (data?.edges ?? []).map(e => ({
+			label: '', type: 0, lock: false,
+			...e,
+			from: this.nodes.find(n => n.id === e.from),
+			to:   this.nodes.find(n => n.id === e.to),
+		})).filter(e => e.from && e.to);
+		this.dirty = false;
+	}
+
+	saveGraph() {
+		const data = this.toJSON();
 
 		const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
 		const a = document.createElement('a');
@@ -688,15 +719,7 @@ class GraphEditor {
 
 		const reader = new FileReader();
 		reader.onload = () => {
-			const data = JSON.parse(reader.result);
-			this.nodes = data.nodes.map(n => ({ x: 0, y: 0, label: '', type: 0, lock: false, ...n }));
-			this.edges = data.edges.map(e => ({
-				label: '', type: 0, lock: false,
-				...e,
-				from: this.nodes.find(n => n.id === e.from),
-				to:   this.nodes.find(n => n.id === e.to),
-			})).filter(e => e.from && e.to);
-			this.dirty = false;
+			this.fromJSON(JSON.parse(reader.result));
 			this.centerGraph();
 		};
 		reader.readAsText(file);
@@ -1239,7 +1262,7 @@ class GraphEditor {
 // `new GraphEditor(...)` by hand for panel B. It works, which is the evidence
 // that the class was multi-instance all along; what was missing was the editor
 // admitting it.
-const PANEL_COUNT = 1;
+const PANEL_COUNT = 2;
 
 // Which canvases actually exist. The constant sets the ceiling; the page
 // decides what is really there.
@@ -1325,9 +1348,37 @@ if (editors.length > 1) {
 // These go through `window.graph` and not through the `graph` const so that
 // Save, Load and New act on the focused panel once there is more than one. With
 // PANEL_COUNT = 1 the two are the same object and nothing changes.
+// Save and Load go through the document layer, which knows the file may hold
+// more than the panels are showing. `saveGraph()` and `loadGraph()` stay as
+// they were, one graph in and out, and document.js is built on top of them.
+function saveDocument() {
+	const data = window.doc.serialize();
+	const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+	const a = document.createElement('a');
+	a.href     = URL.createObjectURL(blob);
+	a.download = window.doc.filename;
+	a.click();
+	editors.forEach(e => { e.dirty = false; });
+}
+
+function loadDocument(e) {
+	const file = e.target.files[0];
+	if (!file) return;
+	const reader = new FileReader();
+	reader.onload = () => {
+		try {
+			window.doc.load(JSON.parse(reader.result), file.name);
+		} catch (err) {
+			// Said out loud rather than guessed at: see the header of document.js.
+			alert(`Could not open ${file.name}:\n\n${err.message}`);
+		}
+	};
+	reader.readAsText(file);
+}
+
 function draw()        { window.graph.draw(); }
 function redraw()      { window.graph.redraw(); }
-function newGraph()    { window.graph.newGraph(); }
+function newGraph()    { window.graph.newGraph(); if (window.doc) window.doc.reset(); }
 function saveGraph()   { window.graph.saveGraph(); }
 function loadGraph(e)  { window.graph.loadGraph(e); }
 function isEmptyGraph(){ return window.graph.isEmptyGraph(); }

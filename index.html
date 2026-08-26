@@ -141,6 +141,8 @@
   <script src="custom/config.js"></script>
   <!-- base.js: GraphEditor class + main instance (window.graph) + function aliases for this file -->
   <script src="js/base.js"></script>
+  <!-- The document layer: what a file holds, of which the panels are a view. -->
+  <script src="js/document.js"></script>
   <!-- layout.js: dagre / ELK / Graphviz / Cola layout algorithms; uses window.graph.centerGraph() -->
   <script src="js/layout.js"></script>
   <!-- Optional modules — all access the editor via window.graph.* -->
@@ -188,14 +190,14 @@
       newGraph();
     });
     document.getElementById('menuSave').addEventListener('click', () => {
-      _closeAll(); saveGraph();
+      _closeAll(); saveDocument();
     });
     document.getElementById('menuLoad').addEventListener('click', () => {
       _closeAll(); document.getElementById('loadInput').click();
     });
     document.getElementById('loadInput').onchange = e => {
       if (window.graph.dirty && !confirm('Are you sure you want to discard the current graph?')) return;
-      loadGraph(e);
+      loadDocument(e);
     };
     document.getElementById('menuExample').addEventListener('click', () => {
       _closeAll();

@@ -1276,7 +1276,7 @@ class GraphEditor {
 // canvases still can: `#canvas2`, `#canvas3` and so on are used when present.
 //
 // Why the ceiling exists at all: the transformation fork
-// (`graph_lab/transformation/`) already runs two of these, and it had to reach
+// (`linguistics/syntax/transformation/`) already runs two of these, and it had to reach
 // in from outside to do it — reusing `window.graph` as its panel A and calling
 // `new GraphEditor(...)` by hand for panel B. It works, which is the evidence
 // that the class was multi-instance all along; what was missing was the editor

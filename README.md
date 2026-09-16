@@ -320,12 +320,30 @@ Light / dark mode via CSS variables. Initial theme follows the OS preference; to
 
 F12 on a selected node opens a prompt sent to a local Ollama instance (`http://localhost:11434`). The response is parsed as a JSON array and inserted as connected nodes. Configure model and prompt template in `custom/ollama.js`.
 
-Requires Ollama running with `OLLAMA_ORIGINS=*` (needed for browser CORS):
+Requires a local Ollama **and the editor served over HTTP** — not opened as a
+`file://` document:
+
 ```bash
 docker run -d --name ollama_API --restart always \
-  -v ~/.IAmodels:/root/.ollama -p 11434:11434 --gpus all \
-  -e OLLAMA_ORIGINS='*' ollama/ollama
+  -v ~/.IAmodels:/root/.ollama -p 127.0.0.1:11434:11434 --gpus all \
+  ollama/ollama
+
+python3 -m http.server 8001 --bind 127.0.0.1   # from this directory
+# then open http://localhost:8001
 ```
+
+Both `127.0.0.1` above are deliberate: they keep Ollama and the page reachable
+from this machine only. Docker in particular writes its firewall rules into a
+chain consulted *before* your firewall's, so `-p 11434:11434` would expose the
+port to your whole network even with the firewall on.
+
+Earlier versions of this README told you to set `OLLAMA_ORIGINS=*` instead. Don't.
+A page opened from `file://` sends the origin `null`, which Ollama rejects by
+default, and `*` "fixes" that by accepting **every** origin — meaning any web page
+you have open can then list your models, delete them, or spend your GPU. Serving
+the page from `http://localhost:8001` sends an origin Ollama already trusts, so
+nothing needs configuring. `OLLAMA_ORIGINS=null` is not a fix either: any site can
+forge that origin with a sandboxed iframe.
 
 ## License
 

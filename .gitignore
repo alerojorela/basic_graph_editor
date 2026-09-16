@@ -1,5 +1,4 @@
 .gitignore
-OFFLINE/
 
 # Working notes and tool settings: local, and full of absolute paths.
 TODO.md
@@ -79,3 +78,31 @@ instance/
 # Misc
 *.bak
 *.swp
+
+# ── This house's own block, since 2026-09-14 ──────────────────────────────
+# ⚠️ In .gitignore, `#` only opens a comment at the start of a line. A comment
+# at the end would be part of the pattern, and the rule would then match
+# nothing, in silence. That is why every explanation gets its own line.
+
+# How this house works: it cites the workshop trunk and means nothing outside
+# it.
+CLAUDE.md
+# The agent's local permissions and settings. They have carried a credential.
+# «This is not published». It has carried the zero since 2026-09-12, and rules
+# that said `OFFLINE` without it had matched nothing ever since.
+0OFFLINE/
+# PIDs and logs of the house servers.
+.servers/
+# Telethon sessions: a whole key, they get in with no password.
+*.session
+
+# ── Secretos y entorno ────────────────────────────────────────────────────
+.env.*
+programming-keys.yaml
+
+# ── Common block of the house, completed 2026-09-15 ───────────────────────
+# Whatever a service here writes while it runs. Machine paths and, when
+# something fails, whole tracebacks: the record of a run, not of the program.
+# It goes in even where nothing writes a log yet, because the day something
+# starts to, nobody will remember to come back and add the rule.
+logs/
